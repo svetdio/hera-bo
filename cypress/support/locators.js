@@ -54,7 +54,9 @@ export default {
             'entry':                      'select.outline-none',
             'preloader':                  '.preloader img',
             'rows':                       '#tableBody tr',
-            'total':                      '.table-showing span:last-child'
+            'total':                      '.table-showing span:last-child',
+            'summaryTable':               '.table-auto.table-custom.min-w-full.table-lg',
+            'summaryRows':                '.table-auto.table-custom.min-w-full.table-lg tr'
         }
 
     },
@@ -97,7 +99,64 @@ export default {
             'notif':                      '#notifBox .dropdown-body a:first-of-type',
             'pop-up':                     '.toast.toast-success',
             'pop-up-head':                '.toast.toast-success .toast-header',
-            'pop-up-body':                '.toast.toast-success .toast-body'
+            'pop-up-body':                '.toast.toast-success .toast-body',
+            'bet-box':                    'grid sm:grid-cols-1',
+            'bet-form':                   '.form_inputs'
+        },
+
+        summaryTable:
+        {
+            '1stcol':                     '.table-auto.table-custom.min-w-full.table-lg tr:first-child th:nth-child(1)',
+            '2ndcol':                     '.table-auto.table-custom.min-w-full.table-lg tr:first-child th:nth-child(2)',
+            '3rdcol':                     '.table-auto.table-custom.min-w-full.table-lg tr:first-child th:nth-child(3)',
+            '4thcol':                     '.table-auto.table-custom.min-w-full.table-lg tr:first-child th:nth-child(4)',
+            '5thcol':                     '.table-auto.table-custom.min-w-full.table-lg tr:first-child th:nth-child(5)',
+            '6thcol':                     '.table-auto.table-custom.min-w-full.table-lg tr:first-child th:nth-child(6)',
+            '7thcol':                     '.table-auto.table-custom.min-w-full.table-lg tr:first-child th:nth-child(7)',
+            '8thcol':                     '.table-auto.table-custom.min-w-full.table-lg tr:first-child th:nth-child(8)',
+            '9thcol':                     '.table-auto.table-custom.min-w-full.table-lg tr:first-child th:nth-child(9)',
+            '10thcol':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child th:nth-child(10)',
+            
+            dataTable1:
+            {
+                '1stdata':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(1)',
+                '2nddata':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(2)',
+                '3rddata':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(3)',
+                '4thdata':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(4)',
+                '5thdata':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(5)',
+                '6thdata':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(6)',
+                '7thdata':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(7)'
+            },
+
+            dataTable2:
+            {
+                '1stdata':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(1)',
+                '2nddata':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(2)',
+                '3rddata':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(3)'
+            },
+
+            dataTable3:
+            {
+                '1stdata':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(1)',
+                '2nddata':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(2)',
+                '3rddata':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(3)',
+                '4thdata':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(4)',
+                '5thdata':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(5)'
+            },
+
+            dataTable4:
+            {
+                '1stdata':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(1)',
+                '2nddata':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(2)',
+                '3rddata':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(3)',
+                '4thdata':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(4)',
+                '5thdata':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(5)',
+                '6thdata':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(6)',
+                '7thdata':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(7)',
+                '8thdata':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(8)',
+                '9thdata':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(9)',
+                '10thdata':                   '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(10)'
+            }
         },
 
         table1: {

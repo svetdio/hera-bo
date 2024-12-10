@@ -62,23 +62,24 @@ export default {
     report: 
     {
         'report':                         '.nav-container:nth-of-type(1) span',
-        'container':                     '.nav-container:nth-child(1)',
+        'container':                      '.nav-container:nth-child(1)',
+        'text-head':                      'h1.page-header-title',
         'betting-history':                '.nav-container:nth-of-type(1) a:nth-child(1)',
         'transfer-history':               '.nav-container:nth-of-type(1) a:nth-child(2)',
-        'player-cashflow':                '',
-        'promo-report':                   '',
-        'game-report':                    '',
-        'operator-summary':               '',
-        'vendor-summary':                 '',
-        'player-summary':                 '',
-        'sports-betting':                 '',
+        'player-cashflow':                '.nav-container:nth-of-type(1) a:nth-child(3)',
+        'promo-report':                   '.nav-container:nth-of-type(1) a:nth-child(4)',
+        'game-report':                    '.nav-container:nth-of-type(1) a:nth-child(5)',
+        'operator-summary':               '.nav-container:nth-of-type(1) a:nth-child(6)',
+        'vendor-summary':                 '.nav-container:nth-of-type(1) a:nth-child(7)',
+        'player-summary':                 '.nav-container:nth-of-type(1) a:nth-child(8)',
+        'sports-betting':                 '.nav-container:nth-of-type(1) a:nth-child(9)',
         
         filter:
         {
             'search':                     'button[type="submit"]',
             'reset':                      'button[type="reset"]',
             'transaction-date':           '.form_inputs:first-of-type .dp__input_wrap input',
-            'date-picker':             'form .form_inputs:first-child .dp__input_wrap',
+            'date-picker':                'form .form_inputs:first-child .dp__input_wrap',
             'date-modal':                 'div.dp__menu',
             'yesterday':                  'div.items-start:nth-child(2) .presetDatesLabel',
             'last-month':                 'div.items-start:nth-child(6) .presetDatesLabel',
@@ -94,15 +95,22 @@ export default {
             'export':                     '.fa-file-export',
             'bell':                       'button[type="button"][id="bellBtn"]',
             'notif':                      '#notifBox .dropdown-body a:first-of-type',
-            'pop-up':                     '.toast.toast-success'
+            'pop-up':                     '.toast.toast-success',
+            'pop-up-head':                '.toast.toast-success .toast-header',
+            'pop-up-body':                '.toast.toast-success .toast-body'
         },
 
-        table: {
+        table1: {
             'transactionId':              '#tableBody > tr:first-child > td:nth-child(4)',
             'playerId':                   '#tableBody > tr:first-child > td:nth-child(6)',
             'gameName':                   '#tableBody > tr:first-child > td:nth-child(21)',
             'roundId':                    '#tableBody > tr:first-child > td:nth-child(12)',
             'gameId':                     '#tableBody > tr:first-child > td:nth-child(19)'
+        },
+
+        table2: {
+            'transactionId':              '#tableBody > tr:first-child > td:nth-child(3)',
+            'playerId':                   '#tableBody > tr:first-child > td:nth-child(6)'
         }
 
     },

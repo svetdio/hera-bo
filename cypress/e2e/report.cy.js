@@ -22,15 +22,17 @@ describe('Reporting Test', () => {
         //Betting Transaction Text Validation
         cy.get(locators.report['text-head']).should('contain.text', 'Betting Transaction History')
         // cy.get(locators.report.filter['bet-box']).should('be.visible')
-        cy.get(locators.report.filter['bet-form']).should('contain.text', 'Operator Name')
-        cy.get(locators.report.filter['bet-form']).should('contain.text', 'Player ID ')
-        cy.get(locators.report.filter['bet-form']).should('contain.text', 'Transaction ID ')
-        cy.get(locators.report.filter['bet-form']).should('contain.text', 'Transaction Status')
-        cy.get(locators.report.filter['bet-form']).should('contain.text', 'Vendor Name')
-        cy.get(locators.report.filter['bet-form']).should('contain.text', 'Game Name ')
-        cy.get(locators.report.filter['bet-form']).should('contain.text', 'Round Number ')
-        cy.get(locators.report.filter['bet-form']).should('contain.text', 'Game Type')
-        cy.get(locators.report.filter['bet-form']).should('contain.text', 'Game ID ')
+        cy.get(locators.report.filter['form'])
+            .should('contain.text', 'Transaction Date/Time')
+            .should('contain.text', 'Operator Name')
+            .should('contain.text', 'Player ID ')
+            .should('contain.text', 'Transaction ID ')
+            .should('contain.text', 'Transaction Status')
+            .should('contain.text', 'Vendor Name')
+            .should('contain.text', 'Game Name ')
+            .should('contain.text', 'Round Number ')
+            .should('contain.text', 'Game Type')
+            .should('contain.text', 'Game ID ')
         
 
         //Betting Transaction
@@ -105,7 +107,17 @@ describe('Reporting Test', () => {
         cy.get(locators.report['report']).click()
         cy.get(locators.report['container']).should('be.visible')
         cy.get(locators.report['transfer-history']).click()
+
+        //Transfer Transaction Text Validation
         cy.get(locators.report['text-head']).should('contain.text', 'Transfer Transaction History')
+        cy.get(locators.report.filter['form'])
+            .should('contain.text', 'Transaction Date/Time')
+            .should('contain.text', 'Operator Name')
+            .should('contain.text', 'Transaction ID ')
+            .should('contain.text', 'Transaction Type')
+            .should('contain.text', 'Player ID ')
+
+        //Transfer Transaction
         cy.get(locators.report.filter['date-picker']).click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
@@ -154,7 +166,18 @@ describe('Reporting Test', () => {
         cy.get(locators.report['report']).click()
         cy.get(locators.report['container']).should('be.visible')
         cy.get(locators.report['player-cashflow']).click()
+
+        //Player Cash Flow Text Validation
         cy.get(locators.report['text-head']).should('contain.text', 'Player Cash Flow Records')
+        cy.get(locators.report.filter['form'])
+            .should('contain.text', 'Transaction Date/Time')
+            .should('contain.text', 'Operator Name')
+            .should('contain.text', 'Transaction ID ')
+            .should('contain.text', 'Player ID ')
+            .should('contain.text', 'Transaction Type')
+
+
+        //Player Cash Flow
         cy.get(locators.report.filter['date-picker']).click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()

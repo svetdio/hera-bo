@@ -101,7 +101,7 @@ export default {
             'pop-up-head':                '.toast.toast-success .toast-header',
             'pop-up-body':                '.toast.toast-success .toast-body',
             'bet-box':                    'grid sm:grid-cols-1',
-            'bet-form':                   '.form_inputs'
+            'form':                   '.form_inputs'
         },
 
         summaryTable:

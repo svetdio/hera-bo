@@ -104,6 +104,25 @@ export default {
             'form':                   '.form_inputs'
         },
 
+        table1: {
+            'transactionId':              '#tableBody > tr:first-child > td:nth-child(4)',
+            'playerId':                   '#tableBody > tr:first-child > td:nth-child(6)',
+            'gameName':                   '#tableBody > tr:first-child > td:nth-child(21)',
+            'roundId':                    '#tableBody > tr:first-child > td:nth-child(12)',
+            'gameId':                     '#tableBody > tr:first-child > td:nth-child(19)'
+        },
+
+        table2: {
+            'transactionId':              '#tableBody > tr:first-child > td:nth-child(3)',
+            'playerId':                   '#tableBody > tr:first-child > td:nth-child(6)'
+        },
+
+        table3: {
+            'playerId':                   '#tableBody > tr:first-child > td:nth-child(6)',
+            // 'promoName':                  '#tableBody > tr:first-child > td:nth-child(3)',
+            'transactionId':              '#tableBody > tr:first-child > td:nth-child(7)'
+        },
+
         summaryTable:
         {
             '1stcol':                     '.table-auto.table-custom.min-w-full.table-lg tr:first-child th:nth-child(1)',
@@ -157,19 +176,6 @@ export default {
                 '9thdata':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(9)',
                 '10thdata':                   '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(10)'
             }
-        },
-
-        table1: {
-            'transactionId':              '#tableBody > tr:first-child > td:nth-child(4)',
-            'playerId':                   '#tableBody > tr:first-child > td:nth-child(6)',
-            'gameName':                   '#tableBody > tr:first-child > td:nth-child(21)',
-            'roundId':                    '#tableBody > tr:first-child > td:nth-child(12)',
-            'gameId':                     '#tableBody > tr:first-child > td:nth-child(19)'
-        },
-
-        table2: {
-            'transactionId':              '#tableBody > tr:first-child > td:nth-child(3)',
-            'playerId':                   '#tableBody > tr:first-child > td:nth-child(6)'
         }
 
     },

@@ -71,10 +71,11 @@ export default {
         'player-cashflow':                '.nav-container:nth-of-type(1) a:nth-child(3)',
         'promo-report':                   '.nav-container:nth-of-type(1) a:nth-child(4)',
         'game-report':                    '.nav-container:nth-of-type(1) a:nth-child(5)',
-        'operator-summary':               '.nav-container:nth-of-type(1) a:nth-child(6)',
-        'vendor-summary':                 '.nav-container:nth-of-type(1) a:nth-child(7)',
-        'player-summary':                 '.nav-container:nth-of-type(1) a:nth-child(8)',
-        'sports-betting':                 '.nav-container:nth-of-type(1) a:nth-child(9)',
+        'opSum-daily':                    '.nav-container:nth-of-type(1) a:nth-child(6)',
+        'opSum-monthly':                  '.nav-container:nth-of-type(1) a:nth-child(7)',
+        'vendor-summary':                 '.nav-container:nth-of-type(1) a:nth-child(8)',
+        'player-summary':                 '.nav-container:nth-of-type(1) a:nth-child(9)',
+        'sports-betting':                 '.nav-container:nth-of-type(1) a:nth-child(10)',
         
         filter:
         {
@@ -94,6 +95,8 @@ export default {
             'gameName':                   '#game_name',
             'roundId':                    '#game_round',
             'gameId':                     '#game_id',
+            'gameCode':                   '#game_code',
+            'promoName':                  '#promo_name',
             'export':                     '.fa-file-export',
             'bell':                       'button[type="button"][id="bellBtn"]',
             'notif':                      '#notifBox .dropdown-body a:first-of-type',
@@ -101,12 +104,13 @@ export default {
             'pop-up-head':                '.toast.toast-success .toast-header',
             'pop-up-body':                '.toast.toast-success .toast-body',
             'bet-box':                    'grid sm:grid-cols-1',
-            'form':                   '.form_inputs'
+            'form':                       '.form_inputs',
+            'summary-accordion':          'toggle-summary-table-btn'
         },
 
         table1: {
-            'transactionId':              '#tableBody > tr:first-child > td:nth-child(4)',
             'playerId':                   '#tableBody > tr:first-child > td:nth-child(6)',
+            'transactionId':              '#tableBody > tr:first-child > td:nth-child(4)',
             'gameName':                   '#tableBody > tr:first-child > td:nth-child(21)',
             'roundId':                    '#tableBody > tr:first-child > td:nth-child(12)',
             'gameId':                     '#tableBody > tr:first-child > td:nth-child(19)'
@@ -119,8 +123,20 @@ export default {
 
         table3: {
             'playerId':                   '#tableBody > tr:first-child > td:nth-child(6)',
-            // 'promoName':                  '#tableBody > tr:first-child > td:nth-child(3)',
+            'promoName':                  '#tableBody > tr:first-child > td:nth-child(3)',
             'transactionId':              '#tableBody > tr:first-child > td:nth-child(7)'
+        },
+
+        table4: {
+            'gameId':                     '#tableBody > tr:first-child > td:nth-child(4)',
+            'gameName':                   '#tableBody > tr:first-child > td:nth-child(6)',
+            'gameCode':                   '#tableBody > tr:first-child > td:nth-child(5)'
+        },
+
+        table5: {
+            'gameId':                     '#tableBody > tr:first-child > td:nth-child(4)',
+            'gameName':                   '#tableBody > tr:first-child > td:nth-child(6)'
+            // 'gameCode':                   '#tableBody > tr:first-child > td:nth-child(5)'
         },
 
         summaryTable:

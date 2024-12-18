@@ -10,26 +10,22 @@ describe('Test', () => {
         const password = Cypress.env('password')
         cy.login(username, password)
     })
-    
-    it('Operator Summary (Daily)', () => {
+
+    it('Operator Summary (Monthly)', () => {
         const operator = Cypress.env('operator')
 
         cy.visit('/')
         cy.get(locators.report['report']).click()
         cy.get(locators.report['container']).should('be.visible')
-        cy.get(locators.report['opSum-daily']).click()
+        cy.get(locators.report['opSum-monthly']).click()
 
         //Operator Summary Text Validation
-        cy.get(locators.report['text-head']).should('contain.text', 'Operator Summary (Daily)')
+        cy.get(locators.report['text-head']).should('contain.text', 'Operator Summary (Monthly)')
         cy.get(locators.report.filter['form'])
             .should('contain.text', 'Transaction Date')
             .should('contain.text', 'Operator Name')
             .should('contain.text', 'Currency')
             .should('contain.text', 'Game Type')
-            .should('contain.text', 'Game ID ')
-            .should('contain.text', 'Game Name ')
-            .should('contain.text', 'Game Code ')
-            .should('contain.text', 'Vendor Name')
 
         //Operator Summary
         cy.get(locators.report.filter['date-picker']).click()
@@ -47,26 +43,6 @@ describe('Test', () => {
         cy.get(locators.report.filter['search']).click()
         cy.get(locators.profile.activity['preloader']).should('be.visible')
         cy.get(locators.profile.activity['preloader'], { timeout: 100000 }).should('not.be.visible')
-        cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
-            if (count >= 1) {
-                // Hard-coded values for Game ID, Game Name, and Game Code
-                const gameValues = {
-                    gameId: '2',
-                    gameName: 'SPEED BACCARAT',
-                    gameCode: 'C1',
-                }
-        
-                // Loop through the keys and perform the actions dynamically
-                for (const key in gameValues) {
-                    const value = gameValues[key]
-                    cy.get(locators.report.filter[key]).type(value)
-                    cy.wait(500);
-                    cy.get(locators.report.filter['search']).click()
-                    cy.get(locators.report.filter[key]).clear()
-                }
-            }
-        })
 
         //Summary Table
         cy.get(locators.report.filter['summary-accordion'])

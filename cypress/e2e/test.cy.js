@@ -11,7 +11,7 @@ describe('Test', () => {
         cy.login(username, password)
     })
     
-    it('Operator Summary', () => {
+    it('Operator Summary (Daily)', () => {
         const operator = Cypress.env('operator')
 
         cy.visit('/')
@@ -19,7 +19,7 @@ describe('Test', () => {
         cy.get(locators.report['container']).should('be.visible')
         cy.get(locators.report['opSum-daily']).click()
 
-        //Game Report Text Validation
+        //Operator Summary Text Validation
         cy.get(locators.report['text-head']).should('contain.text', 'Operator Summary (Daily)')
         cy.get(locators.report.filter['form'])
             .should('contain.text', 'Transaction Date')
@@ -31,7 +31,7 @@ describe('Test', () => {
             .should('contain.text', 'Game Code ')
             .should('contain.text', 'Vendor Name')
 
-        //Game Report
+        //Operator Summary
         cy.get(locators.report.filter['date-picker']).click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
@@ -47,41 +47,47 @@ describe('Test', () => {
         cy.get(locators.report.filter['search']).click()
         cy.get(locators.profile.activity['preloader']).should('be.visible')
         cy.get(locators.profile.activity['preloader'], { timeout: 100000 }).should('not.be.visible')
-        cy.get(locators.report.filter['summary-accordion']).contains('-').should('not.be.visible')
-        cy.wait(1000)
         cy.get(locators.profile.activity['rows']).then((rows) => {
             const count = rows.length;
             if (count >= 1) {
-                const table = locators.report.table5
-                for (const key in table) {
-                    cy.get(locators.report.table5[key]).then(element => {
-                        cy.get(locators.report.filter[key]).type(element.text(), {delay:100})
-                        cy.wait(500)
-                        cy.get(locators.report.filter['search']).click()
-                        // cy.get(locators.profile.activity['preloader']).should('be.visible')
-                        // cy.get(locators.profile.activity['preloader'], { timeout: 100000 }).should('not.be.visible')
-                        cy.get(locators.report.table5[key]).contains(element.text())
-                        cy.get(locators.report.filter[key]).clear()
-                    })
+                // Hard-coded values for Game ID, Game Name, and Game Code
+                const gameValues = {
+                    gameId: '2',
+                    gameName: 'SPEED BACCARAT',
+                    gameCode: 'C1',
                 }
-            }   
+        
+                // Loop through the keys and perform the actions dynamically
+                for (const key in gameValues) {
+                    const value = gameValues[key]
+                    cy.get(locators.report.filter[key]).type(value)
+                    cy.wait(500);
+                    cy.get(locators.report.filter['search']).click()
+                    cy.get(locators.report.filter[key]).clear()
+                }
+            }
         })
 
         //Summary Table
+        cy.get(locators.report.filter['summary-accordion'])
+            .contains('-').click()
+            .contains('+').click()
         cy.get(locators.report['text-head']).should('contain.text', 'Summary')
         cy.get(locators.report.summaryTable['1stcol']).should('be.visible').should('contain.text', 'Total Transaction Count')
         cy.get(locators.report.summaryTable['2ndcol']).should('be.visible').should('contain.text', 'Currency')
         cy.get(locators.report.summaryTable['3rdcol']).should('be.visible').should('contain.text', 'Total Betting Amount')
         cy.get(locators.report.summaryTable['4thcol']).should('be.visible').should('contain.text', 'Total Payout Amount')
         cy.get(locators.report.summaryTable['5thcol']).should('be.visible').should('contain.text', 'Total GGR Amount')
+        cy.get(locators.report.summaryTable['6thcol']).should('be.visible').should('contain.text', 'Total Turnover Amount')
+        cy.get(locators.report.summaryTable['7thcol']).should('be.visible').should('contain.text', 'Total House Edge')
     
 
         cy.get(locators.profile.activity['summaryRows']).then((summaryRows) => {
             const count = summaryRows.length;
             if (count >= 1) {
-                const table = locators.report.summaryTable.dataTable3
+                const table = locators.report.summaryTable.dataTable1
                 for (const key in table) {
-                    cy.get(locators.report.summaryTable.dataTabl3[key]).then(element => {
+                    cy.get(locators.report.summaryTable.dataTable1[key]).then(element => {
                         const content = element.text()
                         expect(content).to.not.be.empty
                     })

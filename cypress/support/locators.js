@@ -105,7 +105,7 @@ export default {
             'pop-up-body':                '.toast.toast-success .toast-body',
             'bet-box':                    'grid sm:grid-cols-1',
             'form':                       '.form_inputs',
-            'summary-accordion':          'toggle-summary-table-btn'
+            'summary-accordion':          '.toggle-summary-table-btn'
         },
 
         table1: {

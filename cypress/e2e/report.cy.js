@@ -36,7 +36,9 @@ describe('Reporting Test', () => {
         
 
         //Betting Transaction
-        cy.get(locators.report.filter['date-picker']).click()
+        cy.get(locators.report.filter['transaction-date'])
+            .should('be.visible')
+            .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
         cy.get(locators.report.filter['operator']).type(operator, {delay: 100})
@@ -102,6 +104,8 @@ describe('Reporting Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
 
+        cy.get(locators.report.filter['reset']).click()
+
         cy.then(() => {
             cy.log('All tests passed successfully!');
         })
@@ -127,7 +131,9 @@ describe('Reporting Test', () => {
             .should('contain.text', 'Player ID ')
 
         //Transfer Transaction
-        cy.get(locators.report.filter['date-picker']).click()
+        cy.get(locators.report.filter['transaction-date'])
+            .should('be.visible')
+            .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
         cy.get(locators.report.filter['operator']).type(operator, {delay: 100})
@@ -190,6 +196,8 @@ describe('Reporting Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
         
+        cy.get(locators.report.filter['reset']).click()
+
         cy.then(() => {
             cy.log('All tests passed successfully!');
         })
@@ -214,7 +222,9 @@ describe('Reporting Test', () => {
             .should('contain.text', 'Transaction Type')
 
         //Player Cash Flow
-        cy.get(locators.report.filter['date-picker']).click()
+        cy.get(locators.report.filter['transaction-date'])
+            .should('be.visible')
+            .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
         cy.get(locators.report.filter['operator']).type(operator, {delay: 100})
@@ -285,6 +295,8 @@ describe('Reporting Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
         
+        cy.get(locators.report.filter['reset']).click()
+
         cy.then(() => {
             cy.log('All tests passed successfully!');
         })
@@ -310,7 +322,9 @@ describe('Reporting Test', () => {
             .should('contain.text', 'Currency')
 
         //Promo Report
-        cy.get(locators.report.filter['date-picker']).click()
+        cy.get(locators.report.filter['transaction-date'])
+            .should('be.visible')
+            .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
         cy.get(locators.report.filter['search']).click()
@@ -362,6 +376,8 @@ describe('Reporting Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
         
+        cy.get(locators.report.filter['reset']).click()
+
         cy.then(() => {
             cy.log('All tests passed successfully!');
         })
@@ -387,7 +403,9 @@ describe('Reporting Test', () => {
             .should('contain.text', 'Currency')
 
         //Game Report
-        cy.get(locators.report.filter['date-picker']).click()
+        cy.get(locators.report.filter['transaction-date'])
+            .should('be.visible')
+            .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
         cy.get(locators.report.filter['search']).click()
@@ -441,6 +459,8 @@ describe('Reporting Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
         
+        cy.get(locators.report.filter['reset']).click()
+
         cy.then(() => {
             cy.log('All tests passed successfully!');
         })
@@ -468,7 +488,9 @@ describe('Reporting Test', () => {
             .should('contain.text', 'Vendor Name')
 
         //Operator Summary
-        cy.get(locators.report.filter['date-picker']).click()
+        cy.get(locators.report.filter['transaction-date'])
+            .should('be.visible')
+            .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
         cy.get(locators.report.filter['operator']).type(operator, {delay: 100})
@@ -537,6 +559,8 @@ describe('Reporting Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
         
+        cy.get(locators.report.filter['reset']).click()
+
         cy.then(() => {
             cy.log('All tests passed successfully!');
         })
@@ -559,7 +583,9 @@ describe('Reporting Test', () => {
             .should('contain.text', 'Game Type')
 
         //Operator Summary
-        cy.get(locators.report.filter['date-picker']).click()
+        cy.get(locators.report.filter['transaction-date'])
+            .should('be.visible')
+            .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
         cy.get(locators.report.filter['operator']).type(operator, {delay: 100})
@@ -608,6 +634,8 @@ describe('Reporting Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
 
+        cy.get(locators.report.filter['reset']).click()
+
         cy.then(() => {
             cy.log('All tests passed successfully!');
         })
@@ -633,7 +661,9 @@ describe('Reporting Test', () => {
         
 
         //Betting Transaction
-        cy.get(locators.report.filter['date-picker']).click()
+        cy.get(locators.report.filter['transaction-date'])
+            .should('be.visible')
+            .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
         cy.get(locators.report.filter['search']).click()
@@ -686,6 +716,8 @@ describe('Reporting Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
 
+        cy.get(locators.report.filter['reset']).click()
+
         cy.then(() => {
             cy.log('All tests passed successfully!');
         })
@@ -713,7 +745,9 @@ describe('Reporting Test', () => {
         
 
         //Betting Transaction
-        cy.get(locators.report.filter['date-picker']).click()
+        cy.get(locators.report.filter['transaction-date'])
+            .should('be.visible')
+            .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
         cy.get(locators.report.filter['operator']).type(operator, {delay: 100})
@@ -775,6 +809,8 @@ describe('Reporting Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
 
+        cy.get(locators.report.filter['reset']).click()
+        
         cy.then(() => {
             cy.log('All tests passed successfully!');
         })
@@ -874,6 +910,8 @@ describe('Reporting Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
         
+        cy.get(locators.report.filter['reset']).click()
+
         cy.then(() => {
             cy.log('All tests passed successfully!');
         })

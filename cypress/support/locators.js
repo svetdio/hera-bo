@@ -84,7 +84,6 @@ export default {
             'reset':                      'button[type="reset"]',
             'transaction-date':           '.form_inputs:first-of-type .dp__input_wrap input',
             'credit-date':                '.form_inputs:nth-child(2) .dp__input_wrap input',
-            'date-picker':                'form .form_inputs:first-child .dp__input_wrap',
             'date-modal':                 'div.dp__menu',
             'today':                      'div.items-start:nth-child(1) .presetDatesLabel',
             'yesterday':                  'div.items-start:nth-child(2) .presetDatesLabel',

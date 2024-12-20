@@ -104,7 +104,11 @@ describe('Reporting Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
 
-        cy.get(locators.report.filter['reset']).click()
+        cy.get(locators.report.filter['reset'])
+            .click()
+            .then(() => {
+                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+            })
 
         cy.then(() => {
             cy.log('All tests passed successfully!');
@@ -196,8 +200,12 @@ describe('Reporting Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
         
-        cy.get(locators.report.filter['reset']).click()
-
+        cy.get(locators.report.filter['reset'])
+            .click()
+            .then(() => {
+                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+            })
+        
         cy.then(() => {
             cy.log('All tests passed successfully!');
         })
@@ -295,7 +303,12 @@ describe('Reporting Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
         
-        cy.get(locators.report.filter['reset']).click()
+        cy.get(locators.report.filter['reset'])
+            .click()
+            .then(() => {
+                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+            })
+            .click()
 
         cy.then(() => {
             cy.log('All tests passed successfully!');
@@ -376,7 +389,11 @@ describe('Reporting Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
         
-        cy.get(locators.report.filter['reset']).click()
+        cy.get(locators.report.filter['reset'])
+            .click()
+            .then(() => {
+                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+            })
 
         cy.then(() => {
             cy.log('All tests passed successfully!');
@@ -459,8 +476,12 @@ describe('Reporting Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
         
-        cy.get(locators.report.filter['reset']).click()
-
+        cy.get(locators.report.filter['reset'])
+            .click()
+            .then(() => {
+                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+            })
+    
         cy.then(() => {
             cy.log('All tests passed successfully!');
         })
@@ -559,12 +580,18 @@ describe('Reporting Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
         
-        cy.get(locators.report.filter['reset']).click()
-
+        // cy.get(locators.report.filter['reset'])
+        cy.get('.btn.btn-danger')
+            .click()
+            .then(() => {
+                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+            })
+        
         cy.then(() => {
             cy.log('All tests passed successfully!');
         })
     })
+
     //Operator Summary (Monthly) submodule
     it('Operator Summary (Monthly)', () => {
         const operator = Cypress.env('operator')
@@ -634,7 +661,12 @@ describe('Reporting Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
 
-        cy.get(locators.report.filter['reset']).click()
+        // cy.get(locators.report.filter['reset'])
+        cy.get('.btn.btn-danger')
+            .click()
+            .then(() => {
+                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+            })
 
         cy.then(() => {
             cy.log('All tests passed successfully!');
@@ -716,7 +748,11 @@ describe('Reporting Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
 
-        cy.get(locators.report.filter['reset']).click()
+        cy.get(locators.report.filter['reset'])
+            .click()
+            .then(() => {
+                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+            })
 
         cy.then(() => {
             cy.log('All tests passed successfully!');
@@ -809,7 +845,11 @@ describe('Reporting Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
 
-        cy.get(locators.report.filter['reset']).click()
+        cy.get(locators.report.filter['reset'])
+            .click()
+            .then(() => {
+                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+            })
         
         cy.then(() => {
             cy.log('All tests passed successfully!');
@@ -910,7 +950,11 @@ describe('Reporting Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
         
-        cy.get(locators.report.filter['reset']).click()
+        cy.get(locators.report.filter['reset'])
+            .click()
+            .then(() => {
+                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+            })
 
         cy.then(() => {
             cy.log('All tests passed successfully!');

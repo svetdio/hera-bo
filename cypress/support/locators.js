@@ -219,19 +219,67 @@ export default {
     {
         'content':                             '.nav-container:nth-of-type(2) span',
         'container':                           '.nav-container:nth-child(2)',
+        'player':                              '.nav-container:nth-of-type(2) a:nth-child(1)',
         'operator':                            '.nav-container:nth-of-type(2) a:nth-child(2)',
+        'vendor':                              '.nav-container:nth-of-type(2) a:nth-child(3)',
+        'games':                               '.nav-container:nth-of-type(2) a:nth-child(4)',
+        'sub-game':                            '.nav-container:nth-of-type(2) a:nth-child(5)',
+        'bet-limit':                           '.nav-container:nth-of-type(2) a:nth-child(6)',
+        'currency':                            '.nav-container:nth-of-type(2) a:nth-child(7)',
         'operator-name':                       'input[type="text"][id="operator_id"]',
         'search':                              'button[type="submit"]',
         'add-operator':                        'button.btn.btn-success[type="button"]',
         'vendor':                              '.nav-container:nth-of-type(2) a:nth-child(3)',
         'vendor-name':                         'input[type="text"][id="vendor_name"]',
-        'reset':                                'button[type="reset"]',
+        'reset':                               'button[type="reset"]',
+
+        filter:
+        {
+            'search':                     'button[type="submit"]',
+            'reset':                      'button[type="reset"]',
+            'transaction-date':           '.form_inputs:first-of-type .dp__input_wrap input',
+            'credit-date':                '.form_inputs:nth-child(2) .dp__input_wrap input',
+            'date-modal':                 'div.dp__menu',
+            'today':                      'div.items-start:nth-child(1) .presetDatesLabel',
+            'yesterday':                  'div.items-start:nth-child(2) .presetDatesLabel',
+            'this-week':                  'div.items-start:nth-child(3) .presetDatesLabel',
+            'last-week':                  'div.items-start:nth-child(4) .presetDatesLabel',
+            'this-month':                 'div.items-start:nth-child(5) .presetDatesLabel',
+            'last-month':                 'div.items-start:nth-child(6) .presetDatesLabel',
+            'two-months-ago':             'div.items-start:nth-child(7) .presetDatesLabel',
+            'dpClear':                    '.dp__icon.dp__clear_icon.dp__input_icons',
+            'operator':                   'div.form_inputs:nth-child(1) input',
+            'operator-dropdown':          'div.ant-select-dropdown',
+            'operator-name':              'div.filter-node .ant-select-tree-title',
+            'parent-operator':            '.ant-select-tree-treenode:nth-of-type(1) .anticon',
+            'transactionId':              '#transaction_id',
+            'playerId':                   '#player_id',
+            'gameName':                   '#game_name',
+            'roundId':                    '#game_round',
+            'gameId':                     '#game_id',
+            'gameCode':                   '#game_code',
+            'promoName':                  '#promo_name',
+            'export':                     '.fa-file-export',
+            'bell':                       'button[type="button"][id="bellBtn"]',
+            'notif':                      '#notifBox .dropdown-body a:first-of-type',
+            'pop-up':                     '.toast.toast-success',
+            'pop-up-head':                '.toast.toast-success .toast-header',
+            'pop-up-body':                '.toast.toast-success .toast-body',
+            'form':                       '.form_inputs',
+            'summary-accordion':          '.toggle-summary-table-btn',
+            'sub-operator':                'label[for="checkbox"]',
+            'check':                      '#checkbox'
+        },
 
         add_operator:
         {
             'operator-name':                   'input[type="text"][id="operator_name"]',
             'parent-operator':                 'input[type="search"]'
-        }                           
+        },
+        
+        table1: {
+            'playerId':                   '#tableBody > tr:first-child > td:nth-child(1)'
+        }
 
     },
 

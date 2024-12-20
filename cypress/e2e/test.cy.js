@@ -11,59 +11,84 @@ describe('Test', () => {
         cy.login(username, password)
     })
 
-    it('Operator Summary (Monthly)', () => {
+    it('Sports Betting Transaction', () => {
         const operator = Cypress.env('operator')
 
         cy.visit('/')
         cy.get(locators.report['report']).click()
         cy.get(locators.report['container']).should('be.visible')
-        cy.get(locators.report['opSum-monthly']).click()
+        cy.get(locators.report['sports-betting']).click()
 
-        //Operator Summary Text Validation
-        cy.get(locators.report['text-head']).should('contain.text', 'Operator Summary (Monthly)')
+        //Promo Report Text Validation
+        cy.get(locators.report['text-head']).should('contain.text', 'Sports Betting Transaction')
         cy.get(locators.report.filter['form'])
-            .should('contain.text', 'Transaction Date')
+            .should('contain.text', 'Transaction Date/Time')
+            .should('contain.text', 'Credit Date/Time')
             .should('contain.text', 'Operator Name')
-            .should('contain.text', 'Currency')
-            .should('contain.text', 'Game Type')
+            .should('contain.text', 'Player ID')
+            .should('contain.text', 'Transaction ID')
+            .should('contain.text', 'Transaction Type')
+            .should('contain.text', 'Sports Item')
+            .should('contain.text', 'Billing Status')
+            .should('contain.text', 'Overall Game Status')
+            .should('contain.text', 'Vendor Name')
 
-        //Operator Summary
-        cy.get(locators.report.filter['date-picker']).click()
+        //Promo Report
+        cy.get(locators.report.filter['transaction-date'])
+            .should('be.visible')
+            .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
-        cy.get(locators.report.filter['operator']).type(operator, {delay: 100})
-            cy.get(locators.report.filter['operator-dropdown']).should('be.visible')
-            cy.get(locators.report.filter['parent-operator']).should('be.visible')
-            cy.get(locators.report.filter['operator-name']).should('be.visible')
-            cy.get(locators.report.filter['operator-name']).each($element => {
-                if ($element.text() === operator){
-                    cy.wrap($element).click()
-                }
-            })
+        cy.get(locators.report.filter['operator1']).type(operator, {delay: 100})
+        cy.get(locators.report.filter['operator-dropdown']).should('be.visible')
+        cy.get(locators.report.filter['parent-operator']).should('be.visible')
+        cy.get(locators.report.filter['operator-name']).should('be.visible')
+        cy.get(locators.report.filter['operator-name']).each($element => {
+            if ($element.text() === operator){
+                cy.wrap($element).click()
+            }
+        })
         cy.get(locators.report.filter['search']).click()
-        cy.get(locators.profile.activity['preloader']).should('be.visible')
-        cy.get(locators.profile.activity['preloader'], { timeout: 100000 }).should('not.be.visible')
+        cy.get(locators.report.filter['credit-date'])
+            .should('be.visible')
+            .click()
+        cy.get(locators.report.filter['date-modal']).should('be.visible')
+        cy.get(locators.report.filter['last-month']).click()
+        cy.get(locators.report.filter['search']).click()
+        cy.get(locators.report.filter['dpClear']).eq(1).click()
+
+        cy.get(locators.profile.activity['rows']).then((rows) => {
+            const count = rows.length;
+            if (count >= 1) {
+                const table = locators.report.table7
+                for (const key in table) {
+                    cy.get(locators.report.table7[key]).then(element => {
+                        cy.get(locators.report.filter[key]).type(element.text())
+                        cy.get(locators.report.filter['search']).click()
+                        cy.get(locators.report.table7[key]).contains(element.text())
+                        cy.get(locators.report.filter[key]).clear()
+                    })
+                }
+            }   
+        })
 
         //Summary Table
+        cy.get(locators.report['text-head']).should('contain.text', 'Summary')
         cy.get(locators.report.filter['summary-accordion'])
             .contains('-').click()
             .contains('+').click()
-        cy.get(locators.report['text-head']).should('contain.text', 'Summary')
-        cy.get(locators.report.summaryTable['1stcol']).should('be.visible').should('contain.text', 'Total Transaction Count')
-        cy.get(locators.report.summaryTable['2ndcol']).should('be.visible').should('contain.text', 'Currency')
-        cy.get(locators.report.summaryTable['3rdcol']).should('be.visible').should('contain.text', 'Total Betting Amount')
-        cy.get(locators.report.summaryTable['4thcol']).should('be.visible').should('contain.text', 'Total Payout Amount')
-        cy.get(locators.report.summaryTable['5thcol']).should('be.visible').should('contain.text', 'Total GGR Amount')
-        cy.get(locators.report.summaryTable['6thcol']).should('be.visible').should('contain.text', 'Total Turnover Amount')
-        cy.get(locators.report.summaryTable['7thcol']).should('be.visible').should('contain.text', 'Total House Edge')
-    
+        cy.get(locators.report.summaryTable['1stcol']).should('be.visible').should('contain.text', 'Currency')
+        cy.get(locators.report.summaryTable['2ndcol']).should('be.visible').should('contain.text', 'Total Betting Amount')
+        cy.get(locators.report.summaryTable['3rdcol']).should('be.visible').should('contain.text', 'Total Payout Amount')
+        cy.get(locators.report.summaryTable['4thcol']).should('be.visible').should('contain.text', 'Total Win-Lose Amount')
+        cy.get(locators.report.summaryTable['5thcol']).should('be.visible').should('contain.text', 'Total Turnover Amount')
 
         cy.get(locators.profile.activity['summaryRows']).then((summaryRows) => {
             const count = summaryRows.length;
             if (count >= 1) {
-                const table = locators.report.summaryTable.dataTable1
+                const table = locators.report.summaryTable.dataTable3
                 for (const key in table) {
-                    cy.get(locators.report.summaryTable.dataTable1[key]).then(element => {
+                    cy.get(locators.report.summaryTable.dataTable3[key]).then(element => {
                         const content = element.text()
                         expect(content).to.not.be.empty
                     })
@@ -72,12 +97,14 @@ describe('Test', () => {
         })
 
         //Export Table
-        cy.get(locators.report.filter['export']).click()
-        cy.get(locators.report.filter['pop-up']).should('be.visible')
-        cy.get(locators.report.filter['pop-up-head']).contains('OGAPIIntegration')
-        cy.get(locators.report.filter['pop-up-body']).contains('Your Operator Summary export is currently in progress. You will be notified once it is complete.')
-        cy.get(locators.report.filter['bell']).click()
-        cy.get(locators.report.filter['notif']).click()
-        
+            cy.get(locators.report.filter['export']).click()
+            cy.get(locators.report.filter['pop-up']).should('be.visible')
+            cy.get(locators.report.filter['pop-up-head']).contains('OGAPIIntegration')
+            cy.get(locators.report.filter['pop-up-body']).contains('Your Sports Betting Transaction export is currently in progress. You will be notified once it is complete.')
+            cy.get(locators.report.filter['bell']).click()
+            cy.get(locators.report.filter['notif']).click()
+    cy.then(() => {
+        cy.log('All tests passed successfully!');
+    })
     })
 })

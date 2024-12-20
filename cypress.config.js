@@ -20,6 +20,7 @@ module.exports = defineConfig({
   env: {
     username: 'superadmin',
     password: 'admin',
-    operator: 'testerQA12'
+    operator: 'QATest6'
+    // operator: 'testerQA12'
   }
 });

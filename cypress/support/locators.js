@@ -51,6 +51,7 @@ export default {
         {
             'tab':                        '.tabContainer a:last-child',
             'table':                      '#tableBody',
+            'tableBody':                  'div:nth-child(3) .table-auto',
             'entry':                      'select.outline-none',
             'preloader':                  '.preloader img',
             'rows':                       '#tableBody tr',
@@ -82,11 +83,19 @@ export default {
             'search':                     'button[type="submit"]',
             'reset':                      'button[type="reset"]',
             'transaction-date':           '.form_inputs:first-of-type .dp__input_wrap input',
+            'credit-date':                '.form_inputs:nth-child(2) .dp__input_wrap input',
             'date-picker':                'form .form_inputs:first-child .dp__input_wrap',
             'date-modal':                 'div.dp__menu',
+            'today':                      'div.items-start:nth-child(1) .presetDatesLabel',
             'yesterday':                  'div.items-start:nth-child(2) .presetDatesLabel',
+            'this-week':                  'div.items-start:nth-child(3) .presetDatesLabel',
+            'last-week':                  'div.items-start:nth-child(4) .presetDatesLabel',
+            'this-month':                 'div.items-start:nth-child(5) .presetDatesLabel',
             'last-month':                 'div.items-start:nth-child(6) .presetDatesLabel',
+            'two-months-ago':             'div.items-start:nth-child(7) .presetDatesLabel',
+            'dpClear':                    '.dp__icon.dp__clear_icon.dp__input_icons',
             'operator':                   'div.form_inputs:nth-child(2) input',
+            'operator1':                   'div.form_inputs:nth-child(3) input',
             'operator-dropdown':          'div.ant-select-dropdown',
             'operator-name':              'div.filter-node .ant-select-tree-title',
             'parent-operator':            '.ant-select-tree-treenode:nth-of-type(1) .anticon',
@@ -103,7 +112,6 @@ export default {
             'pop-up':                     '.toast.toast-success',
             'pop-up-head':                '.toast.toast-success .toast-header',
             'pop-up-body':                '.toast.toast-success .toast-body',
-            'bet-box':                    'grid sm:grid-cols-1',
             'form':                       '.form_inputs',
             'summary-accordion':          '.toggle-summary-table-btn'
         },
@@ -134,9 +142,21 @@ export default {
         },
 
         table5: {
-            'gameId':                     '#tableBody > tr:first-child > td:nth-child(4)',
-            'gameName':                   '#tableBody > tr:first-child > td:nth-child(6)'
-            // 'gameCode':                   '#tableBody > tr:first-child > td:nth-child(5)'
+            'gameId':                     '#tableBody > tr:first-child > td:nth-child(6)',
+            'gameName':                   '#tableBody > tr:first-child > td:nth-child(7)',
+            'gameCode':                   '#tableBody > tr:first-child > td:nth-child(8)'
+        },
+
+        table6: {
+            'playerId':                   '#tableBody > tr:first-child > td:nth-child(6)',
+            'gameId':                     '#tableBody > tr:first-child > td:nth-child(7)',
+            'gameName':                   '#tableBody > tr:first-child > td:nth-child(9)',
+            'gameCode':                   '#tableBody > tr:first-child > td:nth-child(10)'
+        },
+
+        table7: {
+            'transactionId':              '#tableBody > tr:first-child > td:nth-child(6)',
+            'playerId':                   '#tableBody > tr:first-child > td:nth-child(5)'
         },
 
         summaryTable:

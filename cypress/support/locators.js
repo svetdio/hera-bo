@@ -252,6 +252,11 @@ export default {
             'operator-dropdown':          'div.ant-select-dropdown',
             'operator-name':              'div.filter-node .ant-select-tree-title',
             'parent-operator':            '.ant-select-tree-treenode:nth-of-type(1) .anticon',
+            'vendor':                     'div.form_inputs:nth-child(1) input',
+            'vendor-dropdown':            'div.ant-select-dropdown',
+            'vendor-name':                '.ant-select-item-option-content',
+            'dropdown':                   'div.ant-select-dropdown',
+            'dropdown-name':              '.ant-select-item-option-content',
             'transactionId':              '#transaction_id',
             'playerId':                   '#player_id',
             'gameName':                   '#game_name',
@@ -273,13 +278,27 @@ export default {
 
         add_operator:
         {
-            'operator-name':                   'input[type="text"][id="operator_name"]',
-            'parent-operator':                 'input[type="search"]'
+            'operator-name':               'input[type="text"][id="operator_name"]',
+            'parent-operator':             'input[type="search"]'
         },
         
         table1: {
-            'playerId':                   '#tableBody > tr:first-child > td:nth-child(1)'
-        }
+            'playerId':                    '#tableBody > tr:first-child > td:nth-child(1)'
+        },
+        
+        table2: {
+            'gameId':                      '#tableBody > tr:first-child > td:nth-child(2)',        
+            'gameCode':                    '#tableBody > tr:first-child > td:nth-child(3)',     
+            'gameName':                    '#tableBody > tr:first-child > td:nth-child(4)'
+        },
+
+        subtable2: {
+            'gameType':                    '#tableBody > tr:first-child > td:nth-child(7)',
+            'subGameType':                 '#tableBody > tr:first-child > td:nth-child(8)',
+            'status':                      '#tableBody > tr:first-child > td:nth-child(9)',
+            'jackpotGame':                 '#tableBody > tr:first-child > td:nth-child(10)'
+        },
+
 
     },
 

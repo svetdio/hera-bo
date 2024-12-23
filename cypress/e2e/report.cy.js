@@ -41,7 +41,7 @@ describe('Reporting Test', () => {
             .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
-        cy.get(locators.report.filter['operator']).type(operator, {delay: 100})
+        cy.get(locators.report.filter['operator']).type(operator, {delay: 200})
         cy.get(locators.report.filter['operator-dropdown']).should('be.visible')
         cy.get(locators.report.filter['parent-operator']).should('be.visible')
         cy.get(locators.report.filter['operator-name']).should('be.visible')
@@ -61,7 +61,7 @@ describe('Reporting Test', () => {
                 const table = locators.report.table1
                 for (const key in table) {
                     cy.get(locators.report.table1[key]).then(element => {
-                        cy.get(locators.report.filter[key]).type(element.text())
+                        cy.get(locators.report.filter[key]).type(element.text(), { delay: 150})
                         cy.get(locators.report.filter['search']).click()
                         cy.get(locators.report.table1[key]).contains(element.text())
                         cy.get(locators.report.filter[key]).clear()
@@ -140,7 +140,7 @@ describe('Reporting Test', () => {
             .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
-        cy.get(locators.report.filter['operator']).type(operator, {delay: 100})
+        cy.get(locators.report.filter['operator']).type(operator, {delay: 200})
         cy.get(locators.report.filter['operator-dropdown']).should('be.visible')
         cy.get(locators.report.filter['parent-operator']).should('be.visible')
         cy.get(locators.report.filter['operator-name']).should('be.visible')
@@ -158,7 +158,7 @@ describe('Reporting Test', () => {
                 const table = locators.report.table2
                 for (const key in table) {
                     cy.get(locators.report.table2[key]).then(element => {
-                        cy.get(locators.report.filter[key]).type(element.text())
+                        cy.get(locators.report.filter[key]).type(element.text(), { delay: 150})
                         cy.wait(500)
                         cy.get(locators.report.filter['search']).click()
                         cy.get(locators.profile.activity['preloader']).should('be.visible')
@@ -235,7 +235,7 @@ describe('Reporting Test', () => {
             .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
-        cy.get(locators.report.filter['operator']).type(operator, {delay: 100})
+        cy.get(locators.report.filter['operator']).type(operator, {delay: 200})
         cy.get(locators.report.filter['operator-dropdown']).should('be.visible')
         cy.get(locators.report.filter['parent-operator']).should('be.visible')
         cy.get(locators.report.filter['operator-name']).should('be.visible')
@@ -252,7 +252,7 @@ describe('Reporting Test', () => {
                 const table = locators.report.table2
                 for (const key in table) {
                     cy.get(locators.report.table2[key]).then(element => {
-                        cy.get(locators.report.filter[key]).type(element.text())
+                        cy.get(locators.report.filter[key]).type(element.text(), { delay: 150})
                         cy.wait(500)
                         cy.get(locators.report.filter['search']).click()
                         cy.get('#tableBody').then(($tableBody) => {
@@ -347,7 +347,7 @@ describe('Reporting Test', () => {
                 const table = locators.report.table3
                 for (const key in table) {
                     cy.get(locators.report.table3[key]).then(element => {
-                        cy.get(locators.report.filter[key]).type(element.text())
+                        cy.get(locators.report.filter[key]).type(element.text(), { delay: 150})
             
                         cy.get(locators.report.filter['search']).click()
                         cy.get(locators.report.table3[key]).contains(element.text())
@@ -432,7 +432,7 @@ describe('Reporting Test', () => {
                 const table = locators.report.table4
                 for (const key in table) {
                     cy.get(locators.report.table4[key]).then(element => {
-                        cy.get(locators.report.filter[key]).type(element.text())
+                        cy.get(locators.report.filter[key]).type(element.text(), { delay: 150})
                         cy.wait(500)
                         cy.get(locators.report.filter['search']).click()
                         cy.get(locators.report.table4[key]).contains(element.text())
@@ -514,7 +514,7 @@ describe('Reporting Test', () => {
             .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
-        cy.get(locators.report.filter['operator']).type(operator, {delay: 100})
+        cy.get(locators.report.filter['operator']).type(operator, {delay: 200})
             cy.get(locators.report.filter['operator-dropdown']).should('be.visible')
             cy.get(locators.report.filter['parent-operator']).should('be.visible')
             cy.get(locators.report.filter['operator-name']).should('be.visible')
@@ -615,7 +615,7 @@ describe('Reporting Test', () => {
             .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
-        cy.get(locators.report.filter['operator']).type(operator, {delay: 100})
+        cy.get(locators.report.filter['operator']).type(operator, {delay: 200})
             cy.get(locators.report.filter['operator-dropdown']).should('be.visible')
             cy.get(locators.report.filter['parent-operator']).should('be.visible')
             cy.get(locators.report.filter['operator-name']).should('be.visible')
@@ -705,7 +705,7 @@ describe('Reporting Test', () => {
                 const table = locators.report.table5
                 for (const key in table) {
                     cy.get(locators.report.table5[key]).then(element => {
-                        cy.get(locators.report.filter[key]).type(element.text())
+                        cy.get(locators.report.filter[key]).type(element.text(), { delay: 150})
                         cy.get(locators.report.filter['search']).click()
                         cy.get(locators.report.table5[key]).contains(element.text())
                         cy.get(locators.report.filter[key]).clear()
@@ -786,7 +786,7 @@ describe('Reporting Test', () => {
             .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
-        cy.get(locators.report.filter['operator']).type(operator, {delay: 100})
+        cy.get(locators.report.filter['operator']).type(operator, {delay: 200})
         cy.get(locators.report.filter['operator-dropdown']).should('be.visible')
         cy.get(locators.report.filter['parent-operator']).should('be.visible')
         cy.get(locators.report.filter['operator-name']).should('be.visible')
@@ -802,7 +802,7 @@ describe('Reporting Test', () => {
                 const table = locators.report.table6
                 for (const key in table) {
                     cy.get(locators.report.table6[key]).then(element => {
-                        cy.get(locators.report.filter[key]).type(element.text())
+                        cy.get(locators.report.filter[key]).type(element.text(), { delay: 150})
                         cy.get(locators.report.filter['search']).click()
                         cy.get(locators.report.table6[key]).contains(element.text())
                         cy.get(locators.report.filter[key]).clear()
@@ -885,7 +885,7 @@ describe('Reporting Test', () => {
             .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
-        cy.get(locators.report.filter['operator1']).type(operator, {delay: 100})
+        cy.get(locators.report.filter['operator1']).type(operator, {delay: 200})
         cy.get(locators.report.filter['operator-dropdown']).should('be.visible')
         cy.get(locators.report.filter['parent-operator']).should('be.visible')
         cy.get(locators.report.filter['operator-name']).should('be.visible')
@@ -909,7 +909,7 @@ describe('Reporting Test', () => {
                 const table = locators.report.table7
                 for (const key in table) {
                     cy.get(locators.report.table7[key]).then(element => {
-                        cy.get(locators.report.filter[key]).type(element.text())
+                        cy.get(locators.report.filter[key]).type(element.text(), { delay: 150})
                         cy.get(locators.report.filter['search']).click()
                         cy.get(locators.report.table7[key]).contains(element.text())
                         cy.get(locators.report.filter[key]).clear()

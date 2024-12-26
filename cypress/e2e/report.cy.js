@@ -779,7 +779,6 @@ describe('Reporting Test', () => {
             .should('contain.text', 'Game Code')
             .should('contain.text', 'Game Type')
         
-
         //Betting Transaction
         cy.get(locators.report.filter['transaction-date'])
             .should('be.visible')

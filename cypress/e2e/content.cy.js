@@ -24,6 +24,7 @@ describe('Content Management Test', () => {
             .should('contain.text', 'Player ID')
             .should('contain.text', 'Status')
 
+        //Operator Name
         cy.get(locators.content.filter['operator']).type(operator, {delay: 200})
         cy.get(locators.content.filter['operator-dropdown']).should('be.visible')
         cy.get(locators.content.filter['parent-operator']).should('be.visible')
@@ -38,21 +39,48 @@ describe('Content Management Test', () => {
         cy.get(locators.content.filter['check']).should('be.visible');
         cy.get(locators.report.filter['search']).click()
 
-        cy.wait(500)
+        //Dropdown
         cy.get(locators.profile.activity['rows']).then((rows) => {
             const count = rows.length;
-            if (count == 1) {
-                const table = locators.report.table1
+            if (count >= 1) {
+                const table = locators.content.comboxTable1
                 for (const key in table) {
-                    cy.get(locators.content.table1[key]).then(element => {
+                    cy.get(locators.content.comboxTable1[key]).then(element => {
+                        cy.get(locators.content.filter[key]).type(element.text(), { force: true })
+                        cy.get(locators.content.filter['dropdown']).should('be.visible')
+                        cy.get(locators.content.filter['dropdown-name']).should('be.visible')
+                        cy.get(locators.content.filter['dropdown-name']).each($element => {
+                            if ($element.text() === element.text()){
+                                cy.wrap($element).click()
+                            }
+                        })
+                        cy.get(locators.content.filter['search']).click()
+                        cy.get(locators.content.comboxTable1[key]).contains(element.text())
+                        cy.get(locators.content.filter['reset'])
+                    })
+                }
+            }   
+        })
+
+        //Input
+        cy.get(locators.profile.activity['rows']).then((rows) => {
+            const count = rows.length
+            if (count >= 1) {
+                const table = locators.content.inputTable1
+                for (const key in table) {
+                    cy.get(locators.content.inputTable1[key]).then(element => {
                         cy.get(locators.content.filter[key]).type(element.text())
                         cy.get(locators.content.filter['search']).click()
-                        cy.get(locators.content.table1[key]).contains(element.text())
+                        cy.get(locators.profile.activity['preloader'], { timeout: 100000 }).should('not.be.visible')
+                        cy.get(locators.content.inputTable1[key]).contains(element.text()) 
                         cy.get(locators.content.filter[key]).clear()
                     })
                 }
             }   
         })
+
+        // cy.get(locators.profile.activity['preloader'], { timeout: 100000 }).should('not.be.visible')
+        // cy.wait(1000)
 
         //Export Table
         cy.get(locators.content.filter['export']).click()
@@ -92,8 +120,33 @@ describe('Content Management Test', () => {
             .should('contain.text', 'Wallet Type')
             .should('contain.text', 'Status')
 
-        cy.get(locators.content.filter['operator']).type(operator)
+        //Input
+        cy.get(locators.content.filter['operator']).type(operator, {delay: 200})
         cy.get(locators.content['search']).click()
+        cy.wait(500)
+
+        //Dropdown
+        cy.get(locators.profile.activity['rows']).then((rows) => {
+            const count = rows.length;
+            if (count >= 1) {
+                const table = locators.content.comboxTable2
+                for (const key in table) {
+                    cy.get(locators.content.comboxTable2[key]).then(element => {
+                        cy.get(locators.content.filter[key]).type(element.text(), { force: true })
+                        cy.get(locators.content.filter['dropdown']).should('be.visible')
+                        cy.get(locators.content.filter['dropdown-name']).should('be.visible')
+                        cy.get(locators.content.filter['dropdown-name']).each($element => {
+                            if ($element.text() === element.text()){
+                                cy.wrap($element).click()
+                            }
+                        })
+                        cy.get(locators.content.filter['search']).click()
+                        cy.get(locators.content.comboxTable2[key]).contains(element.text())
+                        cy.get(locators.content.filter['reset'])
+                    })
+                }
+            }   
+        })
 
         //Export Table
         cy.get(locators.content.filter['export']).click()
@@ -112,7 +165,7 @@ describe('Content Management Test', () => {
         cy.then(() => {
             cy.log('All tests passed successfully!');
         })
-
+    
     })
 
     // it('Add Operator', () => {
@@ -149,8 +202,33 @@ describe('Content Management Test', () => {
             .should('contain.text', 'Vendor Name')
             .should('contain.text', 'Status')
 
+        //Input
         cy.get(locators.content.filter['vendor']).type(vendor)
         cy.get(locators.report.filter['search']).click()
+        cy.wait(500)
+
+        //Dropdown
+        cy.get(locators.profile.activity['rows']).then((rows) => {
+            const count = rows.length;
+            if (count >= 1) {
+                const table = locators.content.comboxTable3
+                for (const key in table) {
+                    cy.get(locators.content.comboxTable3[key]).then(element => {
+                        cy.get(locators.content.filter[key]).type(element.text(), { force: true, delay: 100 })
+                        cy.get(locators.content.filter['dropdown']).should('be.visible')
+                        cy.get(locators.content.filter['dropdown-name']).should('be.visible')
+                        cy.get(locators.content.filter['dropdown-name']).each($element => {
+                            if ($element.text().trim() === element.text().trim()){
+                                cy.wrap($element).click()
+                                cy.wait(1000)
+                            }
+                        })
+                        cy.get(locators.content.filter['search']).click()
+                        cy.get(locators.content.comboxTable3[key]).contains(element.text())
+                    })
+                }
+            }   
+        })
 
         //Export Table
         cy.get(locators.content.filter['export']).click()
@@ -208,11 +286,12 @@ describe('Content Management Test', () => {
         cy.get(locators.profile.activity['rows']).then((rows) => {
             const count = rows.length;
             if (count == 1) {
-                const table = locators.content.table2
+                const table = locators.content.inputTable2
                 for (const key in table) {
-                    cy.get(locators.content.table2[key]).then(element => {
+                    cy.get(locators.content.inputTable2[key]).then(element => {
                         cy.get(locators.content.filter[key]).type(element.text())
                         cy.get(locators.content.filter['search']).click()
+                        cy.get(locators.content.inputTable2[key]).contains(element.text())
                         cy.get(locators.content.filter[key]).clear()
                     })
                 }
@@ -223,18 +302,19 @@ describe('Content Management Test', () => {
         cy.get(locators.profile.activity['rows']).then((rows) => {
             const count = rows.length;
             if (count == 1) {
-                const table = locators.content.subtable2
+                const table = locators.content.comboxTable4
                 for (const key in table) {
-                    cy.get(locators.content.subtable2[key]).then(element => {
+                    cy.get(locators.content.comboxTable4[key]).then(element => {
                         cy.get(locators.content.filter[key]).type(element.text(), { force: true })
                         cy.get(locators.content.filter['dropdown']).should('be.visible')
                         cy.get(locators.content.filter['dropdown-name']).should('be.visible')
                         cy.get(locators.content.filter['dropdown-name']).each($element => {
-                            if ($element.text() === 'dropdown-name'){
+                            if ($element.text() === element.text()){
                                 cy.wrap($element).click()
                             }
                         })
                         cy.get(locators.content.filter['search']).click()
+                        cy.get(locators.content.comboxTable4[key]).contains(element.text())
                         cy.get(locators.content.filter['reset']).click()
                         cy.get(locators.profile.activity['table']).should('contain', 'No data available')
                     })
@@ -252,6 +332,7 @@ describe('Content Management Test', () => {
             }
         })
         cy.get(locators.content.filter['search']).click()
+        cy.get(locators.content.filter['form-input6']).contains('baccarat')
         cy.get(locators.content.filter['reset']).click()
         cy.get(locators.profile.activity['table']).should('contain', 'No data available')
         cy.wait(500)
@@ -303,6 +384,7 @@ describe('Content Management Test', () => {
                 cy.wrap($element).click()
             }
         })
+
         cy.get(locators.content.filter['search']).click()
         cy.get(locators.content.filter['reset']).click()
         cy.get(locators.profile.activity['table']).should('contain', 'No data available')

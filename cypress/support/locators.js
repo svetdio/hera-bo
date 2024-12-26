@@ -297,16 +297,26 @@ export default {
         },
 
         comboxTable1: {
-            'form-input3':                    '#tableBody > tr:first-child > td:nth-child(7)'
+            'form-input3':                 '#tableBody > tr:first-child > td:nth-child(7)'
+        },
+
+        comboxTable2: {
+            'form-input2':                 '#tableBody > tr:first-child > td:nth-child(3)',
+            'form-input3':                 '#tableBody > tr:first-child > td:nth-child(4)',
+            'form-input4':                 '#tableBody > tr:first-child > td:nth-child(5)'
+        },
+
+        comboxTable3: {
+            'form-input2':                 '#tableBody > tr:first-child > td:nth-child(5)'
         },
         
-        table2: {
+        inputTable2: {
             'gameId':                      '#tableBody > tr:first-child > td:nth-child(2)',        
             'gameCode':                    '#tableBody > tr:first-child > td:nth-child(3)',     
             'gameName':                    '#tableBody > tr:first-child > td:nth-child(4)'
         },
 
-        subtable2: {
+        comboxTable4: {
             'form-input5':                        '#tableBody > tr:first-child > td:nth-child(7)',
             'form-input7':                        '#tableBody > tr:first-child > td:nth-child(9)',
             'form-input8':                        '#tableBody > tr:first-child > td:nth-child(10)'

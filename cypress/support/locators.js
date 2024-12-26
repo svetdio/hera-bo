@@ -233,8 +233,7 @@ export default {
         'vendor-name':                         'input[type="text"][id="vendor_name"]',
         'reset':                               'button[type="reset"]',
 
-        filter:
-        {
+        filter: {
             'search':                     'button[type="submit"]',
             'reset':                      'button[type="reset"]',
             'transaction-date':           '.form_inputs:first-of-type .dp__input_wrap input',
@@ -257,9 +256,20 @@ export default {
             'vendor-name':                '.ant-select-item-option-content',
             'dropdown':                   'div.ant-select-dropdown',
             'dropdown-name':              '.ant-select-item-option-content',
+            'form-input1':                'div.form_inputs:nth-child(1) input',
+            'form-input2':                'div.form_inputs:nth-child(2) input',
+            'form-input3':                'div.form_inputs:nth-child(3) input',
+            'form-input4':                'div.form_inputs:nth-child(4) input',
+            'form-input5':                'div.form_inputs:nth-child(5) input',
+            'form-input6':                'div.form_inputs:nth-child(6) input',
+            'form-input7':                'div.form_inputs:nth-child(7) input',
+            'form-input8':                'div.form_inputs:nth-child(8) input',
+            'form-input9':                'div.form_inputs:nth-child(9) input',
+            'form-input10':               'div.form_inputs:nth-child(10) input',
             'transactionId':              '#transaction_id',
             'playerId':                   '#player_id',
             'gameName':                   '#game_name',
+            'subgame-type':               '#sub_game_type_name',
             'roundId':                    '#game_round',
             'gameId':                     '#game_id',
             'gameCode':                   '#game_code',
@@ -282,8 +292,12 @@ export default {
             'parent-operator':             'input[type="search"]'
         },
         
-        table1: {
+        inputTable1: {
             'playerId':                    '#tableBody > tr:first-child > td:nth-child(1)'
+        },
+
+        comboxTable1: {
+            'form-input3':                    '#tableBody > tr:first-child > td:nth-child(7)'
         },
         
         table2: {
@@ -293,10 +307,9 @@ export default {
         },
 
         subtable2: {
-            'gameType':                    '#tableBody > tr:first-child > td:nth-child(7)',
-            'subGameType':                 '#tableBody > tr:first-child > td:nth-child(8)',
-            'status':                      '#tableBody > tr:first-child > td:nth-child(9)',
-            'jackpotGame':                 '#tableBody > tr:first-child > td:nth-child(10)'
+            'form-input5':                        '#tableBody > tr:first-child > td:nth-child(7)',
+            'form-input7':                        '#tableBody > tr:first-child > td:nth-child(9)',
+            'form-input8':                        '#tableBody > tr:first-child > td:nth-child(10)'
         },
 
 

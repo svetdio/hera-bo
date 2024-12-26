@@ -77,7 +77,7 @@ describe('Reporting Test', () => {
             .contains('+').click()
         cy.get(locators.report.summaryTable['1stcol']).should('be.visible').should('contain.text', 'Total Transaction Count')
         cy.get(locators.report.summaryTable['2ndcol']).should('be.visible').should('contain.text', 'Total Player Count')
-        cy.get(locators.report.summaryTable['3rdcol']).should('be.visible').should('contain.text', 'Currency')
+        cy.get(locators.report.summaryTable['3rdcol']).should('be.visible').should('contain.text', 'Ban')
         cy.get(locators.report.summaryTable['4thcol']).should('be.visible').should('contain.text', 'Total Transaction Amount')
         cy.get(locators.report.summaryTable['5thcol']).should('be.visible').should('contain.text', 'Total Payout')
         cy.get(locators.report.summaryTable['6thcol']).should('be.visible').should('contain.text', 'Total Win-Lose Amount')
@@ -176,7 +176,7 @@ describe('Reporting Test', () => {
             .contains('-').click()
             .contains('+').click()
         cy.get(locators.report.summaryTable['1stcol']).should('be.visible').should('contain.text', 'Total Transaction Count')
-        cy.get(locators.report.summaryTable['2ndcol']).should('be.visible').should('contain.text', 'Currency')
+        cy.get(locators.report.summaryTable['2ndcol']).should('be.visible').should('contain.text', 'Ban')
         cy.get(locators.report.summaryTable['3rdcol']).should('be.visible').should('contain.text', 'Total Transfer Amount')
 
         cy.get(locators.profile.activity['summaryRows']).then((summaryRows) => {
@@ -279,7 +279,7 @@ describe('Reporting Test', () => {
             .contains('-').click()
             .contains('+').click()
         cy.get(locators.report.summaryTable['1stcol']).should('be.visible').should('contain.text', 'Transaction Type')
-        cy.get(locators.report.summaryTable['2ndcol']).should('be.visible').should('contain.text', 'Currency')
+        cy.get(locators.report.summaryTable['2ndcol']).should('be.visible').should('contain.text', 'Ban')
         cy.get(locators.report.summaryTable['3rdcol']).should('be.visible').should('contain.text', 'Total Transaction Amount')
         
         cy.get(locators.profile.activity['summaryRows']).then((summaryRows) => {
@@ -332,7 +332,7 @@ describe('Reporting Test', () => {
             .should('contain.text', 'Transaction ID')
             .should('contain.text', 'Minimum Amount')
             .should('contain.text', 'Maximum Amount')
-            .should('contain.text', 'Currency')
+            .should('contain.text', 'Ban')
 
         //Promo Report
         cy.get(locators.report.filter['transaction-date'])
@@ -364,7 +364,7 @@ describe('Reporting Test', () => {
             .contains('+').click()
         cy.get(locators.report.summaryTable['1stcol']).should('be.visible').should('contain.text', 'Promo Name')
         cy.get(locators.report.summaryTable['2ndcol']).should('be.visible').should('contain.text', 'Total Winners')
-        cy.get(locators.report.summaryTable['3rdcol']).should('be.visible').should('contain.text', 'Currency')
+        cy.get(locators.report.summaryTable['3rdcol']).should('be.visible').should('contain.text', 'Ban')
         cy.get(locators.report.summaryTable['4thcol']).should('be.visible').should('contain.text', 'Total Win Amount')
         cy.get(locators.report.summaryTable['5thcol']).should('be.visible').should('contain.text', 'Total Claimed Amount')
 
@@ -417,7 +417,7 @@ describe('Reporting Test', () => {
             .should('contain.text', 'Game Name')
             .should('contain.text', 'Game Code')
             .should('contain.text', 'Game Type')
-            .should('contain.text', 'Currency')
+            .should('contain.text', 'Ban')
 
         //Game Report
         cy.get(locators.report.filter['transaction-date'])
@@ -447,7 +447,7 @@ describe('Reporting Test', () => {
         cy.get(locators.report.filter['summary-accordion'])
             .contains('-').click()
             .contains('+').click()
-        cy.get(locators.report.summaryTable['1stcol']).should('be.visible').should('contain.text', 'Currency')
+        cy.get(locators.report.summaryTable['1stcol']).should('be.visible').should('contain.text', 'Ban')
         cy.get(locators.report.summaryTable['2ndcol']).should('be.visible').should('contain.text', 'Game ID')
         cy.get(locators.report.summaryTable['3rdcol']).should('be.visible').should('contain.text', 'Game Code')
         cy.get(locators.report.summaryTable['4thcol']).should('be.visible').should('contain.text', 'Game Name')
@@ -501,7 +501,7 @@ describe('Reporting Test', () => {
         cy.get(locators.report.filter['form'])
             .should('contain.text', 'Transaction Date')
             .should('contain.text', 'Operator Name')
-            .should('contain.text', 'Currency')
+            .should('contain.text', 'Ban')
             .should('contain.text', 'Game Type')
             .should('contain.text', 'Game ID')
             .should('contain.text', 'Game Name')
@@ -551,7 +551,7 @@ describe('Reporting Test', () => {
             .contains('+').click()
         cy.get(locators.report['text-head']).should('contain.text', 'Summary')
         cy.get(locators.report.summaryTable['1stcol']).should('be.visible').should('contain.text', 'Total Transaction Count')
-        cy.get(locators.report.summaryTable['2ndcol']).should('be.visible').should('contain.text', 'Currency')
+        cy.get(locators.report.summaryTable['2ndcol']).should('be.visible').should('contain.text', 'Ban')
         cy.get(locators.report.summaryTable['3rdcol']).should('be.visible').should('contain.text', 'Total Betting Amount')
         cy.get(locators.report.summaryTable['4thcol']).should('be.visible').should('contain.text', 'Total Payout Amount')
         cy.get(locators.report.summaryTable['5thcol']).should('be.visible').should('contain.text', 'Total GGR Amount')
@@ -606,7 +606,7 @@ describe('Reporting Test', () => {
         cy.get(locators.report.filter['form'])
             .should('contain.text', 'Transaction Date')
             .should('contain.text', 'Operator Name')
-            .should('contain.text', 'Currency')
+            .should('contain.text', 'Ban')
             .should('contain.text', 'Game Type')
 
         //Operator Summary
@@ -632,7 +632,7 @@ describe('Reporting Test', () => {
             .contains('+').click()
         cy.get(locators.report['text-head']).should('contain.text', 'Summary')
         cy.get(locators.report.summaryTable['1stcol']).should('be.visible').should('contain.text', 'Total Transaction Count')
-        cy.get(locators.report.summaryTable['2ndcol']).should('be.visible').should('contain.text', 'Currency')
+        cy.get(locators.report.summaryTable['2ndcol']).should('be.visible').should('contain.text', 'Ban')
         cy.get(locators.report.summaryTable['3rdcol']).should('be.visible').should('contain.text', 'Total Betting Amount')
         cy.get(locators.report.summaryTable['4thcol']).should('be.visible').should('contain.text', 'Total Payout Amount')
         cy.get(locators.report.summaryTable['5thcol']).should('be.visible').should('contain.text', 'Total GGR Amount')
@@ -685,7 +685,7 @@ describe('Reporting Test', () => {
         cy.get(locators.report.filter['form'])
             .should('contain.text', 'Transaction Date')
             .should('contain.text', 'Vendor Name')
-            .should('contain.text', 'Currency')
+            .should('contain.text', 'Ban')
             .should('contain.text', 'Game ID ')
             .should('contain.text', 'Game Name ')
             .should('contain.text', 'Game Code ')
@@ -720,7 +720,7 @@ describe('Reporting Test', () => {
             .contains('-').click()
             .contains('+').click()
         cy.get(locators.report.summaryTable['1stcol']).should('be.visible').should('contain.text', 'Total Transaction Count')
-        cy.get(locators.report.summaryTable['2ndcol']).should('be.visible').should('contain.text', 'Currency')
+        cy.get(locators.report.summaryTable['2ndcol']).should('be.visible').should('contain.text', 'Ban')
         cy.get(locators.report.summaryTable['3rdcol']).should('be.visible').should('contain.text', 'Total Bet Amount')
         cy.get(locators.report.summaryTable['4thcol']).should('be.visible').should('contain.text', 'Total Payout Amount')
         cy.get(locators.report.summaryTable['5thcol']).should('be.visible').should('contain.text', 'Total GGR Amount')
@@ -802,7 +802,7 @@ describe('Reporting Test', () => {
                 const table = locators.report.table6
                 for (const key in table) {
                     cy.get(locators.report.table6[key]).then(element => {
-                        cy.get(locators.report.filter[key]).type(element.text(), { delay: 150})
+                        cy.get(locators.report.filter[key]).type(element.text(), { delay: 150 })
                         cy.get(locators.report.filter['search']).click()
                         cy.get(locators.report.table6[key]).contains(element.text())
                         cy.get(locators.report.filter[key]).clear()
@@ -818,7 +818,7 @@ describe('Reporting Test', () => {
             .contains('+').click()
         cy.get(locators.report.summaryTable['1stcol']).should('be.visible').should('contain.text', 'Total Transaction Count')
         cy.get(locators.report.summaryTable['2ndcol']).should('be.visible').should('contain.text', 'Total Player Count')
-        cy.get(locators.report.summaryTable['3rdcol']).should('be.visible').should('contain.text', 'Currency')
+        cy.get(locators.report.summaryTable['3rdcol']).should('be.visible').should('contain.text', 'Ban')
         cy.get(locators.report.summaryTable['4thcol']).should('be.visible').should('contain.text', 'Total Betting Amount')
         cy.get(locators.report.summaryTable['5thcol']).should('be.visible').should('contain.text', 'Total Payout Amount')
         cy.get(locators.report.summaryTable['6thcol']).should('be.visible').should('contain.text', 'Total Win-Lose Amount')
@@ -923,7 +923,7 @@ describe('Reporting Test', () => {
         cy.get(locators.report.filter['summary-accordion'])
             .contains('-').click()
             .contains('+').click()
-        cy.get(locators.report.summaryTable['1stcol']).should('be.visible').should('contain.text', 'Currency')
+        cy.get(locators.report.summaryTable['1stcol']).should('be.visible').should('contain.text', 'Ban')
         cy.get(locators.report.summaryTable['2ndcol']).should('be.visible').should('contain.text', 'Total Betting Amount')
         cy.get(locators.report.summaryTable['3rdcol']).should('be.visible').should('contain.text', 'Total Payout Amount')
         cy.get(locators.report.summaryTable['4thcol']).should('be.visible').should('contain.text', 'Total Win-Lose Amount')

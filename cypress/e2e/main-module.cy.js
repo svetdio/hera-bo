@@ -41,7 +41,7 @@ describe('Main Modules Test', () => {
                 cy.contains('Games').should('exist')
                 cy.contains('Sub Game Type').should('exist')
                 cy.contains('Bet Limit Sets').should('exist')
-                cy.contains('Currency').should('exist')
+                cy.contains('Ban').should('exist')
             })
         cy.get(locators.content['content']).eq(0).click()
 

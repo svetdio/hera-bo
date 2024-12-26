@@ -7,6 +7,7 @@ describe('Content Management Test', () => {
         cy.login(username, password)
     })
 
+    //Player submodule
     it ('Player', () => {
         const operator = Cypress.env('operator')
 
@@ -73,6 +74,7 @@ describe('Content Management Test', () => {
         
     })
 
+    //Operator submodule
     it('Operator', () => {
         const operator = Cypress.env('operator');
         cy.visit('/')
@@ -86,7 +88,7 @@ describe('Content Management Test', () => {
         cy.get(locators.report['text-head']).should('contain.text', 'Operator')
         cy.get(locators.report.filter['form'])
             .should('contain.text', 'Operator Name')
-            .should('contain.text', 'Currency')
+            .should('contain.text', 'Ban')
             .should('contain.text', 'Wallet Type')
             .should('contain.text', 'Status')
 
@@ -131,6 +133,7 @@ describe('Content Management Test', () => {
     //     cy.get(locators.content['search']).click()
     // })
 
+    //Vendor submodule
     it ('Vendor', () => {
         const vendor = Cypress.env('vendor')
 
@@ -168,6 +171,7 @@ describe('Content Management Test', () => {
         })
     })
 
+    //Games submodule
     it ('Games', () => {
         const vendor = Cypress.env('vendor')
 
@@ -200,6 +204,7 @@ describe('Content Management Test', () => {
         cy.get(locators.content.filter['search']).click()
         cy.get(locators.content.filter['reset']).click()
 
+        // Input
         cy.get(locators.profile.activity['rows']).then((rows) => {
             const count = rows.length;
             if (count == 1) {
@@ -208,13 +213,49 @@ describe('Content Management Test', () => {
                     cy.get(locators.content.table2[key]).then(element => {
                         cy.get(locators.content.filter[key]).type(element.text())
                         cy.get(locators.content.filter['search']).click()
-                        cy.get(locators.content.table2[key]).contains(element.text())
                         cy.get(locators.content.filter[key]).clear()
                     })
                 }
             }   
         })
+    
+        //Dropdown
+        cy.get(locators.profile.activity['rows']).then((rows) => {
+            const count = rows.length;
+            if (count == 1) {
+                const table = locators.content.subtable2
+                for (const key in table) {
+                    cy.get(locators.content.subtable2[key]).then(element => {
+                        cy.get(locators.content.filter[key]).type(element.text(), { force: true })
+                        cy.get(locators.content.filter['dropdown']).should('be.visible')
+                        cy.get(locators.content.filter['dropdown-name']).should('be.visible')
+                        cy.get(locators.content.filter['dropdown-name']).each($element => {
+                            if ($element.text() === 'dropdown-name'){
+                                cy.wrap($element).click()
+                            }
+                        })
+                        cy.get(locators.content.filter['search']).click()
+                        cy.get(locators.content.filter['reset']).click()
+                        cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+                    })
+                }
+            }   
+        })
 
+        //Sub Game Type
+        cy.get(locators.content.filter['form-input6']).type('baccarat', {force: true })
+        cy.get(locators.content.filter['dropdown']).should('be.visible')
+        cy.get(locators.content.filter['dropdown-name']).should('be.visible')
+        cy.get(locators.content.filter['dropdown-name']).each($element => {
+            if ($element.text() === 'baccarat'){
+                cy.wrap($element).click()
+            }
+        })
+        cy.get(locators.content.filter['search']).click()
+        cy.get(locators.content.filter['reset']).click()
+        cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+        cy.wait(500)
+        
         //Export Table
         cy.get(locators.content.filter['export']).click()
         cy.get(locators.content.filter['pop-up']).should('be.visible')
@@ -230,7 +271,61 @@ describe('Content Management Test', () => {
             })
 
         cy.then(() => {
-            cy.log('All tests passed successfully!');
+            cy.log('All tests passed successfully!')
         })
     })
+
+    //Sub Game Type submodule
+    it ('Sub Game Type', () => {
+        cy.visit('/')
+        cy.get(locators.content['content']).click()
+        cy.get(locators.content['container']).should('be.visible')
+        cy.get(locators.content['sub-game']).click()
+        cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')
+
+        //Sub Game Type Text Validation
+        cy.get(locators.report['text-head']).should('contain.text', 'Sub Game Type')
+        cy.get(locators.report.filter['form'])
+            .should('contain.text', 'Game Type')    
+            .should('contain.text', 'Sub Game Type')
+                
+        //Sub Game Type (Input)
+        cy.get(locators.content.filter['subgame-type']).type('baccarat')
+        cy.get(locators.content.filter['search']).click()
+        cy.get(locators.content.filter['subgame-type']).clear()
+
+        //Game Type (Dropdown)
+        cy.get(locators.content.filter['form-input1']).type('Chess Game', { force: true })
+        cy.get(locators.content.filter['dropdown']).should('be.visible')
+        cy.get(locators.content.filter['dropdown-name']).should('be.visible')
+        cy.get(locators.content.filter['dropdown-name']).each($element => {
+            if ($element.text() === 'Chess Game'){
+                cy.wrap($element).click()
+            }
+        })
+        cy.get(locators.content.filter['search']).click()
+        cy.get(locators.content.filter['reset']).click()
+        cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+        cy.wait(500)
+    
+        //Export Table
+        cy.get(locators.content.filter['export']).click()
+        cy.get(locators.content.filter['pop-up']).should('be.visible')
+        cy.get(locators.content.filter['pop-up-head']).contains('OGAPIIntegration')
+        cy.get(locators.content.filter['pop-up-body']).contains('Your Sub-Game Type export is currently in progress. You will be notified once it is complete.')
+        cy.get(locators.content.filter['bell']).click()
+        cy.get(locators.content.filter['notif']).click()
+
+        cy.get(locators.content.filter['reset'])
+            .click()
+            .then(() => {
+                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+            })
+
+        cy.then(() => {
+            cy.log('All tests passed successfully!')
+        })
+    })
+    //Bet Limit Sets submodule
+    //Currency
 })

@@ -3,7 +3,7 @@ import locators from "../support/locators"
 Cypress.config('defaultCommandTimeout', 10000) // Set default command timeout to 10 seconds
 Cypress.config('requestTimeout', 10000)   // Increase timeout for network requests
 
-describe('Test', () => {
+describe('Lobby Management Module Test', () => {
     beforeEach(() => {
 
         const username = Cypress.env('username')

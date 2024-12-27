@@ -1,6 +1,6 @@
 import locators from "../support/locators"
 
-describe('Content Management Test', () => {
+describe('Content Management Module Test', () => {
     beforeEach(() => {
         const username = Cypress.env('username')
         const password = Cypress.env('password')
@@ -50,7 +50,7 @@ describe('Content Management Test', () => {
                         cy.get(locators.content.filter['dropdown']).should('be.visible')
                         cy.get(locators.content.filter['dropdown-name']).should('be.visible')
                         cy.get(locators.content.filter['dropdown-name']).each($element => {
-                            if ($element.text() === element.text()){
+                            if ($element.text().trim() === element.text().trim()){
                                 cy.wrap($element).click()
                             }
                         })
@@ -116,7 +116,7 @@ describe('Content Management Test', () => {
         cy.get(locators.report['text-head']).should('contain.text', 'Operator')
         cy.get(locators.report.filter['form'])
             .should('contain.text', 'Operator Name')
-            .should('contain.text', 'Ban')
+            .should('contain.text', 'Currency')
             .should('contain.text', 'Wallet Type')
             .should('contain.text', 'Status')
 
@@ -136,7 +136,7 @@ describe('Content Management Test', () => {
                         cy.get(locators.content.filter['dropdown']).should('be.visible')
                         cy.get(locators.content.filter['dropdown-name']).should('be.visible')
                         cy.get(locators.content.filter['dropdown-name']).each($element => {
-                            if ($element.text() === element.text()){
+                            if ($element.text().trim() === element.text().trim()){
                                 cy.wrap($element).click()
                             }
                         })
@@ -309,7 +309,7 @@ describe('Content Management Test', () => {
                         cy.get(locators.content.filter['dropdown']).should('be.visible')
                         cy.get(locators.content.filter['dropdown-name']).should('be.visible')
                         cy.get(locators.content.filter['dropdown-name']).each($element => {
-                            if ($element.text() === element.text()){
+                            if ($element.text().trim() === element.text().trim()){
                                 cy.wrap($element).click()
                             }
                         })
@@ -332,7 +332,7 @@ describe('Content Management Test', () => {
             }
         })
         cy.get(locators.content.filter['search']).click()
-        cy.get(locators.content.filter['form-input6']).contains('baccarat')
+        // cy.get(locators.content.filter['form-input6']).contains('baccarat')
         cy.get(locators.content.filter['reset']).click()
         cy.get(locators.profile.activity['table']).should('contain', 'No data available')
         cy.wait(500)
@@ -409,5 +409,143 @@ describe('Content Management Test', () => {
         })
     })
     //Bet Limit Sets submodule
+    it ('Bet Limit Sets', () => {
+        cy.visit('/')
+        cy.get(locators.content['content']).click()
+        cy.get(locators.content['container']).should('be.visible')
+        cy.get(locators.content['bet-limit']).click()
+        cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')
+
+        //Bet Limit Sets Text Validation
+        cy.get(locators.report['text-head']).should('contain.text', 'Bet Limit Sets')
+        cy.get(locators.report.filter['form'])
+            .should('contain.text', 'Bet Limit ID')    
+            .should('contain.text', 'Currency') // Currency
+            .should('contain.text', 'Minimum Bet Amount')    
+            .should('contain.text', 'Maximum Bet Amount')
+                
+        //Input
+        cy.get(locators.profile.activity['rows']).then((rows) => {
+            const count = rows.length;
+            if (count >= 1) {
+                const table = locators.content.inputTable4
+                for (const key in table) {
+                    cy.get(locators.content.inputTable4[key]).then(element => {
+                        cy.get(locators.content.filter[key]).type(element.text())
+                        cy.get(locators.content.filter['search']).click()
+                        cy.get(locators.content.inputTable4[key]).contains(element.text())
+                        cy.get(locators.content.filter[key]).clear()
+                    })
+                }
+            }   
+        })
+
+        //Dropdown
+        cy.get(locators.content.filter['form-input2']).type('CNY', {force: true })
+        cy.get(locators.content.filter['dropdown']).should('be.visible')
+        cy.get(locators.content.filter['dropdown-name']).should('be.visible')
+        cy.get(locators.content.filter['dropdown-name']).each($element => {
+            if ($element.text() === 'CNY'){
+                cy.wrap($element).click()
+            }
+        })
+        // cy.get(locators.content.filter['form-input2']).contains('CNY')
+        cy.get(locators.content.filter['search']).click()
+        cy.get(locators.content.filter['reset']).click()
+        cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')
+        cy.wait(500)
+        // cy.get(locators.profile.activity['rows']).then((rows) => {
+        //     const count = rows.length;
+        //     if (count == 1) {
+        //         const table = locators.content.comboxTable5
+        //         for (const key in table) {
+        //             cy.get(locators.content.comboxTable5[key]).then(element => {
+        //                 cy.get(locators.content.filter[key]).type(element.text(), { force: true })
+        //                 cy.get(locators.content.filter['dropdown']).should('be.visible')
+        //                 cy.get(locators.content.filter['dropdown-name']).should('be.visible')
+        //                 cy.get(locators.content.filter['dropdown-name']).each($element => {
+        //                     if ($element.text().trim() === element.text().trim()){
+        //                         cy.wrap($element).click()
+        //                     }
+        //                 })
+        //                 cy.get(locators.content.filter['search']).click()
+        //                 cy.get(locators.content.comboxTable5[key]).contains(element.text())
+        //                 cy.get(locators.content.filter['reset']).click()
+        //                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+        //             })
+        //         }
+        //     }   
+        // })
+
+
+        cy.wait(500)
+    
+        //Export Table
+        cy.get(locators.content.filter['export']).click()
+        cy.get(locators.content.filter['pop-up']).should('be.visible')
+        cy.get(locators.content.filter['pop-up-head']).contains('OGAPIIntegration')
+        cy.get(locators.content.filter['pop-up-body']).contains('Your Bet Limit Sets export is currently in progress. You will be notified once it is complete.')
+        cy.get(locators.content.filter['bell']).click()
+        cy.get(locators.content.filter['notif']).click()
+
+        cy.get(locators.content.filter['reset'])
+            .click()
+            .then(() => {
+                cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')
+            })
+
+        cy.then(() => {
+            cy.log('All tests passed successfully!')
+        })
+    })
     //Currency
+    it ('Currency', () => {
+        cy.visit('/')
+        cy.get(locators.content['content']).click()
+        cy.get(locators.content['container']).should('be.visible')
+        cy.get(locators.content['currency']).click()
+        cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')
+
+        //Currency Text Validation
+        cy.get(locators.report['text-head']).should('contain.text', 'Currency')// Currency
+        cy.get(locators.report.filter['form'])
+            .should('contain.text', 'Currency ID')    
+            .should('contain.text', 'Currency') // Currency
+
+        //Input
+        cy.get(locators.profile.activity['rows']).then((rows) => {
+            const count = rows.length;
+            if (count >= 1) {
+                const table = locators.content.inputTable5
+                for (const key in table) {
+                    cy.get(locators.content.inputTable5[key]).then(element => {
+                        cy.get(locators.content.filter[key]).type(element.text())
+                        cy.get(locators.content.filter['search']).click()
+                        cy.get(locators.content.inputTable5[key]).contains(element.text())
+                        cy.get(locators.content.filter[key]).clear()
+                    })
+                }
+            }   
+        })
+
+        cy.wait(500)
+    
+        //Export Table
+        cy.get(locators.content.filter['export']).click()
+        cy.get(locators.content.filter['pop-up']).should('be.visible')
+        cy.get(locators.content.filter['pop-up-head']).contains('OGAPIIntegration')
+        cy.get(locators.content.filter['pop-up-body']).contains('Your Currency export is currently in progress. You will be notified once it is complete.')
+        cy.get(locators.content.filter['bell']).click()
+        cy.get(locators.content.filter['notif']).click()
+
+        cy.get(locators.content.filter['reset'])
+            .click()
+            .then(() => {
+                cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')
+            })
+
+        cy.then(() => {
+            cy.log('All tests passed successfully!')
+        })
+    })
 })

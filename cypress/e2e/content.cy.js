@@ -97,7 +97,7 @@ describe('Content Management Module Test', () => {
                     for (let i = 0; i == 0; i++) {
                         cy.wrap($spans.eq(i))
                             .should('be.visible')
-                            .and('contain.text', 'All');
+                            .and('contain.text', 'All')
                         cy.log(`Validated span element at index ${i} with text "All".`);
                     }
                 })
@@ -170,7 +170,7 @@ describe('Content Management Module Test', () => {
                     for (let i = 0; i <= 2; i++) {
                         cy.wrap($spans.eq(i))
                             .should('be.visible')
-                            .and('contain.text', 'All');
+                            .and('contain.text', 'All')
                         cy.log(`Validated span element at index ${i} with text "All".`);
                     }
                 })
@@ -259,7 +259,7 @@ describe('Content Management Module Test', () => {
                     for (let i = 0; i == 0; i++) {
                         cy.wrap($spans.eq(i))
                             .should('be.visible')
-                            .and('contain.text', 'All');
+                            .and('contain.text', 'All')
                         cy.log(`Validated span element at index ${i} with text "All".`);
                     }
                 })
@@ -372,7 +372,7 @@ describe('Content Management Module Test', () => {
                     for (let i = 0; i <= 4; i++) {
                         cy.wrap($spans.eq(i))
                             .should('be.visible')
-                            .and('contain.text', 'All');
+                            .and('contain.text', 'All')
                         cy.log(`Validated span element at index ${i} with text "All".`);
                     }
                 })
@@ -433,7 +433,7 @@ describe('Content Management Module Test', () => {
                     for (let i = 0; i == 0; i++) {
                         cy.wrap($spans.eq(i))
                             .should('be.visible')
-                            .and('contain.text', 'All');
+                            .and('contain.text', 'All')
                         cy.log(`Validated span element at index ${i} with text "All".`);
                     }
                 })
@@ -530,7 +530,7 @@ describe('Content Management Module Test', () => {
                     for (let i = 0; i == 0; i++) {
                         cy.wrap($spans.eq(i))
                             .should('be.visible')
-                            .and('contain.text', 'All');
+                            .and('contain.text', 'All')
                         cy.log(`Validated span element at index ${i} with text "All".`);
                     }
                 })

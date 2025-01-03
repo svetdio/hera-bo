@@ -126,7 +126,8 @@ export default {
             'pop-up-head':                '.toast.toast-success .toast-header',
             'pop-up-body':                '.toast.toast-success .toast-body',
             'form':                       '.form_inputs',
-            'summary-accordion':          '.toggle-summary-table-btn'
+            'summary-accordion':          '.toggle-summary-table-btn',
+            'selection':                  'span.ant-select-selection-item'
         },
 
         inputTable1: {

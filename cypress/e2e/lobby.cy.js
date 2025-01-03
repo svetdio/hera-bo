@@ -45,6 +45,35 @@ describe('Lobby Management Module Test', () => {
                 cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')
             })
 
+        //Action Table
+        cy.get(locators.lobby.filter['update'])
+            .eq(0)
+            .trigger('mouseenter')
+            .get(locators.lobby.filter['action-hover'])
+            .should('be.visible')
+            .and('contain.text', 'Update Media Component')
+
+        cy.get(locators.lobby.filter['upload'])
+            .eq(0)
+            .trigger('mouseenter')
+            .get(locators.lobby.filter['action-hover'])
+            .should('be.visible')
+            .and('contain.text', 'Upload Media Component')
+        
+        cy.get(locators.lobby.filter['delete'])
+            .eq(0)
+            .trigger('mouseenter')
+            .get(locators.lobby.filter['action-hover'])
+            .should('be.visible')
+            .and('contain.text', 'Delete Media Component')
+
+        cy.get(locators.lobby.filter['hide'])
+            .eq(0)
+            .trigger('mouseenter')
+            .get(locators.lobby.filter['action-hover'])
+            .should('be.visible')
+            .and('contain.text', 'Hide Media Component')
+        
         cy.then(() => {
             cy.log('All tests passed successfully!')
         })
@@ -83,6 +112,28 @@ describe('Lobby Management Module Test', () => {
             .then(() => {
                 cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')
             })
+
+        //Action Table
+        cy.get(locators.lobby.filter['update'])
+            .eq(0)
+            .trigger('mouseenter')
+            .get(locators.lobby.filter['action-hover'])
+            .should('be.visible')
+            .and('contain.text', 'Update Announcement')
+        
+        cy.get(locators.lobby.filter['delete'])
+            .eq(0)
+            .trigger('mouseenter')
+            .get(locators.lobby.filter['action-hover'])
+            .should('be.visible')
+            .and('contain.text', 'Delete Announcement')
+
+        cy.get(locators.lobby.filter['hide'])
+            .eq(0)
+            .trigger('mouseenter')
+            .get(locators.lobby.filter['action-hover'])
+            .should('be.visible')
+            .and('contain.text', 'Hide Announcement')
 
         cy.then(() => {
             cy.log('All tests passed successfully!')

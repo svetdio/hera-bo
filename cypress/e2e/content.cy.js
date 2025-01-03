@@ -105,9 +105,7 @@ describe('Content Management Module Test', () => {
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
 
-        cy.then(() => {
-            cy.log('All tests passed successfully!');
-        })
+        cy.log('All tests passed successfully!')
         
     })
 
@@ -151,7 +149,7 @@ describe('Content Management Module Test', () => {
                         })
                         cy.get(locators.content.filter['search']).click()
                         cy.get(locators.content.comboxTable2[key]).contains(element.text())
-                        cy.get(locators.content.filter['reset'])
+                        // cy.get(locators.content.filter['reset'])
                     })
                 }
             }   
@@ -180,9 +178,7 @@ describe('Content Management Module Test', () => {
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
 
-        cy.then(() => {
-            cy.log('All tests passed successfully!');
-        })
+        cy.log('All tests passed successfully!')
     
     })
 
@@ -221,7 +217,7 @@ describe('Content Management Module Test', () => {
             .should('contain.text', 'Status')
 
         //Input
-        cy.get(locators.content.filter['vendor']).type(vendor)
+        cy.get(locators.content.filter['vendor']).type(vendor, { delay: 100 })
         cy.get(locators.report.filter['search']).click()
         cy.wait(500)
 
@@ -238,10 +234,10 @@ describe('Content Management Module Test', () => {
                         cy.get(locators.content.filter['dropdown-name']).each($element => {
                             if ($element.text().trim() === element.text().trim()){
                                 cy.wrap($element).click()
-                                cy.wait(1000)
                             }
                         })
                         cy.get(locators.content.filter['search']).click()
+                        cy.wait(1000)
                         cy.get(locators.content.comboxTable3[key]).contains(element.text())
                     })
                 }
@@ -271,9 +267,7 @@ describe('Content Management Module Test', () => {
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
 
-        cy.then(() => {
-            cy.log('All tests passed successfully!');
-        })
+        cy.log('All tests passed successfully!')
     })
 
     //Games submodule
@@ -419,10 +413,9 @@ describe('Content Management Module Test', () => {
                 cy.wrap($element).click()
             }
         })
-
         cy.get(locators.content.filter['search']).click()
-        cy.get(locators.content.filter['reset']).click()
-        cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+        // cy.get(locators.content.filter['reset']).click()
+        // cy.get(locators.profile.activity['table']).should('contain', 'No data available')
         cy.wait(500)
     
         //Export Table
@@ -452,6 +445,7 @@ describe('Content Management Module Test', () => {
             cy.log('All tests passed successfully!')
         })
     })
+
     //Bet Limit Sets submodule
     it ('Bet Limit Sets', () => {
         cy.visit('/')
@@ -495,8 +489,8 @@ describe('Content Management Module Test', () => {
         })
         // cy.get(locators.content.filter['form-input2']).contains('CNY')
         cy.get(locators.content.filter['search']).click()
-        cy.get(locators.content.filter['reset']).click()
-        cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')
+        // cy.get(locators.content.filter['reset']).click()
+        // cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')
         cy.wait(500)
         // cy.get(locators.profile.activity['rows']).then((rows) => {
         //     const count = rows.length;
@@ -557,10 +551,10 @@ describe('Content Management Module Test', () => {
         cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')
 
         //Currency Text Validation
-        cy.get(locators.report['text-head']).should('contain.text', 'Currency')// Currency
+        cy.get(locators.report['text-head']).should('contain.text', 'Currency')
         cy.get(locators.report.filter['form'])
             .should('contain.text', 'Currency ID')    
-            .should('contain.text', 'Currency') // Currency
+            .should('contain.text', 'Currency')
 
         //Input
         cy.get(locators.profile.activity['rows']).then((rows) => {

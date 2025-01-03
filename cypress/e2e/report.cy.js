@@ -148,9 +148,7 @@ describe('Report Module Test', () => {
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
 
-        cy.then(() => {
-            cy.log('All tests passed successfully!');
-        })
+        cy.log('All tests passed successfully!')
 
     })
 
@@ -264,19 +262,20 @@ describe('Report Module Test', () => {
         
         cy.get(locators.report.filter['reset']).click()
             .then(() => {
-                cy.get(locators.report.filter['selection']).then(($span, index) => {
-                    cy.wrap($span)
-                        .should('be.visible') // Ensure the span is visible
-                        .and('contain.text', 'All'); // Validate it contains the text "All"
-                    cy.log(`Validated span element at index ${index} with text "All".`);
+                cy.get(locators.report.filter['selection']).then(($spans) => {
+                    // Validate the next three spans contain "All"
+                    for (let i = 0; i == 0; i++) {
+                        cy.wrap($spans.eq(i))
+                            .should('be.visible')
+                            .and('contain.text', 'All');
+                        cy.log(`Validated span element at index ${i} with text "All".`);
+                    }
                 })
-                  
+                    
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
         
-        cy.then(() => {
-            cy.log('All tests passed successfully!');
-        })
+        cy.log('All tests passed successfully!')
     })
 
     //Player Cash Flow Records submodule
@@ -396,19 +395,20 @@ describe('Report Module Test', () => {
         
         cy.get(locators.report.filter['reset']).click()
             .then(() => {
-                cy.get(locators.report.filter['selection']).then(($span, index) => {
-                    cy.wrap($span)
-                        .should('be.visible') // Ensure the span is visible
-                        .and('contain.text', 'All'); // Validate it contains the text "All"
-                    cy.log(`Validated span element at index ${index} with text "All".`);
+                cy.get(locators.report.filter['selection']).then(($spans) => {
+                    // Validate the next three spans contain "All"
+                    for (let i = 0; i == 0; i++) {
+                        cy.wrap($spans.eq(i))
+                            .should('be.visible')
+                            .and('contain.text', 'All');
+                        cy.log(`Validated span element at index ${i} with text "All".`);
+                    }
                 })
-                  
+                    
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
 
-        cy.then(() => {
-            cy.log('All tests passed successfully!');
-        })
+        cy.log('All tests passed successfully!')
     })
 
     //Promo Report submodule
@@ -519,7 +519,7 @@ describe('Report Module Test', () => {
                     cy.log('Validated the first span element with text "Promo".');
                   
                     // Validate the next three spans contain "All"
-                    for (let i = 1; i <= 1; i++) {
+                    for (let i = 1; i == 1; i++) {
                         cy.wrap($spans.eq(i))
                             .should('be.visible')
                             .and('contain.text', 'All');
@@ -530,9 +530,7 @@ describe('Report Module Test', () => {
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
 
-        cy.then(() => {
-            cy.log('All tests passed successfully!');
-        })
+        cy.log('All tests passed successfully!')
     })
 
     //Game Report submodule
@@ -637,19 +635,20 @@ describe('Report Module Test', () => {
         
         cy.get(locators.report.filter['reset']).click()
             .then(() => {
-                cy.get(locators.report.filter['selection']).then(($span, index) => {
-                    cy.wrap($span)
-                        .should('be.visible') // Ensure the span is visible
-                        .and('contain.text', 'All'); // Validate it contains the text "All"
-                    cy.log(`Validated span element at index ${index} with text "All".`);
+                cy.get(locators.report.filter['selection']).then(($spans) => {
+                    // Validate the next three spans contain "All"
+                    for (let i = 0; i <= 2; i++) {
+                        cy.wrap($spans.eq(i))
+                            .should('be.visible')
+                            .and('contain.text', 'All');
+                        cy.log(`Validated span element at index ${i} with text "All".`);
+                    }
                 })
-                  
+                    
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
     
-        cy.then(() => {
-            cy.log('All tests passed successfully!');
-        })
+        cy.log('All tests passed successfully!')
     })
 
     //Operator Summary (Daily) submodule
@@ -774,19 +773,20 @@ describe('Report Module Test', () => {
         // cy.get(locators.report.filter['reset'])
         cy.get('.btn.btn-danger').click()
             .then(() => {
-                cy.get(locators.report.filter['selection']).then(($span, index) => {
-                    cy.wrap($span)
-                        .should('be.visible') // Ensure the span is visible
-                        .and('contain.text', 'All'); // Validate it contains the text "All"
-                    cy.log(`Validated span element at index ${index} with text "All".`);
+                cy.get(locators.report.filter['selection']).then(($spans) => {
+                    // Validate the next three spans contain "All"
+                    for (let i = 0; i <= 1; i++) {
+                        cy.wrap($spans.eq(i))
+                            .should('be.visible')
+                            .and('contain.text', 'All');
+                        cy.log(`Validated span element at index ${i} with text "All".`);
+                    }
                 })
                     
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
         
-        cy.then(() => {
-            cy.log('All tests passed successfully!');
-        })
+        cy.log('All tests passed successfully!')
     })
 
     //Operator Summary (Monthly) submodule
@@ -886,19 +886,20 @@ describe('Report Module Test', () => {
         // cy.get(locators.report.filter['reset'])
         cy.get('.btn.btn-danger').click()
             .then(() => {
-                cy.get(locators.report.filter['selection']).then(($span, index) => {
-                    cy.wrap($span)
-                        .should('be.visible') // Ensure the span is visible
-                        .and('contain.text', 'All'); // Validate it contains the text "All"
-                    cy.log(`Validated span element at index ${index} with text "All".`);
+                cy.get(locators.report.filter['selection']).then(($spans) => {
+                    // Validate the next three spans contain "All"
+                    for (let i = 0; i <= 1; i++) {
+                        cy.wrap($spans.eq(i))
+                            .should('be.visible')
+                            .and('contain.text', 'All');
+                        cy.log(`Validated span element at index ${i} with text "All".`);
+                    }
                 })
                     
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
 
-        cy.then(() => {
-            cy.log('All tests passed successfully!');
-        })
+        cy.log('All tests passed successfully!')
     })
 
     //Vendor Summary submodule
@@ -1002,19 +1003,20 @@ describe('Report Module Test', () => {
 
         cy.get(locators.report.filter['reset']).click()
             .then(() => {
-                cy.get(locators.report.filter['selection']).then(($span, index) => {
-                    cy.wrap($span)
-                        .should('be.visible') // Ensure the span is visible
-                        .and('contain.text', 'All'); // Validate it contains the text "All"
-                    cy.log(`Validated span element at index ${index} with text "All".`);
+                cy.get(locators.report.filter['selection']).then(($spans) => {
+                    // Validate the next three spans contain "All"
+                    for (let i = 0; i <= 2; i++) {
+                        cy.wrap($spans.eq(i))
+                            .should('be.visible')
+                            .and('contain.text', 'All');
+                        cy.log(`Validated span element at index ${i} with text "All".`);
+                    }
                 })
-                  
+                    
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
 
-        cy.then(() => {
-            cy.log('All tests passed successfully!');
-        })
+        cy.log('All tests passed successfully!')
     })
 
     //Player Summary submodule
@@ -1128,19 +1130,20 @@ describe('Report Module Test', () => {
 
         cy.get(locators.report.filter['reset']).click()
             .then(() => {
-                cy.get(locators.report.filter['selection']).then(($span, index) => {
-                    cy.wrap($span)
-                        .should('be.visible') // Ensure the span is visible
-                        .and('contain.text', 'All'); // Validate it contains the text "All"
-                    cy.log(`Validated span element at index ${index} with text "All".`);
+                cy.get(locators.report.filter['selection']).then(($spans) => {
+                    // Validate the next three spans contain "All"
+                    for (let i = 0; i == 0; i++) {
+                        cy.wrap($spans.eq(i))
+                            .should('be.visible')
+                            .and('contain.text', 'All');
+                        cy.log(`Validated span element at index ${i} with text "All".`);
+                    }
                 })
-                  
+                    
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
         
-        cy.then(() => {
-            cy.log('All tests passed successfully!');
-        })
+        cy.log('All tests passed successfully!')
     })
 
     //Sports Betting Transaction submodule
@@ -1263,18 +1266,19 @@ describe('Report Module Test', () => {
         
         cy.get(locators.report.filter['reset']).click()
             .then(() => {
-                cy.get(locators.report.filter['selection']).then(($span, index) => {
-                    cy.wrap($span)
-                        .should('be.visible') // Ensure the span is visible
-                        .and('contain.text', 'All'); // Validate it contains the text "All"
-                    cy.log(`Validated span element at index ${index} with text "All".`);
+                cy.get(locators.report.filter['selection']).then(($spans) => {
+                    // Validate the next three spans contain "All"
+                    for (let i = 0; i <= 3; i++) {
+                        cy.wrap($spans.eq(i))
+                            .should('be.visible')
+                            .and('contain.text', 'All');
+                        cy.log(`Validated span element at index ${i} with text "All".`);
+                    }
                 })
-                  
+                    
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
 
-        cy.then(() => {
-            cy.log('All tests passed successfully!');
-        })
+        cy.log('All tests passed successfully!')
     })
 })

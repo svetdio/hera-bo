@@ -365,6 +365,28 @@ export default {
             'playerId':                    '#tableBody > tr:first-child > td:nth-child(1)'
         },
 
+        
+        inputTable2: {
+            'gameId':                      '#tableBody > tr:first-child > td:nth-child(2)',        
+            'gameCode':                    '#tableBody > tr:first-child > td:nth-child(3)',     
+            'gameName':                    '#tableBody > tr:first-child > td:nth-child(4)'
+        },
+
+        inputTable3: {
+            'subgame-type':                     '#tableBody > tr:first-child > td:nth-child(2)'
+        },
+
+        inputTable4: {
+            'betlimit-Id':                 '#tableBody > tr:first-child > td:nth-child(1)',
+            'min-limit':                   '#tableBody > tr:first-child > td:nth-child(3)',
+            'max-limit':                   '#tableBody > tr:first-child > td:nth-child(4)'
+        },
+
+        inputTable5: {
+            'currency-Id':                 '#tableBody > tr:first-child > td:nth-child(1)',
+            'currency':                    '#tableBody > tr:first-child > td:nth-child(2)'
+        },
+
         comboxTable1: {
             'form-input3':                 '#tableBody > tr:first-child > td:nth-child(7)'
         },
@@ -378,12 +400,6 @@ export default {
         comboxTable3: {
             'form-input2':                 '#tableBody > tr:first-child > td:nth-child(5)'
         },
-        
-        inputTable2: {
-            'gameId':                      '#tableBody > tr:first-child > td:nth-child(2)',        
-            'gameCode':                    '#tableBody > tr:first-child > td:nth-child(3)',     
-            'gameName':                    '#tableBody > tr:first-child > td:nth-child(4)'
-        },
 
         comboxTable4: {
             'form-input5':                 '#tableBody > tr:first-child > td:nth-child(7)',
@@ -391,19 +407,8 @@ export default {
             'form-input8':                 '#tableBody > tr:first-child > td:nth-child(10)'
         },
 
-       inputTable4: {
-            'betlimit-Id':                 '#tableBody > tr:first-child > td:nth-child(1)',
-            'min-limit':                   '#tableBody > tr:first-child > td:nth-child(3)',
-            'max-limit':                   '#tableBody > tr:first-child > td:nth-child(4)'
-        },
-
         comboxTable5: {
-            'form-input2':                 '#tableBody > tr:first-child > td:nth-child(2)'
-        },
-
-        inputTable5: {
-            'currency-Id':                 '#tableBody > tr:first-child > td:nth-child(1)',
-            'currency':                    '#tableBody > tr:first-child > td:nth-child(2)'
+            'form-input1':                 '#tableBody > tr:first-child > td:nth-child(3)'
         },
     },
 

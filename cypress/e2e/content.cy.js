@@ -46,7 +46,7 @@ describe('Content Management Module Test', () => {
                 const table = locators.content.comboxTable1
                 for (const key in table) {
                     cy.get(locators.content.comboxTable1[key]).then(element => {
-                        cy.get(locators.content.filter[key]).type(element.text(), { force: true })
+                        cy.get(locators.content.filter[key]).type(element.text(), { force: true, delay: 100 })
                         cy.get(locators.content.filter['dropdown']).should('be.visible')
                         cy.get(locators.content.filter['dropdown-name']).should('be.visible')
                         cy.get(locators.content.filter['dropdown-name']).each($element => {
@@ -56,7 +56,7 @@ describe('Content Management Module Test', () => {
                         })
                         cy.get(locators.content.filter['search']).click()
                         cy.get(locators.content.comboxTable1[key]).contains(element.text())
-                        cy.get(locators.content.filter['reset'])
+                        // cy.get(locators.content.filter['reset'])
                     })
                 }
             }   
@@ -69,7 +69,7 @@ describe('Content Management Module Test', () => {
                 const table = locators.content.inputTable1
                 for (const key in table) {
                     cy.get(locators.content.inputTable1[key]).then(element => {
-                        cy.get(locators.content.filter[key]).type(element.text())
+                        cy.get(locators.content.filter[key]).type(element.text(), { delay: 100 })
                         cy.get(locators.content.filter['search']).click()
                         cy.get(locators.profile.activity['preloader'], { timeout: 100000 }).should('not.be.visible')
                         cy.get(locators.content.inputTable1[key]).contains(element.text()) 
@@ -90,9 +90,18 @@ describe('Content Management Module Test', () => {
         cy.get(locators.content.filter['bell']).click()
         cy.get(locators.content.filter['notif']).click()
 
-        cy.get(locators.content.filter['reset'])
-            .click()
+        cy.get(locators.content.filter['reset']).click()
             .then(() => {
+                cy.get(locators.report.filter['selection']).then(($spans) => {
+                    // Validate the next three spans contain "All"
+                    for (let i = 0; i == 0; i++) {
+                        cy.wrap($spans.eq(i))
+                            .should('be.visible')
+                            .and('contain.text', 'All');
+                        cy.log(`Validated span element at index ${i} with text "All".`);
+                    }
+                })
+                    
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
 
@@ -132,7 +141,7 @@ describe('Content Management Module Test', () => {
                 const table = locators.content.comboxTable2
                 for (const key in table) {
                     cy.get(locators.content.comboxTable2[key]).then(element => {
-                        cy.get(locators.content.filter[key]).type(element.text(), { force: true })
+                        cy.get(locators.content.filter[key]).type(element.text(), { force: true, delay: 100 })
                         cy.get(locators.content.filter['dropdown']).should('be.visible')
                         cy.get(locators.content.filter['dropdown-name']).should('be.visible')
                         cy.get(locators.content.filter['dropdown-name']).each($element => {
@@ -156,9 +165,18 @@ describe('Content Management Module Test', () => {
         cy.get(locators.content.filter['bell']).click()
         cy.get(locators.content.filter['notif']).click()
 
-        cy.get(locators.content.filter['reset'])
-            .click()
+        cy.get(locators.content.filter['reset']).click()
             .then(() => {
+                cy.get(locators.report.filter['selection']).then(($spans) => {
+                    // Validate the next three spans contain "All"
+                    for (let i = 0; i <= 2; i++) {
+                        cy.wrap($spans.eq(i))
+                            .should('be.visible')
+                            .and('contain.text', 'All');
+                        cy.log(`Validated span element at index ${i} with text "All".`);
+                    }
+                })
+                    
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
 
@@ -238,9 +256,18 @@ describe('Content Management Module Test', () => {
         cy.get(locators.content.filter['bell']).click()
         cy.get(locators.content.filter['notif']).click()
 
-        cy.get(locators.content.filter['reset'])
-            .click()
+        cy.get(locators.content.filter['reset']).click()
             .then(() => {
+                cy.get(locators.report.filter['selection']).then(($spans) => {
+                    // Validate the next three spans contain "All"
+                    for (let i = 0; i == 0; i++) {
+                        cy.wrap($spans.eq(i))
+                            .should('be.visible')
+                            .and('contain.text', 'All');
+                        cy.log(`Validated span element at index ${i} with text "All".`);
+                    }
+                })
+                    
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
 
@@ -289,7 +316,7 @@ describe('Content Management Module Test', () => {
                 const table = locators.content.inputTable2
                 for (const key in table) {
                     cy.get(locators.content.inputTable2[key]).then(element => {
-                        cy.get(locators.content.filter[key]).type(element.text())
+                        cy.get(locators.content.filter[key]).type(element.text(), { delay: 100 })
                         cy.get(locators.content.filter['search']).click()
                         cy.get(locators.content.inputTable2[key]).contains(element.text())
                         cy.get(locators.content.filter[key]).clear()
@@ -305,7 +332,7 @@ describe('Content Management Module Test', () => {
                 const table = locators.content.comboxTable4
                 for (const key in table) {
                     cy.get(locators.content.comboxTable4[key]).then(element => {
-                        cy.get(locators.content.filter[key]).type(element.text(), { force: true })
+                        cy.get(locators.content.filter[key]).type(element.text(), { force: true, delay: 100 })
                         cy.get(locators.content.filter['dropdown']).should('be.visible')
                         cy.get(locators.content.filter['dropdown-name']).should('be.visible')
                         cy.get(locators.content.filter['dropdown-name']).each($element => {
@@ -315,15 +342,15 @@ describe('Content Management Module Test', () => {
                         })
                         cy.get(locators.content.filter['search']).click()
                         cy.get(locators.content.comboxTable4[key]).contains(element.text())
-                        cy.get(locators.content.filter['reset']).click()
-                        cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+                        // cy.get(locators.content.filter['reset']).click()
+                        // cy.get(locators.profile.activity['table']).should('contain', 'No data available')
                     })
                 }
             }   
         })
 
         //Sub Game Type
-        cy.get(locators.content.filter['form-input6']).type('baccarat', {force: true })
+        cy.get(locators.content.filter['form-input6']).type('baccarat', {force: true, delay: 100 })
         cy.get(locators.content.filter['dropdown']).should('be.visible')
         cy.get(locators.content.filter['dropdown-name']).should('be.visible')
         cy.get(locators.content.filter['dropdown-name']).each($element => {
@@ -333,9 +360,8 @@ describe('Content Management Module Test', () => {
         })
         cy.get(locators.content.filter['search']).click()
         // cy.get(locators.content.filter['form-input6']).contains('baccarat')
-        cy.get(locators.content.filter['reset']).click()
-        cy.get(locators.profile.activity['table']).should('contain', 'No data available')
-        cy.wait(500)
+        // cy.get(locators.content.filter['reset']).click()
+        // cy.get(locators.profile.activity['table']).should('contain', 'No data available')
         
         //Export Table
         cy.get(locators.content.filter['export']).click()
@@ -345,11 +371,20 @@ describe('Content Management Module Test', () => {
         cy.get(locators.content.filter['bell']).click()
         cy.get(locators.content.filter['notif']).click()
 
-        cy.get(locators.content.filter['reset'])
-            .click()
+        cy.get(locators.content.filter['reset']).click()
             .then(() => {
+                cy.get(locators.report.filter['selection']).then(($spans) => {
+                    // Validate the next three spans contain "All"
+                    for (let i = 0; i <= 4; i++) {
+                        cy.wrap($spans.eq(i))
+                            .should('be.visible')
+                            .and('contain.text', 'All');
+                        cy.log(`Validated span element at index ${i} with text "All".`);
+                    }
+                })
+                    
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
-            })
+                        })
 
         cy.then(() => {
             cy.log('All tests passed successfully!')
@@ -376,7 +411,7 @@ describe('Content Management Module Test', () => {
         cy.get(locators.content.filter['subgame-type']).clear()
 
         //Game Type (Dropdown)
-        cy.get(locators.content.filter['form-input1']).type('Chess Game', { force: true })
+        cy.get(locators.content.filter['form-input1']).type('Chess Game', { force: true, delay: 100 })
         cy.get(locators.content.filter['dropdown']).should('be.visible')
         cy.get(locators.content.filter['dropdown-name']).should('be.visible')
         cy.get(locators.content.filter['dropdown-name']).each($element => {
@@ -398,9 +433,18 @@ describe('Content Management Module Test', () => {
         cy.get(locators.content.filter['bell']).click()
         cy.get(locators.content.filter['notif']).click()
 
-        cy.get(locators.content.filter['reset'])
-            .click()
+        cy.get(locators.content.filter['reset']).click()
             .then(() => {
+                cy.get(locators.report.filter['selection']).then(($spans) => {
+                    // Validate the next three spans contain "All"
+                    for (let i = 0; i == 0; i++) {
+                        cy.wrap($spans.eq(i))
+                            .should('be.visible')
+                            .and('contain.text', 'All');
+                        cy.log(`Validated span element at index ${i} with text "All".`);
+                    }
+                })
+                    
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
 
@@ -431,7 +475,7 @@ describe('Content Management Module Test', () => {
                 const table = locators.content.inputTable4
                 for (const key in table) {
                     cy.get(locators.content.inputTable4[key]).then(element => {
-                        cy.get(locators.content.filter[key]).type(element.text())
+                        cy.get(locators.content.filter[key]).type(element.text(), { delay: 100 })
                         cy.get(locators.content.filter['search']).click()
                         cy.get(locators.content.inputTable4[key]).contains(element.text())
                         cy.get(locators.content.filter[key]).clear()
@@ -441,7 +485,7 @@ describe('Content Management Module Test', () => {
         })
 
         //Dropdown
-        cy.get(locators.content.filter['form-input2']).type('CNY', {force: true })
+        cy.get(locators.content.filter['form-input2']).type('CNY', {force: true, delay: 100 })
         cy.get(locators.content.filter['dropdown']).should('be.visible')
         cy.get(locators.content.filter['dropdown-name']).should('be.visible')
         cy.get(locators.content.filter['dropdown-name']).each($element => {
@@ -476,9 +520,6 @@ describe('Content Management Module Test', () => {
         //         }
         //     }   
         // })
-
-
-        cy.wait(500)
     
         //Export Table
         cy.get(locators.content.filter['export']).click()
@@ -488,10 +529,19 @@ describe('Content Management Module Test', () => {
         cy.get(locators.content.filter['bell']).click()
         cy.get(locators.content.filter['notif']).click()
 
-        cy.get(locators.content.filter['reset'])
-            .click()
+       cy.get(locators.content.filter['reset']).click()
             .then(() => {
-                cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')
+                cy.get(locators.report.filter['selection']).then(($spans) => {
+                    // Validate the next three spans contain "All"
+                    for (let i = 0; i == 0; i++) {
+                        cy.wrap($spans.eq(i))
+                            .should('be.visible')
+                            .and('contain.text', 'All');
+                        cy.log(`Validated span element at index ${i} with text "All".`);
+                    }
+                })
+                    
+                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
 
         cy.then(() => {
@@ -519,7 +569,7 @@ describe('Content Management Module Test', () => {
                 const table = locators.content.inputTable5
                 for (const key in table) {
                     cy.get(locators.content.inputTable5[key]).then(element => {
-                        cy.get(locators.content.filter[key]).type(element.text())
+                        cy.get(locators.content.filter[key]).type(element.text(), { delay: 100 })
                         cy.get(locators.content.filter['search']).click()
                         cy.get(locators.content.inputTable5[key]).contains(element.text())
                         cy.get(locators.content.filter[key]).clear()

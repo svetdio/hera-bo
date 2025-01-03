@@ -55,6 +55,7 @@ export default {
             'entry':                      'select.outline-none',
             'preloader':                  '.preloader img',
             'rows':                       '#tableBody tr',
+            'dataTable-rows':             'thead > th',
             'total':                      '.table-showing span:last-child',
             'summaryTable':               '.table-auto.table-custom.min-w-full.table-lg',
             'summaryRows':                '.table-auto.table-custom.min-w-full.table-lg tr'

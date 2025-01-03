@@ -398,25 +398,52 @@ describe('Content Management Module Test', () => {
         cy.get(locators.report.filter['form'])
             .should('contain.text', 'Game Type')    
             .should('contain.text', 'Sub Game Type')
-                
-        //Sub Game Type (Input)
-        cy.get(locators.content.filter['subgame-type']).type('baccarat')
-        cy.get(locators.content.filter['search']).click()
-        cy.get(locators.content.filter['subgame-type']).clear()
 
-        //Game Type (Dropdown)
-        cy.get(locators.content.filter['form-input1']).type('Chess Game', { force: true, delay: 100 })
-        cy.get(locators.content.filter['dropdown']).should('be.visible')
-        cy.get(locators.content.filter['dropdown-name']).should('be.visible')
-        cy.get(locators.content.filter['dropdown-name']).each($element => {
-            if ($element.text() === 'Chess Game'){
-                cy.wrap($element).click()
-            }
+        //Dropdown
+        cy.get(locators.profile.activity['rows']).then((rows) => {
+            const count = rows.length;
+            if (count >= 1) {
+                const table = locators.content.comboxTable5
+                for (const key in table) {
+                    cy.get(locators.content.comboxTable5[key]).then(element => {
+                        cy.get(locators.content.filter[key]).type(element.text(), { force: true, delay: 100 })
+                        cy.get(locators.content.filter['dropdown']).should('be.visible')
+                        cy.get(locators.content.filter['dropdown-name']).should('be.visible')
+                        cy.get(locators.content.filter['dropdown-name']).each($element => {
+                            if ($element.text().trim() === element.text().trim()){
+                                cy.wrap($element).click()
+                                cy.wait(500)
+                            }
+                        })
+                        cy.get(locators.content.filter['search']).click()
+                        cy.get(locators.content.comboxTable5[key]).contains(element.text())
+                        // cy.get(locators.content.filter['reset'])
+                    })
+                }
+            }   
         })
-        cy.get(locators.content.filter['search']).click()
+
+        cy.wait(1000)
+        //Input
+        cy.get(locators.profile.activity['rows']).then((rows) => {
+            const count = rows.length
+            if (count >= 1) {
+                const table = locators.content.inputTable3
+                for (const key in table) {
+                    cy.get(locators.content.inputTable3[key]).then(element => {
+                        cy.get(locators.content.filter[key]).type(element.text(), { delay: 100 })
+                        cy.get(locators.content.filter['search']).click()
+                        // cy.get(locators.profile.activity['preloader'], { timeout: 100000 }).should('not.be.visible')
+                        cy.get(locators.content.inputTable3[key]).contains(element.text()) 
+                        cy.get(locators.content.filter[key]).clear()
+                    })
+                }
+            }   
+        })
+
         // cy.get(locators.content.filter['reset']).click()
         // cy.get(locators.profile.activity['table']).should('contain', 'No data available')
-        cy.wait(500)
+        // cy.wait(500)
     
         //Export Table
         cy.get(locators.content.filter['export']).click()
@@ -458,7 +485,7 @@ describe('Content Management Module Test', () => {
         cy.get(locators.report['text-head']).should('contain.text', 'Bet Limit Sets')
         cy.get(locators.report.filter['form'])
             .should('contain.text', 'Bet Limit ID')    
-            .should('contain.text', 'Currency') // Currency
+            .should('contain.text', 'Currency')
             .should('contain.text', 'Minimum Bet Amount')    
             .should('contain.text', 'Maximum Bet Amount')
                 
@@ -542,6 +569,7 @@ describe('Content Management Module Test', () => {
             cy.log('All tests passed successfully!')
         })
     })
+
     //Currency
     it ('Currency', () => {
         cy.visit('/')

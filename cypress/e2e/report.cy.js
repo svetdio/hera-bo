@@ -88,7 +88,6 @@ describe('Report Module Test', () => {
                         })
                         cy.get(locators.report.filter['search']).click()
                         cy.get(locators.report.comboxTable1[key]).contains(element.text())
-                        cy.get(locators.report.filter['reset'])
                     })
                 }
             }   
@@ -128,9 +127,24 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
 
-        cy.get(locators.report.filter['reset'])
-            .click()
+        cy.get(locators.report.filter['reset']).click()
             .then(() => {
+                cy.get(locators.report.filter['selection']).then(($spans) => {
+                    // Validate the first span contains "Debit"
+                    cy.wrap($spans.eq(0))
+                        .should('be.visible')
+                        .and('contain.text', 'Debit');
+                    cy.log('Validated the first span element with text "Debit".');
+                  
+                    // Validate the next three spans contain "All"
+                    for (let i = 1; i <= 3; i++) {
+                        cy.wrap($spans.eq(i))
+                            .should('be.visible')
+                            .and('contain.text', 'All');
+                      cy.log('Validated span element at index ${i} with text "All".')
+                    }
+                })
+                  
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
 
@@ -213,7 +227,6 @@ describe('Report Module Test', () => {
                         })
                         cy.get(locators.report.filter['search']).click()
                         cy.get(locators.report.comboxTable2[key]).contains(element.text())
-                        cy.get(locators.report.filter['reset'])
                     })
                 }
             }   
@@ -249,9 +262,15 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
         
-        cy.get(locators.report.filter['reset'])
-            .click()
+        cy.get(locators.report.filter['reset']).click()
             .then(() => {
+                cy.get(locators.report.filter['selection']).then(($span, index) => {
+                    cy.wrap($span)
+                        .should('be.visible') // Ensure the span is visible
+                        .and('contain.text', 'All'); // Validate it contains the text "All"
+                    cy.log(`Validated span element at index ${index} with text "All".`);
+                })
+                  
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
         
@@ -340,7 +359,6 @@ describe('Report Module Test', () => {
                         })
                         cy.get(locators.report.filter['search']).click()
                         cy.get(locators.report.comboxTable3[key]).contains(element.text())
-                        cy.get(locators.report.filter['reset'])
                     })
                 }
             }   
@@ -376,12 +394,17 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
         
-        cy.get(locators.report.filter['reset'])
-            .click()
+        cy.get(locators.report.filter['reset']).click()
             .then(() => {
+                cy.get(locators.report.filter['selection']).then(($span, index) => {
+                    cy.wrap($span)
+                        .should('be.visible') // Ensure the span is visible
+                        .and('contain.text', 'All'); // Validate it contains the text "All"
+                    cy.log(`Validated span element at index ${index} with text "All".`);
+                })
+                  
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
-            .click()
 
         cy.then(() => {
             cy.log('All tests passed successfully!');
@@ -449,7 +472,6 @@ describe('Report Module Test', () => {
                         })
                         cy.get(locators.report.filter['search']).click()
                         cy.get(locators.report.comboxTable4[key]).contains(element.text())
-                        cy.get(locators.report.filter['reset'])
                     })
                 }
             }   
@@ -487,9 +509,24 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
         
-        cy.get(locators.report.filter['reset'])
-            .click()
+        cy.get(locators.report.filter['reset']).click()
             .then(() => {
+                cy.get(locators.report.filter['selection']).then(($spans) => {
+                    // Validate the first span contains "Debit"
+                    cy.wrap($spans.eq(0))
+                        .should('be.visible')
+                        .and('contain.text', 'Promo');
+                    cy.log('Validated the first span element with text "Promo".');
+                  
+                    // Validate the next three spans contain "All"
+                    for (let i = 1; i <= 1; i++) {
+                        cy.wrap($spans.eq(i))
+                            .should('be.visible')
+                            .and('contain.text', 'All');
+                      cy.log('Validated span element at index ${i} with text "All".')
+                    }
+                })
+                  
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
 
@@ -559,7 +596,6 @@ describe('Report Module Test', () => {
                         })
                         cy.get(locators.report.filter['search']).click()
                         cy.get(locators.report.comboxTable5[key]).contains(element.text())
-                        cy.get(locators.report.filter['reset'])
                     })
                 }
             }   
@@ -599,9 +635,15 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
         
-        cy.get(locators.report.filter['reset'])
-            .click()
+        cy.get(locators.report.filter['reset']).click()
             .then(() => {
+                cy.get(locators.report.filter['selection']).then(($span, index) => {
+                    cy.wrap($span)
+                        .should('be.visible') // Ensure the span is visible
+                        .and('contain.text', 'All'); // Validate it contains the text "All"
+                    cy.log(`Validated span element at index ${index} with text "All".`);
+                })
+                  
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
     
@@ -699,12 +741,13 @@ describe('Report Module Test', () => {
             .contains('+').click()
         cy.get(locators.report['text-head']).should('contain.text', 'Summary')
         cy.get(locators.report.summaryTable['1stcol']).should('be.visible').should('contain.text', 'Total Transaction Count')
-        cy.get(locators.report.summaryTable['2ndcol']).should('be.visible').should('contain.text', 'Currency')
-        cy.get(locators.report.summaryTable['3rdcol']).should('be.visible').should('contain.text', 'Total Betting Amount')
-        cy.get(locators.report.summaryTable['4thcol']).should('be.visible').should('contain.text', 'Total Payout Amount')
-        cy.get(locators.report.summaryTable['5thcol']).should('be.visible').should('contain.text', 'Total GGR Amount')
-        cy.get(locators.report.summaryTable['6thcol']).should('be.visible').should('contain.text', 'Total Turnover Amount')
-        cy.get(locators.report.summaryTable['7thcol']).should('be.visible').should('contain.text', 'Total House Edge')
+        cy.get(locators.report.summaryTable['2ndcol']).should('be.visible').should('contain.text', 'Total Player Count')
+        cy.get(locators.report.summaryTable['3rdcol']).should('be.visible').should('contain.text', 'Currency')
+        cy.get(locators.report.summaryTable['4thcol']).should('be.visible').should('contain.text', 'Total Betting Amount')
+        cy.get(locators.report.summaryTable['5thcol']).should('be.visible').should('contain.text', 'Total Payout Amount')
+        cy.get(locators.report.summaryTable['6thcol']).should('be.visible').should('contain.text', 'Total GGR Amount')
+        cy.get(locators.report.summaryTable['7thcol']).should('be.visible').should('contain.text', 'Total Turnover Amount')
+        cy.get(locators.report.summaryTable['8thcol']).should('be.visible').should('contain.text', 'Total House Edge')
     
 
         cy.get(locators.profile.activity['summaryRows']).then((summaryRows) => {
@@ -730,8 +773,14 @@ describe('Report Module Test', () => {
         
         // cy.get(locators.report.filter['reset'])
         cy.get('.btn.btn-danger').click()
-            .click()
             .then(() => {
+                cy.get(locators.report.filter['selection']).then(($span, index) => {
+                    cy.wrap($span)
+                        .should('be.visible') // Ensure the span is visible
+                        .and('contain.text', 'All'); // Validate it contains the text "All"
+                    cy.log(`Validated span element at index ${index} with text "All".`);
+                })
+                    
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
         
@@ -836,8 +885,14 @@ describe('Report Module Test', () => {
 
         // cy.get(locators.report.filter['reset'])
         cy.get('.btn.btn-danger').click()
-            .click()
             .then(() => {
+                cy.get(locators.report.filter['selection']).then(($span, index) => {
+                    cy.wrap($span)
+                        .should('be.visible') // Ensure the span is visible
+                        .and('contain.text', 'All'); // Validate it contains the text "All"
+                    cy.log(`Validated span element at index ${index} with text "All".`);
+                })
+                    
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
 
@@ -906,7 +961,6 @@ describe('Report Module Test', () => {
                         })
                         cy.get(locators.report.filter['search']).click()
                         cy.get(locators.report.comboxTable8[key]).contains(element.text())
-                        cy.get(locators.report.filter['reset'])
                     })
                 }
             }   
@@ -946,9 +1000,15 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
 
-        cy.get(locators.report.filter['reset'])
-            .click()
+        cy.get(locators.report.filter['reset']).click()
             .then(() => {
+                cy.get(locators.report.filter['selection']).then(($span, index) => {
+                    cy.wrap($span)
+                        .should('be.visible') // Ensure the span is visible
+                        .and('contain.text', 'All'); // Validate it contains the text "All"
+                    cy.log(`Validated span element at index ${index} with text "All".`);
+                })
+                  
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
 
@@ -1027,7 +1087,6 @@ describe('Report Module Test', () => {
                         })
                         cy.get(locators.report.filter['search']).click()
                         cy.get(locators.report.comboxTable9[key]).contains(element.text())
-                        cy.get(locators.report.filter['reset'])
                     })
                 }
             }   
@@ -1067,9 +1126,15 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
 
-        cy.get(locators.report.filter['reset'])
-            .click()
+        cy.get(locators.report.filter['reset']).click()
             .then(() => {
+                cy.get(locators.report.filter['selection']).then(($span, index) => {
+                    cy.wrap($span)
+                        .should('be.visible') // Ensure the span is visible
+                        .and('contain.text', 'All'); // Validate it contains the text "All"
+                    cy.log(`Validated span element at index ${index} with text "All".`);
+                })
+                  
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
         
@@ -1158,7 +1223,6 @@ describe('Report Module Test', () => {
                         })
                         cy.get(locators.report.filter['search']).click()
                         cy.get(locators.report.comboxTable10[key]).contains(element.text())
-                        cy.get(locators.report.filter['reset'])
                     })
                 }
             }   
@@ -1197,9 +1261,15 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
         
-        cy.get(locators.report.filter['reset'])
-            .click()
+        cy.get(locators.report.filter['reset']).click()
             .then(() => {
+                cy.get(locators.report.filter['selection']).then(($span, index) => {
+                    cy.wrap($span)
+                        .should('be.visible') // Ensure the span is visible
+                        .and('contain.text', 'All'); // Validate it contains the text "All"
+                    cy.log(`Validated span element at index ${index} with text "All".`);
+                })
+                  
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
 

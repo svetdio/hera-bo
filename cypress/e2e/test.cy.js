@@ -85,7 +85,7 @@ describe('Test', () => {
             })
             cy.log('All data table column names have been validated')
 
-            //Operator Name
+            //Operator Name Name
             cy.get(locators.report.filter['transaction-date'])
                 .should('be.visible')
                 .click()
@@ -123,7 +123,7 @@ describe('Test', () => {
     
             //Dropdown
             cy.get(locators.profile.activity['rows']).then((rows) => {
-                const count = rows.length;
+                const count = rows.length
                 if (count >= 1) {
                     const table = locators.report.comboxTable1
                     for (const key in table) {

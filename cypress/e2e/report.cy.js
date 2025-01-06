@@ -20,21 +20,72 @@ describe('Report Module Test', () => {
         cy.get(locators.report['container']).should('be.visible')
         cy.get(locators.report['betting-history']).click()
 
-        //Betting Transaction Text Validation
+        //Search Form Text Validation
         cy.get(locators.report['text-head']).should('contain.text', 'Betting Transaction History')
-        cy.get(locators.report.filter['form'])
-            .should('contain.text', 'Transaction Date/Time')
-            .should('contain.text', 'Operator Name')
-            .should('contain.text', 'Player ID')
-            .should('contain.text', 'Transaction ID')
-            .should('contain.text', 'Transaction Status')
-            .should('contain.text', 'Vendor Name')
-            .should('contain.text', 'Game Name')
-            .should('contain.text', 'Round Number')
-            .should('contain.text', 'Game Type')
-            .should('contain.text', 'Game ID ')
+        const searchForm = [
+            'Transaction Date/Time',
+            'Operator Name',
+            'Player ID',
+            'Transaction ID',
+            'Transaction Status',
+            'Vendor Name',
+            'Game Name',
+            'Round Number',
+            'Game Type',
+            'Game ID'
+        ]
+        searchForm.forEach((searchLabel) => {
+            cy.get(locators.report.filter['form'])
+                .should('be.visible')
+                .contains(searchLabel)
+                .should('exist')
+                .then(() => {
+                    cy.log(`${searchLabel} is present`)
+                })
+        })
+        cy.log('All search form names have been validated')
         
-        //Betting Transaction
+        //Data Table Column Name Text Validation
+        const dataTable = [
+            '#',
+            'Transaction Date/Time',
+            'Credit Date/Time',
+            'Operator Name',
+            'Player ID',
+            'Currency',
+            'Betting Amount',
+            'Payout Amount',
+            'Win-Lose Amount',
+            'Turnover Amount',
+            'Round Number',
+            'Shoe Hand',
+            'Betting Area',
+            'Game Result',
+            'Transaction Status',
+            'Operator ID',
+            'Wallet Type',
+            'Game ID',
+            'Game Code',
+            'Game Name',
+            'Game Type',
+            'Vendor Name',
+            'Rollback Date/Time',
+            'Cancel Date/Time',
+            'Resettle Date/Time',
+            'IP',
+        ]
+        dataTable.forEach((dataLabel) => {
+            cy.get(locators.profile.activity['dataTable-rows'])
+                .should('be.visible')
+                .contains(dataLabel)
+                .should('exist')
+                .then(() => {
+                    cy.log(`${dataLabel} is present`)
+                })
+        })
+        cy.log('All data table column names have been validated')
+
+        //Operator Name Name
         cy.get(locators.report.filter['transaction-date'])
             .should('be.visible')
             .click()
@@ -56,7 +107,7 @@ describe('Report Module Test', () => {
 
         //Input
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.report.inputTable1
                 for (const key in table) {
@@ -72,7 +123,7 @@ describe('Report Module Test', () => {
 
         //Dropdown
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.report.comboxTable1
                 for (const key in table) {
@@ -97,13 +148,26 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['summary-accordion'])
             .contains('-').click()
             .contains('+').click()
-        cy.get(locators.report.summaryTable['1stcol']).should('be.visible').should('contain.text', 'Total Transaction Count')
-        cy.get(locators.report.summaryTable['2ndcol']).should('be.visible').should('contain.text', 'Total Player Count')
-        cy.get(locators.report.summaryTable['3rdcol']).should('be.visible').should('contain.text', 'Currency')
-        cy.get(locators.report.summaryTable['4thcol']).should('be.visible').should('contain.text', 'Total Transaction Amount')
-        cy.get(locators.report.summaryTable['5thcol']).should('be.visible').should('contain.text', 'Total Payout')
-        cy.get(locators.report.summaryTable['6thcol']).should('be.visible').should('contain.text', 'Total Win-Lose Amount')
-        cy.get(locators.report.summaryTable['7thcol']).should('be.visible').should('contain.text', 'Total Turnover Amount')
+
+        const summaryTable = [
+            'Total Transaction Count',
+            'Total Player Count',
+            'Currency',
+            'Total Transaction Amount',
+            'Total Payout',
+            'Total Win-Lose Amount',
+            'Total Turnover Amount',
+        ]
+        summaryTable.forEach((summaryLabel) => {
+            cy.get(locators.profile.activity['summaryTable'])
+                .should('be.visible')
+                .contains(summaryLabel)
+                .should('exist')
+                .then(() => {
+                    cy.log(`${summaryLabel} is present`)
+                })
+        })
+        cy.log('All summary table column names have been validated')
 
         cy.get(locators.profile.activity['summaryRows']).then((summaryRows) => {
             const count = summaryRows.length;
@@ -126,6 +190,7 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
 
+        //Reset Button Validation
         cy.get(locators.report.filter['reset']).click()
             .then(() => {
                 cy.get(locators.report.filter['selection']).then(($spans) => {
@@ -133,17 +198,16 @@ describe('Report Module Test', () => {
                     cy.wrap($spans.eq(0))
                         .should('be.visible')
                         .and('contain.text', 'Debit');
-                    cy.log('Validated the first span element with text "Debit".');
-                  
+                    cy.log('Validated the first span element with text "Debit".')
+                    
                     // Validate the next three spans contain "All"
                     for (let i = 1; i <= 3; i++) {
                         cy.wrap($spans.eq(i))
                             .should('be.visible')
                             .and('contain.text', 'All')
-                      cy.log('Validated span element at index ${i} with text "All".')
+                        cy.log(`Validated span element at index ${i} with text "All".`)
                     }
                 })
-                  
                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
             })
 
@@ -160,16 +224,51 @@ describe('Report Module Test', () => {
         cy.get(locators.report['container']).should('be.visible')
         cy.get(locators.report['transfer-history']).click()
 
-        //Transfer Transaction Text Validation
+        //Search Form Text Validation
         cy.get(locators.report['text-head']).should('contain.text', 'Transfer Transaction History')
-        cy.get(locators.report.filter['form'])
-            .should('contain.text', 'Transaction Date/Time')
-            .should('contain.text', 'Operator Name')
-            .should('contain.text', 'Transaction ID ')
-            .should('contain.text', 'Transaction Type')
-            .should('contain.text', 'Player ID ')
+        const searchForm = [
+            'Transaction Date/Time',
+            'Operator Name',
+            'Transaction ID ',
+            'Transaction Type',
+            'Player ID ',
+        ]
+        searchForm.forEach((searchLabel) => {
+            cy.get(locators.report.filter['form'])
+                .should('be.visible')
+                .contains(searchLabel)
+                .should('exist')
+                .then(() => {
+                    cy.log(`${searchLabel} is present`)
+                })
+        })
+        cy.log('All search form names have been validated')
 
-        //Operator
+        //Data Table Column Name Text Validation
+        const dataTable = [
+            '#',
+            'Transaction Date/Time',
+            'Transaction ID',
+            'Operator ID',
+            'Operator Name',
+            'Player ID',
+            'Transaction Type',
+            'Currency',
+            'Transfer Amount',
+            'After Balance',
+        ]
+        dataTable.forEach((dataLabel) => {
+            cy.get(locators.profile.activity['dataTable-rows'])
+                .should('be.visible')
+                .contains(dataLabel)
+                .should('exist')
+                .then(() => {
+                    cy.log(`${dataLabel} is present`)
+                })
+        })
+        cy.log('All data table column names have been validated')
+
+        //Operator Name Name
         cy.get(locators.report.filter['transaction-date'])
             .should('be.visible')
             .click()
@@ -190,7 +289,7 @@ describe('Report Module Test', () => {
 
         //Input
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.report.inputTable2
                 for (const key in table) {
@@ -209,7 +308,7 @@ describe('Report Module Test', () => {
 
         //Dropdown
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.report.comboxTable2
                 for (const key in table) {
@@ -234,9 +333,22 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['summary-accordion'])
             .contains('-').click()
             .contains('+').click()
-        cy.get(locators.report.summaryTable['1stcol']).should('be.visible').should('contain.text', 'Total Transaction Count')
-        cy.get(locators.report.summaryTable['2ndcol']).should('be.visible').should('contain.text', 'Currency')
-        cy.get(locators.report.summaryTable['3rdcol']).should('be.visible').should('contain.text', 'Total Transfer Amount')
+       
+        const summaryTable = [
+            'Total Transaction Count',
+            'Currency',
+            'Total Transfer Amount',
+        ]
+        summaryTable.forEach((summaryLabel) => {
+            cy.get(locators.profile.activity['summaryTable'])
+                .should('be.visible')
+                .contains(summaryLabel)
+                .should('exist')
+                .then(() => {
+                    cy.log(`${summaryLabel} is present`)
+                })
+        })
+        cy.log('All summary table column names have been validated')
 
         cy.get(locators.profile.activity['summaryRows']).then((summaryRows) => {
             const count = summaryRows.length;
@@ -259,6 +371,7 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
         
+        //Reset Button Validation
         cy.get(locators.report.filter['reset']).click()
             .then(() => {
                 cy.get(locators.report.filter['selection']).then(($spans) => {
@@ -267,7 +380,7 @@ describe('Report Module Test', () => {
                         cy.wrap($spans.eq(i))
                             .should('be.visible')
                             .and('contain.text', 'All')
-                        cy.log(`Validated span element at index ${i} with text "All".`);
+                        cy.log(`Validated span element at index ${i} with text "All".`)
                     }
                 })
                     
@@ -286,16 +399,52 @@ describe('Report Module Test', () => {
         cy.get(locators.report['container']).should('be.visible')
         cy.get(locators.report['player-cashflow']).click()
 
-        //Player Cash Flow Text Validation
+        //Search Form Text Validation
         cy.get(locators.report['text-head']).should('contain.text', 'Player Cash Flow Records')
-        cy.get(locators.report.filter['form'])
-            .should('contain.text', 'Transaction Date/Time')
-            .should('contain.text', 'Operator Name')
-            .should('contain.text', 'Transaction ID ')
-            .should('contain.text', 'Player ID ')
-            .should('contain.text', 'Transaction Type')
+        const searchForm = [
+            'Transaction Date/Time',
+            'Operator Name',
+            'Transaction ID ',
+            'Player ID ',
+            'Transaction Type',
+        ]
+        searchForm.forEach((searchLabel) => {
+            cy.get(locators.report.filter['form'])
+                .should('be.visible')
+                .contains(searchLabel)
+                .should('exist')
+                .then(() => {
+                    cy.log(`${searchLabel} is present`)
+                })
+        })
+        cy.log('All search form names have been validated')
 
-        //Player Cash Flow
+        //Data Table Column Name Text Validation
+        const dataTable = [
+            '#',
+            'Transaction Date/Time',
+            'Transaction ID',
+            'Operator ID',
+            'Operator Name',
+            'Player ID',
+            'Transaction Type',
+            'Currency',
+            'Before Balance',
+            'Transaction Amount',
+            'After Balance',
+        ]
+        dataTable.forEach((dataLabel) => {
+            cy.get(locators.profile.activity['dataTable-rows'])
+                .should('be.visible')
+                .contains(dataLabel)
+                .should('exist')
+                .then(() => {
+                    cy.log(`${dataLabel} is present`)
+                })
+        })
+        cy.log('All data table column names have been validated')
+
+        //Operator Name
         cy.get(locators.report.filter['transaction-date'])
             .should('be.visible')
             .click()
@@ -314,7 +463,7 @@ describe('Report Module Test', () => {
 
         //Input
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.report.inputTable2
                 for (const key in table) {
@@ -342,7 +491,7 @@ describe('Report Module Test', () => {
 
         //Dropdown
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.report.comboxTable3
                 for (const key in table) {
@@ -367,9 +516,22 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['summary-accordion'])
             .contains('-').click()
             .contains('+').click()
-        cy.get(locators.report.summaryTable['1stcol']).should('be.visible').should('contain.text', 'Transaction Type')
-        cy.get(locators.report.summaryTable['2ndcol']).should('be.visible').should('contain.text', 'Currency')
-        cy.get(locators.report.summaryTable['3rdcol']).should('be.visible').should('contain.text', 'Total Transaction Amount')
+       
+        const summaryTable = [
+            'Total Transaction Count',
+            'Currency',
+            'Total Transfer Amount',
+        ]
+        summaryTable.forEach((summaryLabel) => {
+            cy.get(locators.profile.activity['summaryTable'])
+                .should('be.visible')
+                .contains(summaryLabel)
+                .should('exist')
+                .then(() => {
+                    cy.log(`${summaryLabel} is present`)
+                })
+        })
+        cy.log('All summary table column names have been validated')
         
         cy.get(locators.profile.activity['summaryRows']).then((summaryRows) => {
             const count = summaryRows.length;
@@ -392,6 +554,7 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['bell']).click()
         cy.get(locators.report.filter['notif']).click()
         
+        //Reset Button Validation
         cy.get(locators.report.filter['reset']).click()
             .then(() => {
                 cy.get(locators.report.filter['selection']).then(($spans) => {
@@ -418,18 +581,55 @@ describe('Report Module Test', () => {
         cy.get(locators.report['container']).should('be.visible')
         cy.get(locators.report['promo-report']).click()
 
-        //Promo Report Text Validation
+        //Search Form Text Validation
         cy.get(locators.report['text-head']).should('contain.text', 'Promo Report')
-        cy.get(locators.report.filter['form'])
-            .should('contain.text', 'Promo Date')
-            .should('contain.text', 'Player ID')
-            .should('contain.text', 'Promo Name')
-            .should('contain.text', 'Transaction ID')
-            .should('contain.text', 'Minimum Amount')
-            .should('contain.text', 'Maximum Amount')
-            .should('contain.text', 'Currency')
+        const searchForm = [
+            'Promo Date',
+            'Player ID',
+            'Promo Name',
+            'Transaction ID',
+            'Minimum Amount',
+            'Maximum Amount',
+            'Currency',
+        ]
+        searchForm.forEach((searchLabel) => {
+            cy.get(locators.report.filter['form'])
+                .should('be.visible')
+                .contains(searchLabel)
+                .should('exist')
+                .then(() => {
+                    cy.log(`${searchLabel} is present`)
+                })
+        })
+        cy.log('All search form names have been validated')
 
-        //Promo Report
+        //Data Table Column Name Text Validation
+        const dataTable = [
+            '#',
+            'Promo Date',
+            'Promo Name',
+            'Batch Name',
+            'Operator Name',
+            'Player ID',
+            'Transaction ID',
+            'Date Won',
+            'CLaim Status',
+            'Date Claimed',
+            'Currency',
+            'Win Amount',
+        ]
+        dataTable.forEach((dataLabel) => {
+            cy.get(locators.profile.activity['dataTable-rows'])
+                .should('be.visible')
+                .contains(dataLabel)
+                .should('exist')
+                .then(() => {
+                    cy.log(`${dataLabel} is present`)
+                })
+        })
+        cy.log('All data table column names have been validated')
+
+        //Operator Name
         cy.get(locators.report.filter['transaction-date'])
             .should('be.visible')
             .click()
@@ -439,7 +639,7 @@ describe('Report Module Test', () => {
 
         //Input
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.report.inputTable3
                 for (const key in table) {
@@ -456,7 +656,7 @@ describe('Report Module Test', () => {
 
         //Dropdown
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.report.comboxTable4
                 for (const key in table) {
@@ -481,11 +681,24 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['summary-accordion'])
             .contains('-').click()
             .contains('+').click()
-        cy.get(locators.report.summaryTable['1stcol']).should('be.visible').should('contain.text', 'Promo Name')
-        cy.get(locators.report.summaryTable['2ndcol']).should('be.visible').should('contain.text', 'Total Winners')
-        cy.get(locators.report.summaryTable['3rdcol']).should('be.visible').should('contain.text', 'Currency')
-        cy.get(locators.report.summaryTable['4thcol']).should('be.visible').should('contain.text', 'Total Win Amount')
-        cy.get(locators.report.summaryTable['5thcol']).should('be.visible').should('contain.text', 'Total Claimed Amount')
+
+        const summaryTable = [
+            'Promo Name',
+            'Total Winners',
+            'Currency',
+            'Total Win Amount',
+            'Total Claimed Amount',
+        ]
+        summaryTable.forEach((summaryLabel) => {
+            cy.get(locators.profile.activity['summaryTable'])
+                .should('be.visible')
+                .contains(summaryLabel)
+                .should('exist')
+                .then(() => {
+                    cy.log(`${summaryLabel} is present`)
+                })
+        })
+        cy.log('All summary table column names have been validated')
 
         cy.get(locators.profile.activity['summaryRows']).then((summaryRows) => {
             const count = summaryRows.length;
@@ -500,7 +713,7 @@ describe('Report Module Test', () => {
             }   
         })
 
-        //Export Table
+        //Reset Button Validation
         cy.get(locators.report.filter['export']).click()
         cy.get(locators.report.filter['pop-up']).should('be.visible')
         cy.get(locators.report.filter['pop-up-head']).contains('OGAPIIntegration')
@@ -522,7 +735,7 @@ describe('Report Module Test', () => {
                         cy.wrap($spans.eq(i))
                             .should('be.visible')
                             .and('contain.text', 'All')
-                      cy.log('Validated span element at index ${i} with text "All".')
+                        cy.log(`Validated span element at index ${i} with text "All".`)
                     }
                 })
                   
@@ -540,18 +753,56 @@ describe('Report Module Test', () => {
         cy.get(locators.report['container']).should('be.visible')
         cy.get(locators.report['game-report']).click()
 
-        //Game Report Text Validation
+        //Search Form Text Validation
         cy.get(locators.report['text-head']).should('contain.text', 'Game Report')
-        cy.get(locators.report.filter['form'])
-            .should('contain.text', 'Transaction Date')
-            .should('contain.text', 'Vendor Name')
-            .should('contain.text', 'Game ID')
-            .should('contain.text', 'Game Name')
-            .should('contain.text', 'Game Code')
-            .should('contain.text', 'Game Type')
-            .should('contain.text', 'Currency')
+        const searchForm = [    
+        'Transaction Date',
+            'Vendor Name',
+            'Game ID',
+            'Game Name',
+            'Game Code',
+            'Game Type',
+            'Currency',
+        ]
+        searchForm.forEach((searchLabel) => {
+            cy.get(locators.report.filter['form'])
+                .should('be.visible')
+                .contains(searchLabel)
+                .should('exist')
+                .then(() => {
+                    cy.log(`${searchLabel} is present`)
+                })
+        })
+        cy.log('All search form names have been validated')
 
-        //Game Report
+        //Data Table Column Name Text Validation
+        const dataTable = [
+            '#',
+            'Transaction Date',
+            'Game Type',
+            'Game ID',
+            'Game Code',
+            'Game Name',
+            'Currency',
+            'Bet Amount',
+            'Payout Amount',
+            'GGR Amount',
+            'Bet Transaction',
+            'Average Bet',
+            'Player Count',
+        ]
+        dataTable.forEach((dataLabel) => {
+            cy.get(locators.profile.activity['dataTable-rows'])
+                .should('be.visible')
+                .contains(dataLabel)
+                .should('exist')
+                .then(() => {
+                    cy.log(`${dataLabel} is present`)
+                })
+        })
+        cy.log('All data table column names have been validated')
+
+        //Transaction Date
         cy.get(locators.report.filter['transaction-date'])
             .should('be.visible')
             .click()
@@ -561,7 +812,7 @@ describe('Report Module Test', () => {
 
         //Input
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.report.inputTable4
                 for (const key in table) {
@@ -578,7 +829,7 @@ describe('Report Module Test', () => {
 
         //Dropdown
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.report.comboxTable5
                 for (const key in table) {
@@ -603,13 +854,26 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['summary-accordion'])
             .contains('-').click()
             .contains('+').click()
-        cy.get(locators.report.summaryTable['1stcol']).should('be.visible').should('contain.text', 'Currency')
-        cy.get(locators.report.summaryTable['2ndcol']).should('be.visible').should('contain.text', 'Game ID')
-        cy.get(locators.report.summaryTable['3rdcol']).should('be.visible').should('contain.text', 'Game Code')
-        cy.get(locators.report.summaryTable['4thcol']).should('be.visible').should('contain.text', 'Game Name')
-        cy.get(locators.report.summaryTable['5thcol']).should('be.visible').should('contain.text', 'Total Bet Amount')
-        cy.get(locators.report.summaryTable['6thcol']).should('be.visible').should('contain.text', 'Total Payout Amount')
-        cy.get(locators.report.summaryTable['7thcol']).should('be.visible').should('contain.text', 'Total GGR Amount')
+
+        const summaryTable = [
+        'Currency',
+        'Game ID',
+        'Game Code',
+        'Game Name',
+        'Total Bet Amount',
+        'Total Payout Amount',
+        'Total GGR Amount',
+        ]
+        summaryTable.forEach((summaryLabel) => {
+            cy.get(locators.profile.activity['summaryTable'])
+                .should('be.visible')
+                .contains(summaryLabel)
+                .should('exist')
+                .then(() => {
+                    cy.log(`${summaryLabel} is present`)
+                })
+        })
+        cy.log('All summary table column names have been validated')
 
         cy.get(locators.profile.activity['summaryRows']).then((summaryRows) => {
             const count = summaryRows.length;
@@ -659,7 +923,7 @@ describe('Report Module Test', () => {
         cy.get(locators.report['container']).should('be.visible')
         cy.get(locators.report['opSum-daily']).click()
 
-        //Operator Summary Text Validation
+        //Operator Name Summary Text Validation
         cy.get(locators.report['text-head']).should('contain.text', 'Operator Summary (Daily)')
         cy.get(locators.report.filter['form'])
             .should('contain.text', 'Transaction Date')
@@ -671,12 +935,14 @@ describe('Report Module Test', () => {
             .should('contain.text', 'Game Code')
             .should('contain.text', 'Vendor Name')
 
-        //Operator Summary
+        //Operator Name Summary
         cy.get(locators.report.filter['transaction-date'])
             .should('be.visible')
             .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
+
+        //Operator Name Name
         cy.get(locators.report.filter['operator']).type(operator, {delay: 200})
             cy.get(locators.report.filter['operator-dropdown']).should('be.visible')
             cy.get(locators.report.filter['parent-operator']).should('be.visible')
@@ -690,7 +956,7 @@ describe('Report Module Test', () => {
 
         //Input
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 // Hard-coded values for Game ID, Game Name, and Game Code
                 const gameValues = {
@@ -712,7 +978,7 @@ describe('Report Module Test', () => {
 
         //Dropdown
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.report.comboxTable6
                 for (const key in table) {
@@ -788,7 +1054,7 @@ describe('Report Module Test', () => {
         cy.log('All tests passed successfully!')
     })
 
-    //Operator Summary (Monthly) submodule
+    //Operator Name Summary (Monthly) submodule
     it('Operator Summary (Monthly)', () => {
         const operator = Cypress.env('operator')
 
@@ -797,7 +1063,7 @@ describe('Report Module Test', () => {
         cy.get(locators.report['container']).should('be.visible')
         cy.get(locators.report['opSum-monthly']).click()
 
-        //Operator Summary Text Validation
+        //Operator Name Summary Text Validation
         cy.get(locators.report['text-head']).should('contain.text', 'Operator Summary (Monthly)')
         cy.get(locators.report.filter['form'])
             .should('contain.text', 'Transaction Date')
@@ -805,14 +1071,14 @@ describe('Report Module Test', () => {
             .should('contain.text', 'Currency')
             .should('contain.text', 'Game Type')
 
-        //Operator Summary
+        //Operator Name Summary
         cy.get(locators.report.filter['transaction-date'])
             .should('be.visible')
             .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
 
-        //Operator
+        //Operator Name
         cy.get(locators.report.filter['operator']).type(operator, {delay: 200})
             cy.get(locators.report.filter['operator-dropdown']).should('be.visible')
             cy.get(locators.report.filter['parent-operator']).should('be.visible')
@@ -826,7 +1092,7 @@ describe('Report Module Test', () => {
    
         //Dropdown
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.report.comboxTable7
                 for (const key in table) {
@@ -930,7 +1196,7 @@ describe('Report Module Test', () => {
 
         //Input
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.report.inputTable5
                 for (const key in table) {
@@ -946,7 +1212,7 @@ describe('Report Module Test', () => {
 
         //Dropdown
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.report.comboxTable8
                 for (const key in table) {
@@ -1057,7 +1323,7 @@ describe('Report Module Test', () => {
 
         //Input
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.report.inputTable6
                 for (const key in table) {
@@ -1073,7 +1339,7 @@ describe('Report Module Test', () => {
 
         //Dropdown
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.report.comboxTable9
                 for (const key in table) {
@@ -1194,7 +1460,7 @@ describe('Report Module Test', () => {
 
         //Input
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.report.inputTable7
                 for (const key in table) {
@@ -1210,7 +1476,7 @@ describe('Report Module Test', () => {
 
         //Dropdown
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.report.comboxTable10
                 for (const key in table) {

@@ -24,7 +24,7 @@ describe('Content Management Module Test', () => {
             .should('contain.text', 'Player ID')
             .should('contain.text', 'Status')
 
-        //Operator Name
+        //Operator Name Name
         cy.get(locators.content.filter['operator']).type(operator, {delay: 200})
         cy.get(locators.content.filter['operator-dropdown']).should('be.visible')
         cy.get(locators.content.filter['parent-operator']).should('be.visible')
@@ -41,7 +41,7 @@ describe('Content Management Module Test', () => {
 
         //Dropdown
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.content.comboxTable1
                 for (const key in table) {
@@ -109,7 +109,7 @@ describe('Content Management Module Test', () => {
         
     })
 
-    //Operator submodule
+    //Operator Name submodule
     it('Operator', () => {
         const operator = Cypress.env('operator');
         cy.visit('/')
@@ -119,7 +119,7 @@ describe('Content Management Module Test', () => {
         cy.get(locators.content['operator']).click()
         cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')
 
-        //Operator Text Validation
+        //Operator Name Text Validation
         cy.get(locators.report['text-head']).should('contain.text', 'Operator')
         cy.get(locators.report.filter['form'])
             .should('contain.text', 'Operator Name')
@@ -134,7 +134,7 @@ describe('Content Management Module Test', () => {
 
         //Dropdown
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.content.comboxTable2
                 for (const key in table) {
@@ -223,7 +223,7 @@ describe('Content Management Module Test', () => {
 
         //Dropdown
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.content.comboxTable3
                 for (const key in table) {
@@ -305,7 +305,7 @@ describe('Content Management Module Test', () => {
 
         // Input
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count == 1) {
                 const table = locators.content.inputTable2
                 for (const key in table) {
@@ -321,7 +321,7 @@ describe('Content Management Module Test', () => {
     
         //Dropdown
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count == 1) {
                 const table = locators.content.comboxTable4
                 for (const key in table) {
@@ -401,7 +401,7 @@ describe('Content Management Module Test', () => {
 
         //Dropdown
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.content.comboxTable5
                 for (const key in table) {
@@ -491,7 +491,7 @@ describe('Content Management Module Test', () => {
                 
         //Input
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.content.inputTable4
                 for (const key in table) {
@@ -520,7 +520,7 @@ describe('Content Management Module Test', () => {
         // cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')
         cy.wait(500)
         // cy.get(locators.profile.activity['rows']).then((rows) => {
-        //     const count = rows.length;
+        //     const count = rows.length
         //     if (count == 1) {
         //         const table = locators.content.comboxTable5
         //         for (const key in table) {
@@ -586,7 +586,7 @@ describe('Content Management Module Test', () => {
 
         //Input
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.content.inputTable5
                 for (const key in table) {

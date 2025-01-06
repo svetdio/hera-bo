@@ -25,7 +25,7 @@ describe('Promotion Module Test', () => {
 
         //Input
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.promotion.inputTable1
                 for (const key in table) {

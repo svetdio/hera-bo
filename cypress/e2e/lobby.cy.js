@@ -25,7 +25,7 @@ describe('Lobby Management Module Test', () => {
 
         //Input
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.lobby.inputTable1
                 for (const key in table) {
@@ -93,7 +93,7 @@ describe('Lobby Management Module Test', () => {
 
         //Input
         cy.get(locators.profile.activity['rows']).then((rows) => {
-            const count = rows.length;
+            const count = rows.length
             if (count >= 1) {
                 const table = locators.lobby.inputTable2
                 for (const key in table) {

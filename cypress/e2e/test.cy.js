@@ -19,49 +19,73 @@ describe('Test', () => {
             cy.get(locators.report['container']).should('be.visible')
             cy.get(locators.report['betting-history']).click()
     
-            //Betting Transaction Text Validation
+            //Search Form Text Validation
             cy.get(locators.report['text-head']).should('contain.text', 'Betting Transaction History')
-            cy.get(locators.report.filter['form'])
-                .should('contain.text', 'Transaction Date/Time')
-                .should('contain.text', 'Operator Name')
-                .should('contain.text', 'Player ID')
-                .should('contain.text', 'Transaction ID')
-                .should('contain.text', 'Transaction Status')
-                .should('contain.text', 'Vendor Name')
-                .should('contain.text', 'Game Name')
-                .should('contain.text', 'Round Number')
-                .should('contain.text', 'Game Type')
-                .should('contain.text', 'Game ID')
+            const searchForm = [
+                'Transaction Date/Time',
+                'Operator Name',
+                'Player ID',
+                'Transaction ID',
+                'Transaction Status',
+                'Vendor Name',
+                'Game Name',
+                'Round Number',
+                'Game Type',
+                'Game ID'
+            ]
+            searchForm.forEach((searchLabel) => {
+                cy.get(locators.report.filter['form'])
+                    .should('be.visible')
+                    .contains(searchLabel)
+                    .should('exist')
+                    .then(() => {
+                        cy.log(`${searchLabel} is present`)
+                    })
+            })
+            cy.log('All search form names have been validated')
             
-            cy.get(locators.profile.activity['dataTable-rows'])
-                .should('contain','#')
-                .should('contain.text', 'Transaction Date/Time')
-                .should('contain.text', 'Credit Date/Time')
-                .should('contain.text', 'Operator Name')
-                .should('contain.text', 'Player ID')
-                .should('contain.text', 'Currency')
-                .should('contain.text', 'Betting Amount')
-                .should('contain.text', 'Payout Amount')
-                .should('contain.text', 'Win-Lose Amount')
-                .should('contain.text', 'Turnover Amount')
-                .should('contain.text', 'Round Number')
-                .should('contain.text', 'Shoe Hand')
-                .should('contain.text', 'Betting Area')
-                .should('contain.text', 'Game Result')
-                .should('contain.text', 'Transaction Status')
-                .should('contain.text', 'Operator ID')
-                .should('contain.text', 'Wallet Type')
-                .should('contain.text', 'Game ID')
-                .should('contain.text', 'Game Code')
-                .should('contain.text', 'Game Name')
-                .should('contain.text', 'Game Type')
-                .should('contain.text', 'Vendor Name')
-                .should('contain.text', 'Rollback Date/Time')
-                .should('contain.text', 'Cancel Date/Time')
-                .should('contain.text', 'Resettle Date/Time')
-                .should('contain.text', 'IP')
+            
+            //Data Table Column Name Text Validation
+            const dataTable = [
+                '#',
+                'Transaction Date/Time',
+                'Credit Date/Time',
+                'Operator Name',
+                'Player ID',
+                'Currency',
+                'Betting Amount',
+                'Payout Amount',
+                'Win-Lose Amount',
+                'Turnover Amount',
+                'Round Number',
+                'Shoe Hand',
+                'Betting Area',
+                'Game Result',
+                'Transaction Status',
+                'Operator ID',
+                'Wallet Type',
+                'Game ID',
+                'Game Code',
+                'Game Name',
+                'Game Type',
+                'Vendor Name',
+                'Rollback Date/Time',
+                'Cancel Date/Time',
+                'Resettle Date/Time',
+                'IP',
+            ]
+            dataTable.forEach((dataLabel) => {
+                cy.get(locators.profile.activity['dataTable-rows'])
+                    .should('be.visible')
+                    .contains(dataLabel)
+                    .should('exist')
+                    .then(() => {
+                        cy.log(`${dataLabel} is present`)
+                    })
+            })
+            cy.log('All data table column names have been validated')
 
-            //Betting Transaction
+            //Operator Name
             cy.get(locators.report.filter['transaction-date'])
                 .should('be.visible')
                 .click()
@@ -83,7 +107,7 @@ describe('Test', () => {
     
             //Input
             cy.get(locators.profile.activity['rows']).then((rows) => {
-                const count = rows.length;
+                const count = rows.length
                 if (count >= 1) {
                     const table = locators.report.inputTable1
                     for (const key in table) {
@@ -124,14 +148,27 @@ describe('Test', () => {
             cy.get(locators.report.filter['summary-accordion'])
                 .contains('-').click()
                 .contains('+').click()
-            cy.get(locators.report.summaryTable['1stcol']).should('be.visible').should('contain.text', 'Total Transaction Count')
-            cy.get(locators.report.summaryTable['2ndcol']).should('be.visible').should('contain.text', 'Total Player Count')
-            cy.get(locators.report.summaryTable['3rdcol']).should('be.visible').should('contain.text', 'Currency')
-            cy.get(locators.report.summaryTable['4thcol']).should('be.visible').should('contain.text', 'Total Transaction Amount')
-            cy.get(locators.report.summaryTable['5thcol']).should('be.visible').should('contain.text', 'Total Payout')
-            cy.get(locators.report.summaryTable['6thcol']).should('be.visible').should('contain.text', 'Total Win-Lose Amount')
-            cy.get(locators.report.summaryTable['7thcol']).should('be.visible').should('contain.text', 'Total Turnover Amount')
-    
+
+            const summaryTable = [
+                'Total Transaction Count',
+                'Total Player Count',
+                'Currency',
+                'Total Transaction Amount',
+                'Total Payout',
+                'Total Win-Lose Amount',
+                'Total Turnover Amount',
+            ]
+            summaryTable.forEach((summaryLabel) => {
+                cy.get(locators.profile.activity['summaryTable'])
+                    .should('be.visible')
+                    .contains(summaryLabel)
+                    .should('exist')
+                    .then(() => {
+                        cy.log(`${summaryLabel} is present`)
+                    })
+            })
+            cy.log('All summary table column names have been validated')
+
             cy.get(locators.profile.activity['summaryRows']).then((summaryRows) => {
                 const count = summaryRows.length;
                 if (count >= 1) {
@@ -153,6 +190,7 @@ describe('Test', () => {
             cy.get(locators.report.filter['bell']).click()
             cy.get(locators.report.filter['notif']).click()
     
+            //Reset Button Validation
             cy.get(locators.report.filter['reset']).click()
                 .then(() => {
                     cy.get(locators.report.filter['selection']).then(($spans) => {
@@ -160,17 +198,16 @@ describe('Test', () => {
                         cy.wrap($spans.eq(0))
                             .should('be.visible')
                             .and('contain.text', 'Debit');
-                        cy.log('Validated the first span element with text "Debit".');
+                        cy.log('Validated the first span element with text "Debit".')
                       
                         // Validate the next three spans contain "All"
                         for (let i = 1; i <= 3; i++) {
                             cy.wrap($spans.eq(i))
                                 .should('be.visible')
                                 .and('contain.text', 'All')
-                          cy.log('Validated span element at index ${i} with text "All".')
+                          cy.log(`Validated span element at index ${i} with text "All".`)
                         }
                     })
-                      
                     cy.get(locators.profile.activity['table']).should('contain', 'No data available')
                 })
     

@@ -208,6 +208,7 @@ export default {
         },
 
         comboxTable8: {
+            'form-input2':                '#tableBody > tr:first-child > td:nth-child(4)',
             'form-input3':                '#tableBody > tr:first-child > td:nth-child(10)',
             'form-input7':                '#tableBody > tr:first-child > td:nth-child(5)',
         },

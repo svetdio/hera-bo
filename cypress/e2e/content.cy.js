@@ -292,6 +292,7 @@ describe('Content Management Module Test', () => {
             .should('contain.text', 'Status')
             .should('contain.text', 'Jackpot Game')
 
+        //Vendor Name
         cy.get(locators.content.filter['vendor']).type(vendor, {delay: 100, force: true })
         cy.get(locators.content.filter['vendor-dropdown']).should('be.visible')
         cy.get(locators.content.filter['vendor-name']).should('be.visible')
@@ -301,7 +302,7 @@ describe('Content Management Module Test', () => {
             }
         })
         cy.get(locators.content.filter['search']).click()
-        cy.get(locators.content.filter['reset']).click()
+        // cy.get(locators.content.filter['reset']).click()
 
         // Input
         cy.get(locators.profile.activity['rows']).then((rows) => {

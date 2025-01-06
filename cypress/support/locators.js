@@ -62,6 +62,47 @@ export default {
         }
 
     },
+
+    multimodule:
+    {
+        'form':                       '.form_inputs',
+        
+        'search':                     'button[type="submit"]',
+        'reset':                      'button[type="reset"]',
+
+        'operator':                   'div.form_inputs:nth-child(1) input',
+        'operator-dropdown':          'div.ant-select-dropdown',
+        'operator-name':              'div.filter-node .ant-select-tree-title',
+        'parent-operator':            '.ant-select-tree-treenode:nth-of-type(1) .anticon',
+        
+        'vendor':                     'div.form_inputs:nth-child(1) input',
+        'vendor-dropdown':            'div.ant-select-dropdown',
+        'vendor-name':                '.ant-select-item-option-content',
+        
+        'dropdown':                   'div.ant-select-dropdown',
+        'dropdown-name':              '.ant-select-item-option-content',
+        
+        'form-input1':                'div.form_inputs:nth-child(1) input',
+        'form-input2':                'div.form_inputs:nth-child(2) input',
+        'form-input3':                'div.form_inputs:nth-child(3) input',
+        'form-input4':                'div.form_inputs:nth-child(4) input',
+        'form-input5':                'div.form_inputs:nth-child(5) input',
+        'form-input6':                'div.form_inputs:nth-child(6) input',
+        'form-input7':                'div.form_inputs:nth-child(7) input',
+        'form-input8':                'div.form_inputs:nth-child(8) input',
+        'form-input9':                'div.form_inputs:nth-child(9) input',
+        'form-input10':               'div.form_inputs:nth-child(10) input',
+
+        'export':                     '.fa-file-export',
+        'bell':                       'button[type="button"][id="bellBtn"]',
+        'notif':                      '#notifBox .dropdown-body a:first-of-type',
+        'pop-up':                     '.toast.toast-success',
+        'pop-up-head':                '.toast.toast-success .toast-header',
+        'pop-up-body':                '.toast.toast-success .toast-body',
+        
+        'sub-operator':               'label[for="checkbox"]',
+        'check':                      '#checkbox'
+    },
     
     report: 
     {
@@ -302,17 +343,6 @@ export default {
         filter: {
             'search':                     'button[type="submit"]',
             'reset':                      'button[type="reset"]',
-            'transaction-date':           '.form_inputs:first-of-type .dp__input_wrap input',
-            'credit-date':                '.form_inputs:nth-child(2) .dp__input_wrap input',
-            'date-modal':                 'div.dp__menu',
-            'today':                      'div.items-start:nth-child(1) .presetDatesLabel',
-            'yesterday':                  'div.items-start:nth-child(2) .presetDatesLabel',
-            'this-week':                  'div.items-start:nth-child(3) .presetDatesLabel',
-            'last-week':                  'div.items-start:nth-child(4) .presetDatesLabel',
-            'this-month':                 'div.items-start:nth-child(5) .presetDatesLabel',
-            'last-month':                 'div.items-start:nth-child(6) .presetDatesLabel',
-            'two-months-ago':             'div.items-start:nth-child(7) .presetDatesLabel',
-            'dpClear':                    '.dp__icon.dp__clear_icon.dp__input_icons',
             'operator':                   'div.form_inputs:nth-child(1) input',
             'operator-dropdown':          'div.ant-select-dropdown',
             'operator-name':              'div.filter-node .ant-select-tree-title',

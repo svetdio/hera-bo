@@ -57,7 +57,7 @@ export default {
             'rows':                       '#tableBody tr',
             'dataTable-rows':             'thead > th',
             'total':                      '.table-showing span:last-child',
-            'summaryTable':               '.table-auto.table-custom.min-w-full.table-lg',
+            'summaryTable':               'table > thead > tr > th',
             'summaryRows':                '.table-auto.table-custom.min-w-full.table-lg tr'
         }
 

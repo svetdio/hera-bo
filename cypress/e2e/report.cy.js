@@ -35,7 +35,7 @@ describe('Report Module Test', () => {
             'Game ID'
         ]
         searchForm.forEach((searchLabel) => {
-            cy.get(locators.report.filter['form'])
+            cy.get(locators.multimodule['form'])
                 .should('be.visible')
                 .contains(searchLabel)
                 .should('exist')
@@ -75,7 +75,7 @@ describe('Report Module Test', () => {
             'IP',
         ]
         dataTable.forEach((dataLabel) => {
-            cy.get(locators.profile.activity['dataTable-rows'])
+            cy.get(locators.multimodule['dataTable-rows'])
                 .should('be.visible')
                 .contains(dataLabel)
                 .should('exist')
@@ -234,7 +234,7 @@ describe('Report Module Test', () => {
             'Player ID ',
         ]
         searchForm.forEach((searchLabel) => {
-            cy.get(locators.report.filter['form'])
+            cy.get(locators.multimodule['form'])
                 .should('be.visible')
                 .contains(searchLabel)
                 .should('exist')
@@ -258,7 +258,7 @@ describe('Report Module Test', () => {
             'After Balance',
         ]
         dataTable.forEach((dataLabel) => {
-            cy.get(locators.profile.activity['dataTable-rows'])
+            cy.get(locators.multimodule['dataTable-rows'])
                 .should('be.visible')
                 .contains(dataLabel)
                 .should('exist')
@@ -409,7 +409,7 @@ describe('Report Module Test', () => {
             'Transaction Type',
         ]
         searchForm.forEach((searchLabel) => {
-            cy.get(locators.report.filter['form'])
+            cy.get(locators.multimodule['form'])
                 .should('be.visible')
                 .contains(searchLabel)
                 .should('exist')
@@ -434,7 +434,7 @@ describe('Report Module Test', () => {
             'After Balance',
         ]
         dataTable.forEach((dataLabel) => {
-            cy.get(locators.profile.activity['dataTable-rows'])
+            cy.get(locators.multimodule['dataTable-rows'])
                 .should('be.visible')
                 .contains(dataLabel)
                 .should('exist')
@@ -450,11 +450,11 @@ describe('Report Module Test', () => {
             .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
-        cy.get(locators.report.filter['operator']).type(operator, {delay: 200})
-        cy.get(locators.report.filter['operator-dropdown']).should('be.visible')
-        cy.get(locators.report.filter['parent-operator']).should('be.visible')
-        cy.get(locators.report.filter['operator-name']).should('be.visible')
-        cy.get(locators.report.filter['operator-name']).each($element => {
+        cy.get(locators.multimodule['operator']).type(operator, {delay: 200})
+        cy.get(locators.multimodule['operator-dropdown']).should('be.visible')
+        cy.get(locators.multimodule['parent-operator']).should('be.visible')
+        cy.get(locators.multimodule['operator-name']).should('be.visible')
+        cy.get(locators.multimodule['operator-name']).each($element => {
             if ($element.text() === operator){
                 cy.wrap($element).click()
             }
@@ -593,7 +593,7 @@ describe('Report Module Test', () => {
             'Currency',
         ]
         searchForm.forEach((searchLabel) => {
-            cy.get(locators.report.filter['form'])
+            cy.get(locators.multimodule['form'])
                 .should('be.visible')
                 .contains(searchLabel)
                 .should('exist')
@@ -619,7 +619,7 @@ describe('Report Module Test', () => {
             'Win Amount',
         ]
         dataTable.forEach((dataLabel) => {
-            cy.get(locators.profile.activity['dataTable-rows'])
+            cy.get(locators.multimodule['dataTable-rows'])
                 .should('be.visible')
                 .contains(dataLabel)
                 .should('exist')
@@ -766,7 +766,7 @@ describe('Report Module Test', () => {
             'Currency',
         ]
         searchForm.forEach((searchLabel) => {
-            cy.get(locators.report.filter['form'])
+            cy.get(locators.multimodule['form'])
                 .should('be.visible')
                 .contains(searchLabel)
                 .should('exist')
@@ -793,7 +793,7 @@ describe('Report Module Test', () => {
             'Player Count',
         ]
         dataTable.forEach((dataLabel) => {
-            cy.get(locators.profile.activity['dataTable-rows'])
+            cy.get(locators.multimodule['dataTable-rows'])
                 .should('be.visible')
                 .contains(dataLabel)
                 .should('exist')
@@ -952,7 +952,7 @@ describe('Report Module Test', () => {
             'Vendor Name',
         ]
         searchForm.forEach((searchLabel) => {
-            cy.get(locators.report.filter['form'])
+            cy.get(locators.multimodule['form'])
                 .should('be.visible')
                 .contains(searchLabel)
                 .should('exist')
@@ -978,7 +978,7 @@ describe('Report Module Test', () => {
             'Turnover Amount',
         ]
         dataTable.forEach((dataLabel) => {
-            cy.get(locators.profile.activity['dataTable-rows'])
+            cy.get(locators.multimodule['dataTable-rows'])
                 .should('be.visible')
                 .contains(dataLabel)
                 .should('exist')
@@ -1148,7 +1148,7 @@ describe('Report Module Test', () => {
             'Game Type',
         ]
         searchForm.forEach((searchLabel) => {
-            cy.get(locators.report.filter['form'])
+            cy.get(locators.multimodule['form'])
                 .should('be.visible')
                 .contains(searchLabel)
                 .should('exist')
@@ -1174,7 +1174,7 @@ describe('Report Module Test', () => {
             'Turnover Amount',
         ]
         dataTable.forEach((dataLabel) => {
-            cy.get(locators.profile.activity['dataTable-rows'])
+            cy.get(locators.multimodule['dataTable-rows'])
                 .should('be.visible')
                 .contains(dataLabel)
                 .should('exist')
@@ -1311,7 +1311,7 @@ describe('Report Module Test', () => {
             'Game Type',
         ]
         searchForm.forEach((searchLabel) => {
-            cy.get(locators.report.filter['form'])
+            cy.get(locators.multimodule['form'])
                 .should('be.visible')
                 .contains(searchLabel)
                 .should('exist')
@@ -1339,7 +1339,7 @@ describe('Report Module Test', () => {
             'Turnover Amount',
         ]
         dataTable.forEach((dataLabel) => {
-            cy.get(locators.profile.activity['dataTable-rows'])
+            cy.get(locators.multimodule['dataTable-rows'])
                 .should('be.visible')
                 .contains(dataLabel)
                 .should('exist')
@@ -1481,7 +1481,7 @@ describe('Report Module Test', () => {
             'Game Type',
         ]
         searchForm.forEach((searchLabel) => {
-            cy.get(locators.report.filter['form'])
+            cy.get(locators.multimodule['form'])
                 .should('be.visible')
                 .contains(searchLabel)
                 .should('exist')
@@ -1511,7 +1511,7 @@ describe('Report Module Test', () => {
             'Turnover Amount',
         ]
         dataTable.forEach((dataLabel) => {
-            cy.get(locators.profile.activity['dataTable-rows'])
+            cy.get(locators.multimodule['dataTable-rows'])
                 .should('be.visible')
                 .contains(dataLabel)
                 .should('exist')
@@ -1667,7 +1667,7 @@ describe('Report Module Test', () => {
             'Vendor Name',
         ]
         searchForm.forEach((searchLabel) => {
-            cy.get(locators.report.filter['form'])
+            cy.get(locators.multimodule['form'])
                 .should('be.visible')
                 .contains(searchLabel)
                 .should('exist')
@@ -1700,7 +1700,7 @@ describe('Report Module Test', () => {
             'Resettle Date/Time',
         ]
         dataTable.forEach((dataLabel) => {
-            cy.get(locators.profile.activity['dataTable-rows'])
+            cy.get(locators.multimodule['dataTable-rows'])
                 .should('be.visible')
                 .contains(dataLabel)
                 .should('exist')

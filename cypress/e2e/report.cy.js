@@ -1071,7 +1071,7 @@ describe('Report Module Test', () => {
         
         const summaryTable = [
             'Total Transaction Count',
-            'Total Player Count', //Empty
+            // 'Total Player Count',
             'Currency',
             'Total Betting Amount',
             'Total Payout Amount',

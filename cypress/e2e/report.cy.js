@@ -21,7 +21,7 @@ describe('Report Module Test', () => {
         cy.get(locators.report['betting-history']).click()
 
         //Search Form Text Validation
-        cy.get(locators.report['text-head']).should('contain.text', 'Betting Transaction History')
+        cy.get(locators.multimodule['text-head']).should('contain.text', 'Betting Transaction History')
         const searchForm = [
             'Transaction Date/Time',
             'Operator Name',
@@ -91,11 +91,11 @@ describe('Report Module Test', () => {
             .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
-        cy.get(locators.report.filter['operator']).type(operator, {delay: 200})
-        cy.get(locators.report.filter['operator-dropdown']).should('be.visible')
-        cy.get(locators.report.filter['parent-operator']).should('be.visible')
-        cy.get(locators.report.filter['operator-name']).should('be.visible')
-        cy.get(locators.report.filter['operator-name']).each($element => {
+        cy.get(locators.multimodule['form-input2']).type(operator, {delay: 200})
+        cy.get(locators.multimodule['operator-dropdown']).should('be.visible')
+        cy.get(locators.multimodule['parent-operator']).should('be.visible')
+        cy.get(locators.multimodule['operator-name']).should('be.visible')
+        cy.get(locators.multimodule['operator-name']).each($element => {
             if ($element.text() === operator){
                 cy.wrap($element).click()
             }
@@ -106,7 +106,7 @@ describe('Report Module Test', () => {
         // cy.get(locators.profile.activity['preloader'], { timeout: 100000 }).should('not.be.visible')
 
         //Input
-        cy.get(locators.profile.activity['rows']).then((rows) => {
+        cy.get(locators.multimodule['rows']).then((rows) => {
             const count = rows.length
             if (count >= 1) {
                 const table = locators.report.inputTable1
@@ -122,7 +122,7 @@ describe('Report Module Test', () => {
         })
 
         //Dropdown
-        cy.get(locators.profile.activity['rows']).then((rows) => {
+        cy.get(locators.multimodule['rows']).then((rows) => {
             const count = rows.length
             if (count >= 1) {
                 const table = locators.report.comboxTable1
@@ -144,7 +144,7 @@ describe('Report Module Test', () => {
         })
 
         //Summary Table
-        cy.get(locators.report['text-head']).should('contain.text', 'Summary')
+        cy.get(locators.multimodule['text-head']).should('contain.text', 'Summary')
         cy.get(locators.report.filter['summary-accordion'])
             .contains('-').click()
             .contains('+').click()
@@ -225,7 +225,7 @@ describe('Report Module Test', () => {
         cy.get(locators.report['transfer-history']).click()
 
         //Search Form Text Validation
-        cy.get(locators.report['text-head']).should('contain.text', 'Transfer Transaction History')
+        cy.get(locators.multimodule['text-head']).should('contain.text', 'Transfer Transaction History')
         const searchForm = [
             'Transaction Date/Time',
             'Operator Name',
@@ -274,11 +274,11 @@ describe('Report Module Test', () => {
             .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
-        cy.get(locators.report.filter['operator']).type(operator, {delay: 200})
-        cy.get(locators.report.filter['operator-dropdown']).should('be.visible')
-        cy.get(locators.report.filter['parent-operator']).should('be.visible')
-        cy.get(locators.report.filter['operator-name']).should('be.visible')
-        cy.get(locators.report.filter['operator-name']).each($element => {
+        cy.get(locators.multimodule['form-input2']).type(operator, {delay: 200})
+        cy.get(locators.multimodule['operator-dropdown']).should('be.visible')
+        cy.get(locators.multimodule['parent-operator']).should('be.visible')
+        cy.get(locators.multimodule['operator-name']).should('be.visible')
+        cy.get(locators.multimodule['operator-name']).each($element => {
             if ($element.text() === operator){
                 cy.wrap($element).click()
             }
@@ -288,7 +288,7 @@ describe('Report Module Test', () => {
         cy.get(locators.profile.activity['preloader'], { timeout: 100000 }).should('not.be.visible')
 
         //Input
-        cy.get(locators.profile.activity['rows']).then((rows) => {
+        cy.get(locators.multimodule['rows']).then((rows) => {
             const count = rows.length
             if (count >= 1) {
                 const table = locators.report.inputTable2
@@ -307,7 +307,7 @@ describe('Report Module Test', () => {
         })
 
         //Dropdown
-        cy.get(locators.profile.activity['rows']).then((rows) => {
+        cy.get(locators.multimodule['rows']).then((rows) => {
             const count = rows.length
             if (count >= 1) {
                 const table = locators.report.comboxTable2
@@ -329,7 +329,7 @@ describe('Report Module Test', () => {
         })
 
         //Summary Table
-        cy.get(locators.report['text-head']).should('contain.text', 'Summary')
+        cy.get(locators.multimodule['text-head']).should('contain.text', 'Summary')
         cy.get(locators.report.filter['summary-accordion'])
             .contains('-').click()
             .contains('+').click()
@@ -400,7 +400,7 @@ describe('Report Module Test', () => {
         cy.get(locators.report['player-cashflow']).click()
 
         //Search Form Text Validation
-        cy.get(locators.report['text-head']).should('contain.text', 'Player Cash Flow Records')
+        cy.get(locators.multimodule['text-head']).should('contain.text', 'Player Cash Flow Records')
         const searchForm = [
             'Transaction Date/Time',
             'Operator Name',
@@ -448,12 +448,20 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['transaction-date'])
             .should('be.visible')
             .click()
+        
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
-        cy.get(locators.multimodule['operator']).type(operator, {delay: 200})
-        cy.get(locators.multimodule['operator-dropdown']).should('be.visible')
-        cy.get(locators.multimodule['parent-operator']).should('be.visible')
-        cy.get(locators.multimodule['operator-name']).should('be.visible')
+        cy.get(locators.report.filter['operator']).type(operator, {delay: 200})
+        cy.get(locators.report.filter['operator-dropdown']).should('be.visible')
+        cy.get(locators.report.filter['parent-operator']).should('be.visible')
+        cy.get(locators.report.filter['operator-name']).should('be.visible')
+    
+        // cy.get(locators.report.filter['date-modal']).should('be.visible')
+        // cy.get(locators.report.filter['last-month']).click()
+        // cy.get(locators.multimodule['operator']).type(operator, {delay: 200})
+        // cy.get(locators.multimodule['operator-dropdown']).should('be.visible')
+        // cy.get(locators.multimodule['parent-operator']).should('be.visible')
+        // cy.get(locators.multimodule['operator-name']).should('be.visible')
         cy.get(locators.multimodule['operator-name']).each($element => {
             if ($element.text() === operator){
                 cy.wrap($element).click()
@@ -462,7 +470,7 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['search']).click()
 
         //Input
-        cy.get(locators.profile.activity['rows']).then((rows) => {
+        cy.get(locators.multimodule['rows']).then((rows) => {
             const count = rows.length
             if (count >= 1) {
                 const table = locators.report.inputTable2
@@ -490,7 +498,7 @@ describe('Report Module Test', () => {
         })
 
         //Dropdown
-        cy.get(locators.profile.activity['rows']).then((rows) => {
+        cy.get(locators.multimodule['rows']).then((rows) => {
             const count = rows.length
             if (count >= 1) {
                 const table = locators.report.comboxTable3
@@ -512,7 +520,7 @@ describe('Report Module Test', () => {
         })
 
         //Summary Table
-        cy.get(locators.report['text-head']).should('contain.text', 'Summary')
+        cy.get(locators.multimodule['text-head']).should('contain.text', 'Summary')
         cy.get(locators.report.filter['summary-accordion'])
             .contains('-').click()
             .contains('+').click()
@@ -582,7 +590,7 @@ describe('Report Module Test', () => {
         cy.get(locators.report['promo-report']).click()
 
         //Search Form Text Validation
-        cy.get(locators.report['text-head']).should('contain.text', 'Promo Report')
+        cy.get(locators.multimodule['text-head']).should('contain.text', 'Promo Report')
         const searchForm = [
             'Promo Date',
             'Player ID',
@@ -638,7 +646,7 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['search']).click()
 
         //Input
-        cy.get(locators.profile.activity['rows']).then((rows) => {
+        cy.get(locators.multimodule['rows']).then((rows) => {
             const count = rows.length
             if (count >= 1) {
                 const table = locators.report.inputTable3
@@ -655,7 +663,7 @@ describe('Report Module Test', () => {
         })
 
         //Dropdown
-        cy.get(locators.profile.activity['rows']).then((rows) => {
+        cy.get(locators.multimodule['rows']).then((rows) => {
             const count = rows.length
             if (count >= 1) {
                 const table = locators.report.comboxTable4
@@ -677,7 +685,7 @@ describe('Report Module Test', () => {
         })
 
         //Summary Table
-        cy.get(locators.report['text-head']).should('contain.text', 'Summary')
+        cy.get(locators.multimodule['text-head']).should('contain.text', 'Summary')
         cy.get(locators.report.filter['summary-accordion'])
             .contains('-').click()
             .contains('+').click()
@@ -755,7 +763,7 @@ describe('Report Module Test', () => {
         cy.get(locators.report['game-report']).click()
 
         //Search Form Text Validation
-        cy.get(locators.report['text-head']).should('contain.text', 'Game Report')
+        cy.get(locators.multimodule['text-head']).should('contain.text', 'Game Report')
         const searchForm = [    
         'Transaction Date',
             'Vendor Name',
@@ -813,17 +821,17 @@ describe('Report Module Test', () => {
 
         //Vendor Name
         cy.get(locators.content.filter['form-input2']).type(vendor, {delay: 100, force: true })
-            cy.get(locators.content.filter['vendor-dropdown']).should('be.visible')
-            cy.get(locators.content.filter['vendor-name']).should('be.visible')
-            cy.get(locators.content.filter['vendor-name']).each($element => {
+            cy.get(locators.multimodule['vendor-dropdown']).should('be.visible')
+            cy.get(locators.multimodule['vendor-name']).should('be.visible')
+            cy.get(locators.multimodule['vendor-name']).each($element => {
                 if ($element.text() === vendor){
                     cy.wrap($element).click()
                 }
             })
-        cy.get(locators.content.filter['search']).click()
+        cy.get(locators.multimodule['search']).click()
 
         //Input
-        cy.get(locators.profile.activity['rows']).then((rows) => {
+        cy.get(locators.multimodule['rows']).then((rows) => {
             const count = rows.length
             if (count >= 1) {
                 const table = locators.report.inputTable4
@@ -840,7 +848,7 @@ describe('Report Module Test', () => {
         })
 
         //Dropdown
-        cy.get(locators.profile.activity['rows']).then((rows) => {
+        cy.get(locators.multimodule['rows']).then((rows) => {
             const count = rows.length
             if (count >= 1) {
                 const table = locators.report.comboxTable5
@@ -862,7 +870,7 @@ describe('Report Module Test', () => {
         })
 
         //Summary Table
-        cy.get(locators.report['text-head']).should('contain.text', 'Summary')
+        cy.get(locators.multimodule['text-head']).should('contain.text', 'Summary')
         cy.get(locators.report.filter['summary-accordion'])
             .contains('-').click()
             .contains('+').click()
@@ -940,7 +948,7 @@ describe('Report Module Test', () => {
         cy.get(locators.report['opSum-daily']).click()
 
         //Search Form Text Validation
-        cy.get(locators.report['text-head']).should('contain.text', 'Operator Summary (Daily)')
+        cy.get(locators.multimodule['text-head']).should('contain.text', 'Operator Summary (Daily)')
         const searchForm = [
             'Transaction Date',
             'Operator Name',
@@ -1008,7 +1016,7 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['search']).click()
 
         //Input
-        cy.get(locators.profile.activity['rows']).then((rows) => {
+        cy.get(locators.multimodule['rows']).then((rows) => {
             const count = rows.length
             if (count >= 1) {
                 // Hard-coded values for Game ID, Game Name, and Game Code
@@ -1031,17 +1039,17 @@ describe('Report Module Test', () => {
 
         //Vendor Name
         cy.get(locators.content.filter['form-input8']).type(vendor, {delay: 100, force: true })
-            cy.get(locators.content.filter['vendor-dropdown']).should('be.visible')
-            cy.get(locators.content.filter['vendor-name']).should('be.visible')
-            cy.get(locators.content.filter['vendor-name']).each($element => {
+            cy.get(locators.multimodule['vendor-dropdown']).should('be.visible')
+            cy.get(locators.multimodule['vendor-name']).should('be.visible')
+            cy.get(locators.multimodule['vendor-name']).each($element => {
                 if ($element.text() === vendor){
                     cy.wrap($element).click()
                 }
             })
-        cy.get(locators.content.filter['search']).click()
+        cy.get(locators.multimodule['search']).click()
 
         //Dropdown
-        cy.get(locators.profile.activity['rows']).then((rows) => {
+        cy.get(locators.multimodule['rows']).then((rows) => {
             const count = rows.length
             if (count >= 1) {
                 const table = locators.report.comboxTable6
@@ -1067,7 +1075,7 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['summary-accordion'])
             .contains('-').click()
             .contains('+').click()
-        cy.get(locators.report['text-head']).should('contain.text', 'Summary')
+        cy.get(locators.multimodule['text-head']).should('contain.text', 'Summary')
         
         const summaryTable = [
             'Total Transaction Count',
@@ -1140,7 +1148,7 @@ describe('Report Module Test', () => {
         cy.get(locators.report['opSum-monthly']).click()
 
        //Search Form Text Validation
-        cy.get(locators.report['text-head']).should('contain.text', 'Operator Summary (Monthly)')
+        cy.get(locators.multimodule['text-head']).should('contain.text', 'Operator Summary (Monthly)')
         const searchForm = [    
             'Transaction Date',
             'Operator Name',
@@ -1204,7 +1212,7 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['search']).click()
    
         //Dropdown
-        cy.get(locators.profile.activity['rows']).then((rows) => {
+        cy.get(locators.multimodule['rows']).then((rows) => {
             const count = rows.length
             if (count >= 1) {
                 const table = locators.report.comboxTable7
@@ -1227,7 +1235,7 @@ describe('Report Module Test', () => {
         })
 
         //Summary Table
-        cy.get(locators.report['text-head']).should('contain.text', 'Summary')
+        cy.get(locators.multimodule['text-head']).should('contain.text', 'Summary')
         cy.get(locators.report.filter['summary-accordion'])
             .contains('-').click()
             .contains('+').click()
@@ -1300,7 +1308,7 @@ describe('Report Module Test', () => {
         cy.get(locators.report['vendor-summary']).click()
 
         //Search Form Text Validation
-        cy.get(locators.report['text-head']).should('contain.text', 'Vendor Summary')
+        cy.get(locators.multimodule['text-head']).should('contain.text', 'Vendor Summary')
         const searchForm = [   
             'Transaction Date',
             'Vendor Name',
@@ -1358,7 +1366,7 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['search']).click()
 
         //Input
-        cy.get(locators.profile.activity['rows']).then((rows) => {
+        cy.get(locators.multimodule['rows']).then((rows) => {
             const count = rows.length
             if (count >= 1) {
                 const table = locators.report.inputTable5
@@ -1374,29 +1382,31 @@ describe('Report Module Test', () => {
         })
 
         //Dropdown
-        cy.get(locators.profile.activity['rows']).then((rows) => {
+        cy.get(locators.multimodule['rows']).then((rows) => {
             const count = rows.length
             if (count >= 1) {
                 const table = locators.report.comboxTable8
                 for (const key in table) {
                     cy.get(locators.report.comboxTable8[key]).then(element => {
-                        cy.get(locators.report.filter[key]).type(element.text(), { force: true, delay: 150 })
+                        cy.get(locators.report.filter[key]).type(element.text(), { force: true, delay: 180 })
                         cy.get(locators.report.filter['dropdown']).should('be.visible')
                         cy.get(locators.report.filter['dropdown-name']).should('be.visible')
                         cy.get(locators.report.filter['dropdown-name']).each($element => {
                             if ($element.text().trim() === element.text().trim()){
+                                cy.wait(500)
                                 cy.wrap($element).click()
                             }
                         })
                         cy.get(locators.report.filter['search']).click()
                         cy.get(locators.report.comboxTable8[key]).contains(element.text())
+                        cy.wait(500)
                     })
                 }
             }   
         })
 
         //Summary Table
-        cy.get(locators.report['text-head']).should('contain.text', 'Summary')
+        cy.get(locators.multimodule['text-head']).should('contain.text', 'Summary')
         cy.get(locators.report.filter['summary-accordion'])
             .contains('-').click()
             .contains('+').click()
@@ -1469,8 +1479,8 @@ describe('Report Module Test', () => {
         cy.get(locators.report['container']).should('be.visible')
         cy.get(locators.report['player-summary']).click()
 
-        //Betting Transaction Text Validation
-        cy.get(locators.report['text-head']).should('contain.text', 'Player Summary')
+        //Search Form Text Validation
+        cy.get(locators.multimodule['text-head']).should('contain.text', 'Player Summary')
         const searchForm = [  
             'Transaction Date',
             'Operator Name',
@@ -1529,11 +1539,11 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['last-month']).click()
 
         //Operator Name
-        cy.get(locators.report.filter['operator']).type(operator, {delay: 200})
-        cy.get(locators.report.filter['operator-dropdown']).should('be.visible')
-        cy.get(locators.report.filter['parent-operator']).should('be.visible')
-        cy.get(locators.report.filter['operator-name']).should('be.visible')
-        cy.get(locators.report.filter['operator-name']).each($element => {
+        cy.get(locators.multimodule['form-input2']).type(operator, {delay: 200})
+        cy.get(locators.multimodule['operator-dropdown']).should('be.visible')
+        cy.get(locators.multimodule['parent-operator']).should('be.visible')
+        cy.get(locators.multimodule['operator-name']).should('be.visible')
+        cy.get(locators.multimodule['operator-name']).each($element => {
             if ($element.text() === operator){
                 cy.wrap($element).click()
             }
@@ -1541,7 +1551,7 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['search']).click()
 
         //Input
-        cy.get(locators.profile.activity['rows']).then((rows) => {
+        cy.get(locators.multimodule['rows']).then((rows) => {
             const count = rows.length
             if (count >= 1) {
                 const table = locators.report.inputTable6
@@ -1557,7 +1567,7 @@ describe('Report Module Test', () => {
         })
 
         //Dropdown
-        cy.get(locators.profile.activity['rows']).then((rows) => {
+        cy.get(locators.multimodule['rows']).then((rows) => {
             const count = rows.length
             if (count >= 1) {
                 const table = locators.report.comboxTable9
@@ -1579,7 +1589,7 @@ describe('Report Module Test', () => {
         })
 
         //Summary Table
-        cy.get(locators.report['text-head']).should('contain.text', 'Summary')
+        cy.get(locators.multimodule['text-head']).should('contain.text', 'Summary')
         cy.get(locators.report.filter['summary-accordion'])
             .contains('-').click()
             .contains('+').click()
@@ -1652,8 +1662,8 @@ describe('Report Module Test', () => {
         cy.get(locators.report['container']).should('be.visible')
         cy.get(locators.report['sports-betting']).click()
 
-        //Sports Text Validation
-        cy.get(locators.report['text-head']).should('contain.text', 'Sports Betting Transaction')
+        //Search Form Text Validation
+        cy.get(locators.multimodule['text-head']).should('contain.text', 'Sports Betting Transaction')
         const searchForm = [   
             'Transaction Date/Time',
             'Credit Date/Time',
@@ -1737,7 +1747,7 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['dpClear']).eq(1).click()
 
         //Input
-        cy.get(locators.profile.activity['rows']).then((rows) => {
+        cy.get(locators.multimodule['rows']).then((rows) => {
             const count = rows.length
             if (count >= 1) {
                 const table = locators.report.inputTable7
@@ -1753,7 +1763,7 @@ describe('Report Module Test', () => {
         })
 
         //Dropdown
-        cy.get(locators.profile.activity['rows']).then((rows) => {
+        cy.get(locators.multimodule['rows']).then((rows) => {
             const count = rows.length
             if (count >= 1) {
                 const table = locators.report.comboxTable10
@@ -1776,7 +1786,7 @@ describe('Report Module Test', () => {
 
 
         //Summary Table
-        cy.get(locators.report['text-head']).should('contain.text', 'Summary')
+        cy.get(locators.multimodule['text-head']).should('contain.text', 'Summary')
         cy.get(locators.report.filter['summary-accordion'])
             .contains('-').click()
             .contains('+').click()

@@ -9,7 +9,6 @@ export default {
         'search':                     'button[type="submit"]',
         'reset':                      'button[type="reset"]',
 
-        'operator':                   'div.form_inputs:nth-child(1) input',
         'operator-dropdown':          'div.ant-select-dropdown',
         'operator-name':              'div.filter-node .ant-select-tree-title',
         'parent-operator':            '.ant-select-tree-treenode:nth-of-type(1) .anticon',
@@ -105,15 +104,7 @@ export default {
         activity: 
         {
             'tab':                        '.tabContainer a:last-child',
-            'table':                      '#tableBody',
-            'tableBody':                  'div:nth-child(3) .table-auto',
             'entry':                      'select.outline-none',
-            'preloader':                  '.preloader img',
-            'rows':                       '#tableBody tr',
-            'dataTable-rows':             'thead > th',
-            'total':                      '.table-showing span:last-child',
-            'summaryTable':               'table > thead > tr > th',
-            'summaryRows':                '.table-auto.table-custom.min-w-full.table-lg tr'
         }
 
     },
@@ -149,24 +140,6 @@ export default {
             'last-month':                 'div.items-start:nth-child(6) .presetDatesLabel',
             'two-months-ago':             'div.items-start:nth-child(7) .presetDatesLabel',
             'dpClear':                    '.dp__icon.dp__clear_icon.dp__input_icons',
-            'operator':                   'div.form_inputs:nth-child(2) input',
-            'operator-dropdown':          'div.ant-select-dropdown',
-            'vendor':                     'div.form_inputs:nth-child(1) input',
-            'vendor-dropdown':            'div.ant-select-dropdown',
-            'vendor-name':                '.ant-select-item-option-content',
-            'dropdown':                   'div.ant-select-dropdown',
-            'dropdown-name':              '.ant-select-item-option-content',
-            'operator-name':              'div.filter-node .ant-select-tree-title',
-            'form-input1':                'div.form_inputs:nth-child(1) input',
-            'form-input2':                'div.form_inputs:nth-child(2) input',
-            'form-input3':                'div.form_inputs:nth-child(3) input',
-            'form-input4':                'div.form_inputs:nth-child(4) input',
-            'form-input5':                'div.form_inputs:nth-child(5) input',
-            'form-input6':                'div.form_inputs:nth-child(6) input',
-            'form-input7':                'div.form_inputs:nth-child(7) input',
-            'form-input8':                'div.form_inputs:nth-child(8) input',
-            'form-input9':                'div.form_inputs:nth-child(9) input',
-            'form-input10':               'div.form_inputs:nth-child(10) input',
             'parent-operator':            '.ant-select-tree-treenode:nth-of-type(1) .anticon',
             'transactionId':              '#transaction_id',
             'playerId':                   '#player_id',
@@ -175,15 +148,6 @@ export default {
             'gameId':                     '#game_id',
             'gameCode':                   '#game_code',
             'promoName':                  '#promo_name',
-            'export':                     '.fa-file-export',
-            'bell':                       'button[type="button"][id="bellBtn"]',
-            'notif':                      '#notifBox .dropdown-body a:first-of-type',
-            'pop-up':                     '.toast.toast-success',
-            'pop-up-head':                '.toast.toast-success .toast-header',
-            'pop-up-body':                '.toast.toast-success .toast-body',
-            'form':                       '.form_inputs',
-            'summary-accordion':          '.toggle-summary-table-btn',
-            'selection':                  'span.ant-select-selection-item'
         },
 
         inputTable1: {
@@ -281,16 +245,6 @@ export default {
 
         summaryTable:
         {
-            '1stcol':                     '.table-auto.table-custom.min-w-full.table-lg tr:first-child th:nth-child(1)',
-            '2ndcol':                     '.table-auto.table-custom.min-w-full.table-lg tr:first-child th:nth-child(2)',
-            '3rdcol':                     '.table-auto.table-custom.min-w-full.table-lg tr:first-child th:nth-child(3)',
-            '4thcol':                     '.table-auto.table-custom.min-w-full.table-lg tr:first-child th:nth-child(4)',
-            '5thcol':                     '.table-auto.table-custom.min-w-full.table-lg tr:first-child th:nth-child(5)',
-            '6thcol':                     '.table-auto.table-custom.min-w-full.table-lg tr:first-child th:nth-child(6)',
-            '7thcol':                     '.table-auto.table-custom.min-w-full.table-lg tr:first-child th:nth-child(7)',
-            '8thcol':                     '.table-auto.table-custom.min-w-full.table-lg tr:first-child th:nth-child(8)',
-            '9thcol':                     '.table-auto.table-custom.min-w-full.table-lg tr:first-child th:nth-child(9)',
-            '10thcol':                    '.table-auto.table-custom.min-w-full.table-lg tr:first-child th:nth-child(10)',
             
             dataTable1:
             {
@@ -333,7 +287,6 @@ export default {
                 '10thdata':               '.table-auto.table-custom.min-w-full.table-lg tr:first-child td:nth-child(10)'
             }
         }
-
     },
 
     content:
@@ -355,27 +308,6 @@ export default {
         'reset':                           'button[type="reset"]',
 
         filter: {
-            'search':                     'button[type="submit"]',
-            'reset':                      'button[type="reset"]',
-            'operator':                   'div.form_inputs:nth-child(1) input',
-            'operator-dropdown':          'div.ant-select-dropdown',
-            'operator-name':              'div.filter-node .ant-select-tree-title',
-            'parent-operator':            '.ant-select-tree-treenode:nth-of-type(1) .anticon',
-            'vendor':                     'div.form_inputs:nth-child(1) input',
-            'vendor-dropdown':            'div.ant-select-dropdown',
-            'vendor-name':                '.ant-select-item-option-content',
-            'dropdown':                   'div.ant-select-dropdown',
-            'dropdown-name':              '.ant-select-item-option-content',
-            'form-input1':                'div.form_inputs:nth-child(1) input',
-            'form-input2':                'div.form_inputs:nth-child(2) input',
-            'form-input3':                'div.form_inputs:nth-child(3) input',
-            'form-input4':                'div.form_inputs:nth-child(4) input',
-            'form-input5':                'div.form_inputs:nth-child(5) input',
-            'form-input6':                'div.form_inputs:nth-child(6) input',
-            'form-input7':                'div.form_inputs:nth-child(7) input',
-            'form-input8':                'div.form_inputs:nth-child(8) input',
-            'form-input9':                'div.form_inputs:nth-child(9) input',
-            'form-input10':               'div.form_inputs:nth-child(10) input',
             'transactionId':              '#transaction_id',
             'playerId':                   '#player_id',
             'gameName':                   '#game_name',
@@ -389,16 +321,6 @@ export default {
             'max-limit':                  '#max_limit',
             'currency-Id':                '#id',
             'currency':                   '#currency',
-            'export':                     '.fa-file-export',
-            'bell':                       'button[type="button"][id="bellBtn"]',
-            'notif':                      '#notifBox .dropdown-body a:first-of-type',
-            'pop-up':                     '.toast.toast-success',
-            'pop-up-head':                '.toast.toast-success .toast-header',
-            'pop-up-body':                '.toast.toast-success .toast-body',
-            'form':                       '.form_inputs',
-            'summary-accordion':          '.toggle-summary-table-btn',
-            'sub-operator':               'label[for="checkbox"]',
-            'check':                      '#checkbox'
         },
 
         add_operator:
@@ -497,7 +419,6 @@ export default {
             'search':                       'button[type="submit"]',
             'reset':                        'button[type="reset"]',
             'promo-name':                   '#promo_type',
-            'form':                         '.form_inputs',
         },
 
         inputTable1 : {

@@ -19,12 +19,12 @@ describe('Promotion Module Test', () => {
         cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')
 
         //Currency Text Validation
-        cy.get(locators.report['text-head']).should('contain.text', 'Promo Manage')
+        cy.get(locators.multimodule['text-head']).should('contain.text', 'Promo Manage')
         cy.get(locators.report.filter['form'])
             .should('contain.text', 'Promo Name')    
 
         //Input
-        cy.get(locators.profile.activity['rows']).then((rows) => {
+        cy.get(locators.multimodule['rows']).then((rows) => {
             const count = rows.length
             if (count >= 1) {
                 const table = locators.promotion.inputTable1
@@ -40,7 +40,7 @@ describe('Promotion Module Test', () => {
         })
 
         cy.wait(500)
-        cy.get(locators.content.filter['reset'])
+        cy.get(locators.multimodule['reset'])
             .click()
             .then(() => {
                 cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')

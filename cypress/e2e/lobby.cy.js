@@ -19,12 +19,12 @@ describe('Lobby Management Module Test', () => {
         cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')
 
         //Currency Text Validation
-        cy.get(locators.report['text-head']).should('contain.text', 'Media Components')
+        cy.get(locators.multimodule['text-head']).should('contain.text', 'Media Components')
         cy.get(locators.lobby.filter['form'])
             .should('contain.text', 'Section Code')    
 
         //Input
-        cy.get(locators.profile.activity['rows']).then((rows) => {
+        cy.get(locators.multimodule['rows']).then((rows) => {
             const count = rows.length
             if (count >= 1) {
                 const table = locators.lobby.inputTable1
@@ -39,7 +39,7 @@ describe('Lobby Management Module Test', () => {
             }   
         })
 
-        cy.get(locators.content.filter['reset'])
+        cy.get(locators.multimodule['reset'])
             .click()
             .then(() => {
                 cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')
@@ -87,12 +87,12 @@ describe('Lobby Management Module Test', () => {
         cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')
 
         //Currency Text Validation
-        cy.get(locators.report['text-head']).should('contain.text', 'Announcements')
+        cy.get(locators.multimodule['text-head']).should('contain.text', 'Announcements')
         cy.get(locators.lobby.filter['form'])
             .should('contain.text', 'Title')    
 
         //Input
-        cy.get(locators.profile.activity['rows']).then((rows) => {
+        cy.get(locators.multimodule['rows']).then((rows) => {
             const count = rows.length
             if (count >= 1) {
                 const table = locators.lobby.inputTable2
@@ -107,7 +107,7 @@ describe('Lobby Management Module Test', () => {
             }   
         })
 
-        cy.get(locators.content.filter['reset'])
+        cy.get(locators.multimodule['reset'])
             .click()
             .then(() => {
                 cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')

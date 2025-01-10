@@ -19,7 +19,7 @@ describe('Test', () => {
             cy.get(locators.report['vendor-summary']).click()
     
             //Search Form Text Validation
-            cy.get(locators.report['text-head']).should('contain.text', 'Vendor Summary')
+            cy.get(locators.multimodule['text-head']).should('contain.text', 'Vendor Summary')
             const searchForm = [   
                 'Transaction Date',
                 'Vendor Name',
@@ -77,7 +77,7 @@ describe('Test', () => {
             cy.get(locators.report.filter['search']).click()
     
             //Input
-            cy.get(locators.profile.activity['rows']).then((rows) => {
+            cy.get(locators.multimodule['rows']).then((rows) => {
                 const count = rows.length
                 if (count >= 1) {
                     const table = locators.report.inputTable5
@@ -93,29 +93,31 @@ describe('Test', () => {
             })
     
             //Dropdown
-            cy.get(locators.profile.activity['rows']).then((rows) => {
+            cy.get(locators.multimodule['rows']).then((rows) => {
                 const count = rows.length
                 if (count >= 1) {
                     const table = locators.report.comboxTable8
                     for (const key in table) {
                         cy.get(locators.report.comboxTable8[key]).then(element => {
-                            cy.get(locators.report.filter[key]).type(element.text(), { force: true, delay: 150 })
+                            cy.get(locators.report.filter[key]).type(element.text(), { force: true, delay: 180 })
                             cy.get(locators.report.filter['dropdown']).should('be.visible')
                             cy.get(locators.report.filter['dropdown-name']).should('be.visible')
                             cy.get(locators.report.filter['dropdown-name']).each($element => {
                                 if ($element.text().trim() === element.text().trim()){
+                                    cy.wait(500)
                                     cy.wrap($element).click()
                                 }
                             })
                             cy.get(locators.report.filter['search']).click()
                             cy.get(locators.report.comboxTable8[key]).contains(element.text())
+                            cy.wait(500)
                         })
                     }
                 }   
             })
     
             //Summary Table
-            cy.get(locators.report['text-head']).should('contain.text', 'Summary')
+            cy.get(locators.multimodule['text-head']).should('contain.text', 'Summary')
             cy.get(locators.report.filter['summary-accordion'])
                 .contains('-').click()
                 .contains('+').click()

@@ -109,7 +109,7 @@ describe('Activity Logs', () => {
                     cy.wrap($select).find('option').each(($option) => {
                         const value = $option.val();
                         cy.wrap($select).select(value);
-                        cy.get(locators.profile.activity['rows']).should('have.length', value)
+                        cy.get(locators.multimodule['rows']).should('have.length', value)
                     });
                 });
             }

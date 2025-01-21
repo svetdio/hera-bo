@@ -19,6 +19,7 @@ describe('Report Module Test', () => {
         cy.get(locators.report['report']).click()
         cy.get(locators.report['container']).should('be.visible')
         cy.get(locators.report['betting-history']).click()
+        cy.log(`Verify Betting Transaction History using Module., PASSED`)
 
         //Search Form Text Validation
         cy.get(locators.multimodule['text-head']).should('contain.text', 'Betting Transaction History')
@@ -43,7 +44,7 @@ describe('Report Module Test', () => {
                     cy.log(`${searchLabel} is present`)
                 })
         })
-        cy.log('All search form names have been validated')
+        cy.log(`Verify the Input Form fields by Accessibility., PASSED`)
         
         //Data Table Column Name Text Validation
         const dataTable = [
@@ -85,7 +86,7 @@ describe('Report Module Test', () => {
         })
         cy.log('All data table column names have been validated')
 
-        //Operator Name Name
+        //Operator Name
         cy.get(locators.report.filter['transaction-date'])
             .should('be.visible')
             .click()
@@ -128,10 +129,10 @@ describe('Report Module Test', () => {
                 const table = locators.report.comboxTable1
                 for (const key in table) {
                     cy.get(locators.report.comboxTable1[key]).then(element => {
-                        cy.get(locators.report.filter[key]).type(element.text(), { force: true, delay: 150 })
-                        cy.get(locators.report.filter['dropdown']).should('be.visible')
-                        cy.get(locators.report.filter['dropdown-name']).should('be.visible')
-                        cy.get(locators.report.filter['dropdown-name']).each($element => {
+                        cy.get(locators.multimodule[key]).type(element.text(), { force: true, delay: 150 })
+                        cy.get(locators.multimodule['dropdown']).should('be.visible')
+                        cy.get(locators.multimodule['dropdown-name']).should('be.visible')
+                        cy.get(locators.multimodule['dropdown-name']).each($element => {
                             if ($element.text().trim() === element.text().trim()){
                                 cy.wrap($element).click()
                             }
@@ -159,7 +160,7 @@ describe('Report Module Test', () => {
             'Total Turnover Amount',
         ]
         summaryTable.forEach((summaryLabel) => {
-            cy.get(locators.profile.activity['summaryTable'])
+            cy.get(locators.multimodule['summaryTable'])
                 .should('be.visible')
                 .contains(summaryLabel)
                 .should('exist')
@@ -169,7 +170,7 @@ describe('Report Module Test', () => {
         })
         cy.log('All summary table column names have been validated')
 
-        cy.get(locators.profile.activity['summaryRows']).then((summaryRows) => {
+        cy.get(locators.multimodule['summaryRows']).then((summaryRows) => {
             const count = summaryRows.length;
             if (count >= 1) {
                 const table = locators.report.summaryTable.dataTable1
@@ -183,17 +184,17 @@ describe('Report Module Test', () => {
         })
 
         //Export Table
-        cy.get(locators.report.filter['export']).click()
-        cy.get(locators.report.filter['pop-up']).should('be.visible')
-        cy.get(locators.report.filter['pop-up-head']).contains('OGAPIIntegration')
-        cy.get(locators.report.filter['pop-up-body']).contains('Your Betting Transaction History export is currently in progress. You will be notified once it is complete.')
-        cy.get(locators.report.filter['bell']).click()
-        cy.get(locators.report.filter['notif']).click()
+        cy.get(locators.multimodule['export']).click()
+        cy.get(locators.multimodule['pop-up']).should('be.visible')
+        cy.get(locators.multimodule['pop-up-head']).contains('OGAPIIntegration')
+        cy.get(locators.multimodule['pop-up-body']).contains('Your Betting Transaction History export is currently in progress. You will be notified once it is complete.')
+        cy.get(locators.multimodule['bell']).click()
+        cy.get(locators.multimodule['notif']).click()
 
         //Reset Button Validation
-        cy.get(locators.report.filter['reset']).click()
+        cy.get(locators.multimodule['reset']).click()
             .then(() => {
-                cy.get(locators.report.filter['selection']).then(($spans) => {
+                cy.get(locators.multimodule['selection']).then(($spans) => {
                     // Validate the first span contains "Debit"
                     cy.wrap($spans.eq(0))
                         .should('be.visible')
@@ -208,7 +209,7 @@ describe('Report Module Test', () => {
                         cy.log(`Validated span element at index ${i} with text "All".`)
                     }
                 })
-                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+                cy.get(locators.multimodule['table']).should('contain', 'No data available')
             })
 
         cy.log('All tests passed successfully!')
@@ -283,9 +284,9 @@ describe('Report Module Test', () => {
                 cy.wrap($element).click()
             }
         })
-        cy.get(locators.report.filter['search']).click()
-        cy.get(locators.profile.activity['preloader']).should('be.visible')
-        cy.get(locators.profile.activity['preloader'], { timeout: 100000 }).should('not.be.visible')
+        cy.get(locators.multimodule['search']).click()
+        cy.get(locators.multimodule['preloader']).should('be.visible')
+        cy.get(locators.multimodule['preloader'], { timeout: 100000 }).should('not.be.visible')
 
         //Input
         cy.get(locators.multimodule['rows']).then((rows) => {
@@ -296,9 +297,7 @@ describe('Report Module Test', () => {
                     cy.get(locators.report.inputTable2[key]).then(element => {
                         cy.get(locators.report.filter[key]).type(element.text(), { delay: 150})
                         cy.wait(500)
-                        cy.get(locators.report.filter['search']).click()
-                        cy.get(locators.profile.activity['preloader']).should('be.visible')
-                        cy.get(locators.profile.activity['preloader'], { timeout: 100000 }).should('not.be.visible')
+                        cy.get(locators.multimodule['search']).click()
                         cy.get(locators.report.inputTable2[key]).contains(element.text())
                         cy.get(locators.report.filter[key]).clear()
                     })
@@ -313,15 +312,15 @@ describe('Report Module Test', () => {
                 const table = locators.report.comboxTable2
                 for (const key in table) {
                     cy.get(locators.report.comboxTable2[key]).then(element => {
-                        cy.get(locators.report.filter[key]).type(element.text(), { force: true, delay: 150 })
-                        cy.get(locators.report.filter['dropdown']).should('be.visible')
-                        cy.get(locators.report.filter['dropdown-name']).should('be.visible')
-                        cy.get(locators.report.filter['dropdown-name']).each($element => {
+                        cy.get(locators.multimodule[key]).type(element.text(), { force: true, delay: 150 })
+                        cy.get(locators.multimodule['dropdown']).should('be.visible')
+                        cy.get(locators.multimodule['dropdown-name']).should('be.visible')
+                        cy.get(locators.multimodule['dropdown-name']).each($element => {
                             if ($element.text().trim() === element.text().trim()){
                                 cy.wrap($element).click()
                             }
                         })
-                        cy.get(locators.report.filter['search']).click()
+                        cy.get(locators.multimodule['search']).click()
                         cy.get(locators.report.comboxTable2[key]).contains(element.text())
                     })
                 }
@@ -340,7 +339,7 @@ describe('Report Module Test', () => {
             'Total Transfer Amount',
         ]
         summaryTable.forEach((summaryLabel) => {
-            cy.get(locators.profile.activity['summaryTable'])
+            cy.get(locators.multimodule['summaryTable'])
                 .should('be.visible')
                 .contains(summaryLabel)
                 .should('exist')
@@ -350,7 +349,7 @@ describe('Report Module Test', () => {
         })
         cy.log('All summary table column names have been validated')
 
-        cy.get(locators.profile.activity['summaryRows']).then((summaryRows) => {
+        cy.get(locators.multimodule['summaryRows']).then((summaryRows) => {
             const count = summaryRows.length;
             if (count >= 1) {
                 const table = locators.report.summaryTable.dataTable2
@@ -364,17 +363,17 @@ describe('Report Module Test', () => {
         })
 
         //Export Table
-        cy.get(locators.report.filter['export']).click()
-        cy.get(locators.report.filter['pop-up']).should('be.visible')
-        cy.get(locators.report.filter['pop-up-head']).contains('OGAPIIntegration')
-        cy.get(locators.report.filter['pop-up-body']).contains('Your Transfer Transaction History export is currently in progress. You will be notified once it is complete.')
-        cy.get(locators.report.filter['bell']).click()
-        cy.get(locators.report.filter['notif']).click()
+        cy.get(locators.multimodule['export']).click()
+        cy.get(locators.multimodule['pop-up']).should('be.visible')
+        cy.get(locators.multimodule['pop-up-head']).contains('OGAPIIntegration')
+        cy.get(locators.multimodule['pop-up-body']).contains('Your Transfer Transaction History export is currently in progress. You will be notified once it is complete.')
+        cy.get(locators.multimodule['bell']).click()
+        cy.get(locators.multimodule['notif']).click()
         
         //Reset Button Validation
-        cy.get(locators.report.filter['reset']).click()
+        cy.get(locators.multimodule['reset']).click()
             .then(() => {
-                cy.get(locators.report.filter['selection']).then(($spans) => {
+                cy.get(locators.multimodule['selection']).then(($spans) => {
                     // Validate the next three spans contain "All"
                     for (let i = 0; i == 0; i++) {
                         cy.wrap($spans.eq(i))
@@ -384,7 +383,7 @@ describe('Report Module Test', () => {
                     }
                 })
                     
-                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+                cy.get(locators.multimodule['table']).should('contain', 'No data available')
             })
         
         cy.log('All tests passed successfully!')
@@ -451,10 +450,10 @@ describe('Report Module Test', () => {
         
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
-        cy.get(locators.report.filter['operator']).type(operator, {delay: 200})
-        cy.get(locators.report.filter['operator-dropdown']).should('be.visible')
-        cy.get(locators.report.filter['parent-operator']).should('be.visible')
-        cy.get(locators.report.filter['operator-name']).should('be.visible')
+        cy.get(locators.multimodule['form-input2']).type(operator, {delay: 200})
+        cy.get(locators.multimodule['operator-dropdown']).should('be.visible')
+        cy.get(locators.multimodule['parent-operator']).should('be.visible')
+        cy.get(locators.multimodule['operator-name']).should('be.visible')
     
         // cy.get(locators.report.filter['date-modal']).should('be.visible')
         // cy.get(locators.report.filter['last-month']).click()
@@ -467,7 +466,7 @@ describe('Report Module Test', () => {
                 cy.wrap($element).click()
             }
         })
-        cy.get(locators.report.filter['search']).click()
+        cy.get(locators.multimodule['search']).click()
 
         //Input
         cy.get(locators.multimodule['rows']).then((rows) => {
@@ -478,18 +477,7 @@ describe('Report Module Test', () => {
                     cy.get(locators.report.inputTable2[key]).then(element => {
                         cy.get(locators.report.filter[key]).type(element.text(), { delay: 150})
                         cy.wait(500)
-                        cy.get(locators.report.filter['search']).click()
-                        cy.get('#tableBody').then(($tableBody) => {
-                            if ($tableBody.find(locators.profile.activity['preloader']).length > 0) {
-                                cy.get(locators.profile.activity['preloader']).should('be.visible')
-                                cy.log('Preloader is visible, waiting for it to disappear.')
-                                cy.get(locators.profile.activity['preloader'], { timeout: 100000 }).should('not.be.visible')
-                                    
-                            }
-                            else {
-                                cy.log('Preloader does not exist, proceeding to the next step.');
-                            }
-                        })
+                        cy.get(locators.multimodule['search']).click()
                         cy.get(locators.report.inputTable2[key]).contains(element.text())
                         cy.get(locators.report.filter[key]).clear()
                     })
@@ -504,15 +492,15 @@ describe('Report Module Test', () => {
                 const table = locators.report.comboxTable3
                 for (const key in table) {
                     cy.get(locators.report.comboxTable3[key]).then(element => {
-                        cy.get(locators.report.filter[key]).type(element.text(), { force: true, delay: 150 })
-                        cy.get(locators.report.filter['dropdown']).should('be.visible')
-                        cy.get(locators.report.filter['dropdown-name']).should('be.visible')
-                        cy.get(locators.report.filter['dropdown-name']).each($element => {
+                        cy.get(locators.multimodule[key]).type(element.text(), { force: true, delay: 150 })
+                        cy.get(locators.multimodule['dropdown']).should('be.visible')
+                        cy.get(locators.multimodule['dropdown-name']).should('be.visible')
+                        cy.get(locators.multimodule['dropdown-name']).each($element => {
                             if ($element.text().trim() === element.text().trim()){
                                 cy.wrap($element).click()
                             }
                         })
-                        cy.get(locators.report.filter['search']).click()
+                        cy.get(locators.multimodule['search']).click()
                         cy.get(locators.report.comboxTable3[key]).contains(element.text())
                     })
                 }
@@ -531,7 +519,7 @@ describe('Report Module Test', () => {
             'Total Transaction Amount',
         ]
         summaryTable.forEach((summaryLabel) => {
-            cy.get(locators.profile.activity['summaryTable'])
+            cy.get(locators.multimodule['summaryTable'])
                 .should('be.visible')
                 .contains(summaryLabel)
                 .should('exist')
@@ -541,7 +529,7 @@ describe('Report Module Test', () => {
         })
         cy.log('All summary table column names have been validated')
         
-        cy.get(locators.profile.activity['summaryRows']).then((summaryRows) => {
+        cy.get(locators.multimodule['summaryRows']).then((summaryRows) => {
             const count = summaryRows.length;
             if (count >= 1) {
                 const table = locators.report.summaryTable.dataTable2
@@ -555,17 +543,17 @@ describe('Report Module Test', () => {
         })
 
         //Export Table
-        cy.get(locators.report.filter['export']).click()
-        cy.get(locators.report.filter['pop-up']).should('be.visible')
-        cy.get(locators.report.filter['pop-up-head']).contains('OGAPIIntegration')
-        cy.get(locators.report.filter['pop-up-body']).contains('Your Player Cash Flow Records export is currently in progress. You will be notified once it is complete.')
-        cy.get(locators.report.filter['bell']).click()
-        cy.get(locators.report.filter['notif']).click()
+        cy.get(locators.multimodule['export']).click()
+        cy.get(locators.multimodule['pop-up']).should('be.visible')
+        cy.get(locators.multimodule['pop-up-head']).contains('OGAPIIntegration')
+        cy.get(locators.multimodule['pop-up-body']).contains('Your Player Cash Flow Records export is currently in progress. You will be notified once it is complete.')
+        cy.get(locators.multimodule['bell']).click()
+        cy.get(locators.multimodule['notif']).click()
         
         //Reset Button Validation
-        cy.get(locators.report.filter['reset']).click()
+        cy.get(locators.multimodule['reset']).click()
             .then(() => {
-                cy.get(locators.report.filter['selection']).then(($spans) => {
+                cy.get(locators.multimodule['selection']).then(($spans) => {
                     // Validate the next three spans contain "All"
                     for (let i = 0; i == 0; i++) {
                         cy.wrap($spans.eq(i))
@@ -575,7 +563,7 @@ describe('Report Module Test', () => {
                     }
                 })
                     
-                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+                cy.get(locators.multimodule['table']).should('contain', 'No data available')
             })
 
         cy.log('All tests passed successfully!')
@@ -643,7 +631,7 @@ describe('Report Module Test', () => {
             .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
-        cy.get(locators.report.filter['search']).click()
+        cy.get(locators.multimodule['search']).click()
 
         //Input
         cy.get(locators.multimodule['rows']).then((rows) => {
@@ -654,7 +642,7 @@ describe('Report Module Test', () => {
                     cy.get(locators.report.inputTable3[key]).then(element => {
                         cy.get(locators.report.filter[key]).type(element.text(), { delay: 150})
             
-                        cy.get(locators.report.filter['search']).click()
+                        cy.get(locators.multimodule['search']).click()
                         cy.get(locators.report.inputTable3[key]).contains(element.text())
                         cy.get(locators.report.filter[key]).clear()
                     })
@@ -669,15 +657,15 @@ describe('Report Module Test', () => {
                 const table = locators.report.comboxTable4
                 for (const key in table) {
                     cy.get(locators.report.comboxTable4[key]).then(element => {
-                        cy.get(locators.report.filter[key]).type(element.text(), { force: true, delay: 150 })
-                        cy.get(locators.report.filter['dropdown']).should('be.visible')
-                        cy.get(locators.report.filter['dropdown-name']).should('be.visible')
-                        cy.get(locators.report.filter['dropdown-name']).each($element => {
+                        cy.get(locators.multimodule[key]).type(element.text(), { force: true, delay: 150 })
+                        cy.get(locators.multimodule['dropdown']).should('be.visible')
+                        cy.get(locators.multimodule['dropdown-name']).should('be.visible')
+                        cy.get(locators.multimodule['dropdown-name']).each($element => {
                             if ($element.text().trim() === element.text().trim()){
                                 cy.wrap($element).click()
                             }
                         })
-                        cy.get(locators.report.filter['search']).click()
+                        cy.get(locators.multimodule['search']).click()
                         cy.get(locators.report.comboxTable4[key]).contains(element.text())
                     })
                 }
@@ -698,7 +686,7 @@ describe('Report Module Test', () => {
             'Total Claimed Amount',
         ]
         summaryTable.forEach((summaryLabel) => {
-            cy.get(locators.profile.activity['summaryTable'])
+            cy.get(locators.multimodule['summaryTable'])
                 .should('be.visible')
                 .contains(summaryLabel)
                 .should('exist')
@@ -708,7 +696,7 @@ describe('Report Module Test', () => {
         })
         cy.log('All summary table column names have been validated')
 
-        cy.get(locators.profile.activity['summaryRows']).then((summaryRows) => {
+        cy.get(locators.multimodule['summaryRows']).then((summaryRows) => {
             const count = summaryRows.length;
             if (count >= 1) {
                 const table = locators.report.summaryTable.dataTable2
@@ -722,16 +710,16 @@ describe('Report Module Test', () => {
         })
 
         //Reset Button Validation
-        cy.get(locators.report.filter['export']).click()
-        cy.get(locators.report.filter['pop-up']).should('be.visible')
-        cy.get(locators.report.filter['pop-up-head']).contains('OGAPIIntegration')
-        cy.get(locators.report.filter['pop-up-body']).contains('Your Promo Report export is currently in progress. You will be notified once it is complete.')
-        cy.get(locators.report.filter['bell']).click()
-        cy.get(locators.report.filter['notif']).click()
+        cy.get(locators.multimodule['export']).click()
+        cy.get(locators.multimodule['pop-up']).should('be.visible')
+        cy.get(locators.multimodule['pop-up-head']).contains('OGAPIIntegration')
+        cy.get(locators.multimodule['pop-up-body']).contains('Your Promo Report export is currently in progress. You will be notified once it is complete.')
+        cy.get(locators.multimodule['bell']).click()
+        cy.get(locators.multimodule['notif']).click()
         
-        cy.get(locators.report.filter['reset']).click()
+        cy.get(locators.multimodule['reset']).click()
             .then(() => {
-                cy.get(locators.report.filter['selection']).then(($spans) => {
+                cy.get(locators.multimodule['selection']).then(($spans) => {
                     // Validate the first span contains "Debit"
                     cy.wrap($spans.eq(0))
                         .should('be.visible')
@@ -747,7 +735,7 @@ describe('Report Module Test', () => {
                     }
                 })
                   
-                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+                cy.get(locators.multimodule['table']).should('contain', 'No data available')
             })
 
         cy.log('All tests passed successfully!')
@@ -820,7 +808,7 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['search']).click()
 
         //Vendor Name
-        cy.get(locators.content.filter['form-input2']).type(vendor, {delay: 100, force: true })
+        cy.get(locators.multimodule['form-input2']).type(vendor, {delay: 100, force: true })
             cy.get(locators.multimodule['vendor-dropdown']).should('be.visible')
             cy.get(locators.multimodule['vendor-name']).should('be.visible')
             cy.get(locators.multimodule['vendor-name']).each($element => {
@@ -854,15 +842,15 @@ describe('Report Module Test', () => {
                 const table = locators.report.comboxTable5
                 for (const key in table) {
                     cy.get(locators.report.comboxTable5[key]).then(element => {
-                        cy.get(locators.report.filter[key]).type(element.text(), { force: true, delay: 150 })
-                        cy.get(locators.report.filter['dropdown']).should('be.visible')
-                        cy.get(locators.report.filter['dropdown-name']).should('be.visible')
-                        cy.get(locators.report.filter['dropdown-name']).each($element => {
+                        cy.get(locators.multimodule[key]).type(element.text(), { force: true, delay: 150 })
+                        cy.get(locators.multimodule['dropdown']).should('be.visible')
+                        cy.get(locators.multimodule['dropdown-name']).should('be.visible')
+                        cy.get(locators.multimodule['dropdown-name']).each($element => {
                             if ($element.text().trim() === element.text().trim()){
                                 cy.wrap($element).click()
                             }
                         })
-                        cy.get(locators.report.filter['search']).click()
+                        cy.get(locators.multimodule['search']).click()
                         cy.get(locators.report.comboxTable5[key]).contains(element.text())
                     })
                 }
@@ -888,7 +876,7 @@ describe('Report Module Test', () => {
             'Total Player Count'
         ]
         summaryTable.forEach((summaryLabel) => {
-            cy.get(locators.profile.activity['summaryTable'])
+            cy.get(locators.multimodule['summaryTable'])
                 .should('be.visible')
                 .contains(summaryLabel)
                 .should('exist')
@@ -898,7 +886,7 @@ describe('Report Module Test', () => {
         })
         cy.log('All summary table column names have been validated')
 
-        cy.get(locators.profile.activity['summaryRows']).then((summaryRows) => {
+        cy.get(locators.multimodule['summaryRows']).then((summaryRows) => {
             const count = summaryRows.length;
             if (count >= 1) {
                 const table = locators.report.summaryTable.dataTable1
@@ -912,16 +900,16 @@ describe('Report Module Test', () => {
         })
 
         //Export Table
-        cy.get(locators.report.filter['export']).click()
-        cy.get(locators.report.filter['pop-up']).should('be.visible')
-        cy.get(locators.report.filter['pop-up-head']).contains('OGAPIIntegration')
-        cy.get(locators.report.filter['pop-up-body']).contains('Your Game Report export is currently in progress. You will be notified once it is complete.')
-        cy.get(locators.report.filter['bell']).click()
-        cy.get(locators.report.filter['notif']).click()
+        cy.get(locators.multimodule['export']).click()
+        cy.get(locators.multimodule['pop-up']).should('be.visible')
+        cy.get(locators.multimodule['pop-up-head']).contains('OGAPIIntegration')
+        cy.get(locators.multimodule['pop-up-body']).contains('Your Game Report export is currently in progress. You will be notified once it is complete.')
+        cy.get(locators.multimodule['bell']).click()
+        cy.get(locators.multimodule['notif']).click()
         
-        cy.get(locators.report.filter['reset']).click()
+        cy.get(locators.multimodule['reset']).click()
             .then(() => {
-                cy.get(locators.report.filter['selection']).then(($spans) => {
+                cy.get(locators.multimodule['selection']).then(($spans) => {
                     // Validate the next three spans contain "All"
                     for (let i = 0; i <= 2; i++) {
                         cy.wrap($spans.eq(i))
@@ -931,7 +919,7 @@ describe('Report Module Test', () => {
                     }
                 })
                     
-                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+                cy.get(locators.multimodule['table']).should('contain', 'No data available')
             })
     
         cy.log('All tests passed successfully!')
@@ -1004,16 +992,16 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['last-month']).click()
 
         //Operator Name
-        cy.get(locators.report.filter['operator']).type(operator, {delay: 200})
-            cy.get(locators.report.filter['operator-dropdown']).should('be.visible')
-            cy.get(locators.report.filter['parent-operator']).should('be.visible')
-            cy.get(locators.report.filter['operator-name']).should('be.visible')
-            cy.get(locators.report.filter['operator-name']).each($element => {
+        cy.get(locators.multimodule['form-input2']).type(operator, {delay: 200})
+            cy.get(locators.multimodule['operator-dropdown']).should('be.visible')
+            cy.get(locators.multimodule['parent-operator']).should('be.visible')
+            cy.get(locators.multimodule['operator-name']).should('be.visible')
+            cy.get(locators.multimodule['operator-name']).each($element => {
                 if ($element.text() === operator){
                     cy.wrap($element).click()
                 }
             })
-        cy.get(locators.report.filter['search']).click()
+        cy.get(locators.multimodule['search']).click()
 
         //Input
         cy.get(locators.multimodule['rows']).then((rows) => {
@@ -1031,14 +1019,14 @@ describe('Report Module Test', () => {
                     const value = gameValues[key]
                     cy.get(locators.report.filter[key]).type(value, { delay: 150 })
                     cy.wait(500);
-                    cy.get(locators.report.filter['search']).click()
+                    cy.get(locators.multimodule['search']).click()
                     cy.get(locators.report.filter[key]).clear()
                 }
             }
         })
 
         //Vendor Name
-        cy.get(locators.content.filter['form-input8']).type(vendor, {delay: 100, force: true })
+        cy.get(locators.multimodule['form-input8']).type(vendor, {delay: 100, force: true })
             cy.get(locators.multimodule['vendor-dropdown']).should('be.visible')
             cy.get(locators.multimodule['vendor-name']).should('be.visible')
             cy.get(locators.multimodule['vendor-name']).each($element => {
@@ -1055,15 +1043,15 @@ describe('Report Module Test', () => {
                 const table = locators.report.comboxTable6
                 for (const key in table) {
                     cy.get(locators.report.comboxTable6[key]).then(element => {
-                        cy.get(locators.report.filter[key]).type(element.text(), { force: true, delay: 150 })
-                        cy.get(locators.report.filter['dropdown']).should('be.visible')
-                        cy.get(locators.report.filter['dropdown-name']).should('be.visible')
-                        cy.get(locators.report.filter['dropdown-name']).each($element => {
+                        cy.get(locators.multimodule[key]).type(element.text(), { force: true, delay: 150 })
+                        cy.get(locators.multimodule['dropdown']).should('be.visible')
+                        cy.get(locators.multimodule['dropdown-name']).should('be.visible')
+                        cy.get(locators.multimodule['dropdown-name']).each($element => {
                             if ($element.text().trim() === element.text().trim()){
                                 cy.wrap($element).click()
                             }
                         })
-                        cy.get(locators.report.filter['search']).click()
+                        cy.get(locators.multimodule['search']).click()
                         cy.get(locators.report.comboxTable6[key]).contains(element.text())
                         cy.wait(500)
                     })
@@ -1088,7 +1076,7 @@ describe('Report Module Test', () => {
             'Total House Edge',
         ]
         summaryTable.forEach((summaryLabel) => {
-            cy.get(locators.profile.activity['summaryTable'])
+            cy.get(locators.multimodule['summaryTable'])
                 .should('be.visible')
                 .contains(summaryLabel)
                 .should('exist')
@@ -1098,7 +1086,7 @@ describe('Report Module Test', () => {
         })
         cy.log('All summary table column names have been validated')    
 
-        cy.get(locators.profile.activity['summaryRows']).then((summaryRows) => {
+        cy.get(locators.multimodule['summaryRows']).then((summaryRows) => {
             const count = summaryRows.length;
             if (count >= 1) {
                 const table = locators.report.summaryTable.dataTable1
@@ -1112,17 +1100,17 @@ describe('Report Module Test', () => {
         })
 
         //Export Table
-        cy.get(locators.report.filter['export']).click()
-        cy.get(locators.report.filter['pop-up']).should('be.visible')
-        cy.get(locators.report.filter['pop-up-head']).contains('OGAPIIntegration')
-        cy.get(locators.report.filter['pop-up-body']).contains('Your Operator Summary export is currently in progress. You will be notified once it is complete.')
-        cy.get(locators.report.filter['bell']).click()
-        cy.get(locators.report.filter['notif']).click()
+        cy.get(locators.multimodule['export']).click()
+        cy.get(locators.multimodule['pop-up']).should('be.visible')
+        cy.get(locators.multimodule['pop-up-head']).contains('OGAPIIntegration')
+        cy.get(locators.multimodule['pop-up-body']).contains('Your Operator Summary export is currently in progress. You will be notified once it is complete.')
+        cy.get(locators.multimodule['bell']).click()
+        cy.get(locators.multimodule['notif']).click()
         
         // cy.get(locators.report.filter['reset'])
         cy.get('.btn.btn-danger').click()
             .then(() => {
-                cy.get(locators.report.filter['selection']).then(($spans) => {
+                cy.get(locators.multimodule['selection']).then(($spans) => {
                     // Validate the next three spans contain "All"
                     for (let i = 0; i <= 1; i++) {
                         cy.wrap($spans.eq(i))
@@ -1132,7 +1120,7 @@ describe('Report Module Test', () => {
                     }
                 })
                     
-                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+                cy.get(locators.multimodule['table']).should('contain', 'No data available')
             })
         
         cy.log('All tests passed successfully!')
@@ -1200,16 +1188,16 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['last-month']).click()
 
         //Operator Name
-        cy.get(locators.report.filter['operator']).type(operator, {delay: 200})
-            cy.get(locators.report.filter['operator-dropdown']).should('be.visible')
-            cy.get(locators.report.filter['parent-operator']).should('be.visible')
-            cy.get(locators.report.filter['operator-name']).should('be.visible')
-            cy.get(locators.report.filter['operator-name']).each($element => {
+        cy.get(locators.multimodule['form-input2']).type(operator, {delay: 200})
+            cy.get(locators.multimodule['operator-dropdown']).should('be.visible')
+            cy.get(locators.multimodule['parent-operator']).should('be.visible')
+            cy.get(locators.multimodule['operator-name']).should('be.visible')
+            cy.get(locators.multimodule['operator-name']).each($element => {
                 if ($element.text() === operator){
                     cy.wrap($element).click()
                 }
             })
-        cy.get(locators.report.filter['search']).click()
+        cy.get(locators.multimodule['search']).click()
    
         //Dropdown
         cy.get(locators.multimodule['rows']).then((rows) => {
@@ -1218,15 +1206,15 @@ describe('Report Module Test', () => {
                 const table = locators.report.comboxTable7
                 for (const key in table) {
                     cy.get(locators.report.comboxTable7[key]).then(element => {
-                        cy.get(locators.report.filter[key]).type(element.text(), { force: true, delay: 150 })
-                        cy.get(locators.report.filter['dropdown']).should('be.visible')
-                        cy.get(locators.report.filter['dropdown-name']).should('be.visible')
-                        cy.get(locators.report.filter['dropdown-name']).each($element => {
+                        cy.get(locators.multimodule[key]).type(element.text(), { force: true, delay: 150 })
+                        cy.get(locators.multimodule['dropdown']).should('be.visible')
+                        cy.get(locators.multimodule['dropdown-name']).should('be.visible')
+                        cy.get(locators.multimodule['dropdown-name']).each($element => {
                             if ($element.text().trim() === element.text().trim()){
                                 cy.wrap($element).click()
                             }
                         })
-                        cy.get(locators.report.filter['search']).click()
+                        cy.get(locators.multimodule['search']).click()
                         cy.get(locators.report.comboxTable7[key]).contains(element.text())
                         cy.wait(500)
                     })
@@ -1250,7 +1238,7 @@ describe('Report Module Test', () => {
             'Total House Edge',
         ]
         summaryTable.forEach((summaryLabel) => {
-            cy.get(locators.profile.activity['summaryTable'])
+            cy.get(locators.multimodule['summaryTable'])
                 .should('be.visible')
                 .contains(summaryLabel)
                 .should('exist')
@@ -1260,7 +1248,7 @@ describe('Report Module Test', () => {
         })
         cy.log('All summary table column names have been validated')
 
-        cy.get(locators.profile.activity['summaryRows']).then((summaryRows) => {
+        cy.get(locators.multimodule['summaryRows']).then((summaryRows) => {
             const count = summaryRows.length;
             if (count >= 1) {
                 const table = locators.report.summaryTable.dataTable1
@@ -1274,17 +1262,17 @@ describe('Report Module Test', () => {
         })
 
         //Export Table
-        cy.get(locators.report.filter['export']).click()
-        cy.get(locators.report.filter['pop-up']).should('be.visible')
-        cy.get(locators.report.filter['pop-up-head']).contains('OGAPIIntegration')
-        cy.get(locators.report.filter['pop-up-body']).contains('Your Operator Summary export is currently in progress. You will be notified once it is complete.')
-        cy.get(locators.report.filter['bell']).click()
-        cy.get(locators.report.filter['notif']).click()
+        cy.get(locators.multimodule['export']).click()
+        cy.get(locators.multimodule['pop-up']).should('be.visible')
+        cy.get(locators.multimodule['pop-up-head']).contains('OGAPIIntegration')
+        cy.get(locators.multimodule['pop-up-body']).contains('Your Operator Summary export is currently in progress. You will be notified once it is complete.')
+        cy.get(locators.multimodule['bell']).click()
+        cy.get(locators.multimodule['notif']).click()
 
         // cy.get(locators.report.filter['reset'])
         cy.get('.btn.btn-danger').click()
             .then(() => {
-                cy.get(locators.report.filter['selection']).then(($spans) => {
+                cy.get(locators.multimodule['selection']).then(($spans) => {
                     // Validate the next three spans contain "All"
                     for (let i = 0; i <= 1; i++) {
                         cy.wrap($spans.eq(i))
@@ -1294,7 +1282,7 @@ describe('Report Module Test', () => {
                     }
                 })
                     
-                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+                cy.get(locators.multimodule['table']).should('contain', 'No data available')
             })
 
         cy.log('All tests passed successfully!')
@@ -1373,7 +1361,7 @@ describe('Report Module Test', () => {
                 for (const key in table) {
                     cy.get(locators.report.inputTable5[key]).then(element => {
                         cy.get(locators.report.filter[key]).type(element.text(), { delay: 150})
-                        cy.get(locators.report.filter['search']).click()
+                        cy.get(locators.multimodule['search']).click()
                         cy.get(locators.report.inputTable5[key]).contains(element.text())
                         cy.get(locators.report.filter[key]).clear()
                     })
@@ -1388,16 +1376,16 @@ describe('Report Module Test', () => {
                 const table = locators.report.comboxTable8
                 for (const key in table) {
                     cy.get(locators.report.comboxTable8[key]).then(element => {
-                        cy.get(locators.report.filter[key]).type(element.text(), { force: true, delay: 180 })
-                        cy.get(locators.report.filter['dropdown']).should('be.visible')
-                        cy.get(locators.report.filter['dropdown-name']).should('be.visible')
-                        cy.get(locators.report.filter['dropdown-name']).each($element => {
+                        cy.get(locators.multimodule[key]).type(element.text(), { force: true, delay: 180 })
+                        cy.get(locators.multimodule['dropdown']).should('be.visible')
+                        cy.get(locators.multimodule['dropdown-name']).should('be.visible')
+                        cy.get(locators.multimodule['dropdown-name']).each($element => {
                             if ($element.text().trim() === element.text().trim()){
                                 cy.wait(500)
                                 cy.wrap($element).click()
                             }
                         })
-                        cy.get(locators.report.filter['search']).click()
+                        cy.get(locators.multimodule['search']).click()
                         cy.get(locators.report.comboxTable8[key]).contains(element.text())
                         cy.wait(500)
                     })
@@ -1421,7 +1409,7 @@ describe('Report Module Test', () => {
             'Total House Edge',
         ]
         summaryTable.forEach((summaryLabel) => {
-            cy.get(locators.profile.activity['summaryTable'])
+            cy.get(locators.multimodule['summaryTable'])
                 .should('be.visible')
                 .contains(summaryLabel)
                 .should('exist')
@@ -1431,7 +1419,7 @@ describe('Report Module Test', () => {
         })
         cy.log('All summary table column names have been validated')
 
-        cy.get(locators.profile.activity['summaryRows']).then((summaryRows) => {
+        cy.get(locators.multimodule['summaryRows']).then((summaryRows) => {
             const count = summaryRows.length;
             if (count >= 1) {
                 const table = locators.report.summaryTable.dataTable1
@@ -1445,16 +1433,16 @@ describe('Report Module Test', () => {
         })
 
         //Export Table
-        cy.get(locators.report.filter['export']).click()
-        cy.get(locators.report.filter['pop-up']).should('be.visible')
-        cy.get(locators.report.filter['pop-up-head']).contains('OGAPIIntegration')
-        cy.get(locators.report.filter['pop-up-body']).contains('Your Vendor Summary export is currently in progress. You will be notified once it is complete.')
-        cy.get(locators.report.filter['bell']).click()
-        cy.get(locators.report.filter['notif']).click()
+        cy.get(locators.multimodule['export']).click()
+        cy.get(locators.multimodule['pop-up']).should('be.visible')
+        cy.get(locators.multimodule['pop-up-head']).contains('OGAPIIntegration')
+        cy.get(locators.multimodule['pop-up-body']).contains('Your Vendor Summary export is currently in progress. You will be notified once it is complete.')
+        cy.get(locators.multimodule['bell']).click()
+        cy.get(locators.multimodule['notif']).click()
 
-        cy.get(locators.report.filter['reset']).click()
+        cy.get(locators.multimodule['reset']).click()
             .then(() => {
-                cy.get(locators.report.filter['selection']).then(($spans) => {
+                cy.get(locators.multimodule['selection']).then(($spans) => {
                     // Validate the next three spans contain "All"
                     for (let i = 0; i <= 2; i++) {
                         cy.wrap($spans.eq(i))
@@ -1464,7 +1452,7 @@ describe('Report Module Test', () => {
                     }
                 })
                     
-                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+                cy.get(locators.multimodule['table']).should('contain', 'No data available')
             })
 
         cy.log('All tests passed successfully!')
@@ -1548,7 +1536,7 @@ describe('Report Module Test', () => {
                 cy.wrap($element).click()
             }
         })
-        cy.get(locators.report.filter['search']).click()
+        cy.get(locators.multimodule['search']).click()
 
         //Input
         cy.get(locators.multimodule['rows']).then((rows) => {
@@ -1573,15 +1561,15 @@ describe('Report Module Test', () => {
                 const table = locators.report.comboxTable9
                 for (const key in table) {
                     cy.get(locators.report.comboxTable9[key]).then(element => {
-                        cy.get(locators.report.filter[key]).type(element.text(), { force: true, delay: 150 })
-                        cy.get(locators.report.filter['dropdown']).should('be.visible')
-                        cy.get(locators.report.filter['dropdown-name']).should('be.visible')
-                        cy.get(locators.report.filter['dropdown-name']).each($element => {
+                        cy.get(locators.multimodule[key]).type(element.text(), { force: true, delay: 150 })
+                        cy.get(locators.multimodule['dropdown']).should('be.visible')
+                        cy.get(locators.multimodule['dropdown-name']).should('be.visible')
+                        cy.get(locators.multimodule['dropdown-name']).each($element => {
                             if ($element.text().trim() === element.text().trim()){
                                 cy.wrap($element).click()
                             }
                         })
-                        cy.get(locators.report.filter['search']).click()
+                        cy.get(locators.multimodule['search']).click()
                         cy.get(locators.report.comboxTable9[key]).contains(element.text())
                     })
                 }
@@ -1604,7 +1592,7 @@ describe('Report Module Test', () => {
             'Total Turnover Amount',
         ]
         summaryTable.forEach((summaryLabel) => {
-            cy.get(locators.profile.activity['summaryTable'])
+            cy.get(locators.multimodule['summaryTable'])
                 .should('be.visible')
                 .contains(summaryLabel)
                 .should('exist')
@@ -1614,7 +1602,7 @@ describe('Report Module Test', () => {
         })
         cy.log('All summary table column names have been validated')
 
-        cy.get(locators.profile.activity['summaryRows']).then((summaryRows) => {
+        cy.get(locators.multimodule['summaryRows']).then((summaryRows) => {
             const count = summaryRows.length;
             if (count >= 1) {
                 const table = locators.report.summaryTable.dataTable1
@@ -1628,14 +1616,14 @@ describe('Report Module Test', () => {
         })
 
         //Export Table
-        cy.get(locators.report.filter['export']).click()
-        cy.get(locators.report.filter['pop-up']).should('be.visible')
-        cy.get(locators.report.filter['pop-up-head']).contains('OGAPIIntegration')
-        cy.get(locators.report.filter['pop-up-body']).contains('Your Player Summary export is currently in progress. You will be notified once it is complete.')
-        cy.get(locators.report.filter['bell']).click()
-        cy.get(locators.report.filter['notif']).click()
+        cy.get(locators.multimodule['export']).click()
+        cy.get(locators.multimodule['pop-up']).should('be.visible')
+        cy.get(locators.multimodule['pop-up-head']).contains('OGAPIIntegration')
+        cy.get(locators.multimodule['pop-up-body']).contains('Your Player Summary export is currently in progress. You will be notified once it is complete.')
+        cy.get(locators.multimodule['bell']).click()
+        cy.get(locators.multimodule['notif']).click()
 
-        cy.get(locators.report.filter['reset']).click()
+        cy.get(locators.multimodule['reset']).click()
             .then(() => {
                 cy.get(locators.report.filter['selection']).then(($spans) => {
                     // Validate the next three spans contain "All"
@@ -1647,7 +1635,7 @@ describe('Report Module Test', () => {
                     }
                 })
                     
-                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+                cy.get(locators.multimodule['table']).should('contain', 'No data available')
             })
         
         cy.log('All tests passed successfully!')
@@ -1728,22 +1716,22 @@ describe('Report Module Test', () => {
         cy.get(locators.report.filter['last-month']).click()
 
         //Operator Name
-        cy.get(locators.report.filter['form-input3']).type(operator, {delay: 200})
-        cy.get(locators.report.filter['operator-dropdown']).should('be.visible')
-        cy.get(locators.report.filter['parent-operator']).should('be.visible')
-        cy.get(locators.report.filter['operator-name']).should('be.visible')
-        cy.get(locators.report.filter['operator-name']).each($element => {
+        cy.get(locators.multimodule['form-input3']).type(operator, {delay: 200})
+        cy.get(locators.multimodule['operator-dropdown']).should('be.visible')
+        cy.get(locators.multimodule['parent-operator']).should('be.visible')
+        cy.get(locators.multimodule['operator-name']).should('be.visible')
+        cy.get(locators.multimodule['operator-name']).each($element => {
             if ($element.text() === operator){
                 cy.wrap($element).click()
             }
         })
-        cy.get(locators.report.filter['search']).click()
+        cy.get(locators.multimodule['search']).click()
         cy.get(locators.report.filter['credit-date'])
             .should('be.visible')
             .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['last-month']).click()
-        cy.get(locators.report.filter['search']).click()
+        cy.get(locators.multimodule['search']).click()
         cy.get(locators.report.filter['dpClear']).eq(1).click()
 
         //Input
@@ -1754,7 +1742,7 @@ describe('Report Module Test', () => {
                 for (const key in table) {
                     cy.get(locators.report.inputTable7[key]).then(element => {
                         cy.get(locators.report.filter[key]).type(element.text(), { delay: 150})
-                        cy.get(locators.report.filter['search']).click()
+                        cy.get(locators.multimodule['search']).click()
                         cy.get(locators.report.inputTable7[key]).contains(element.text())
                         cy.get(locators.report.filter[key]).clear()
                     })
@@ -1769,15 +1757,15 @@ describe('Report Module Test', () => {
                 const table = locators.report.comboxTable10
                 for (const key in table) {
                     cy.get(locators.report.comboxTable10[key]).then(element => {
-                        cy.get(locators.report.filter[key]).type(element.text(), { force: true, delay: 150 })
-                        cy.get(locators.report.filter['dropdown']).should('be.visible')
-                        cy.get(locators.report.filter['dropdown-name']).should('be.visible')
-                        cy.get(locators.report.filter['dropdown-name']).each($element => {
+                        cy.get(locators.multimodule[key]).type(element.text(), { force: true, delay: 150 })
+                        cy.get(locators.multimodule['dropdown']).should('be.visible')
+                        cy.get(locators.multimodule['dropdown-name']).should('be.visible')
+                        cy.get(locators.multimodule['dropdown-name']).each($element => {
                             if ($element.text().trim() === element.text().trim()){
                                 cy.wrap($element).click()
                             }
                         })
-                        cy.get(locators.report.filter['search']).click()
+                        cy.get(locators.multimodule['search']).click()
                         cy.get(locators.report.comboxTable10[key]).contains(element.text())
                     })
                 }
@@ -1799,7 +1787,7 @@ describe('Report Module Test', () => {
             'Total Turnover Amount',
         ]
         summaryTable.forEach((summaryLabel) => {
-            cy.get(locators.profile.activity['summaryTable'])
+            cy.get(locators.multimodule['summaryTable'])
                 .should('be.visible')
                 .contains(summaryLabel)
                 .should('exist')
@@ -1809,7 +1797,7 @@ describe('Report Module Test', () => {
         })
         cy.log('All summary table column names have been validated')
 
-        cy.get(locators.profile.activity['summaryRows']).then((summaryRows) => {
+        cy.get(locators.multimodule['summaryRows']).then((summaryRows) => {
             const count = summaryRows.length;
             if (count >= 1) {
                 const table = locators.report.summaryTable.dataTable3
@@ -1823,16 +1811,16 @@ describe('Report Module Test', () => {
         })
 
         //Export Table
-        cy.get(locators.report.filter['export']).click()
-        cy.get(locators.report.filter['pop-up']).should('be.visible')
-        cy.get(locators.report.filter['pop-up-head']).contains('OGAPIIntegration')
-        cy.get(locators.report.filter['pop-up-body']).contains('Your Sports Betting Transaction export is currently in progress. You will be notified once it is complete.')
-        cy.get(locators.report.filter['bell']).click()
-        cy.get(locators.report.filter['notif']).click()
+        cy.get(locators.multimodule['export']).click()
+        cy.get(locators.multimodule['pop-up']).should('be.visible')
+        cy.get(locators.multimodule['pop-up-head']).contains('OGAPIIntegration')
+        cy.get(locators.multimodule['pop-up-body']).contains('Your Sports Betting Transaction export is currently in progress. You will be notified once it is complete.')
+        cy.get(locators.multimodule['bell']).click()
+        cy.get(locators.multimodule['notif']).click()
         
-        cy.get(locators.report.filter['reset']).click()
+        cy.get(locators.multimodule['reset']).click()
             .then(() => {
-                cy.get(locators.report.filter['selection']).then(($spans) => {
+                cy.get(locators.multimodule['selection']).then(($spans) => {
                     // Validate the next three spans contain "All"
                     for (let i = 0; i <= 3; i++) {
                         cy.wrap($spans.eq(i))
@@ -1842,7 +1830,7 @@ describe('Report Module Test', () => {
                     }
                 })
                     
-                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+                cy.get(locators.multimodule['table']).should('contain', 'No data available')
             })
 
         cy.log('All tests passed successfully!')

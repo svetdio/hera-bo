@@ -12,7 +12,7 @@ export default {
         'operator-dropdown':          'div.ant-select-dropdown',
         'operator-name':              'div.filter-node .ant-select-tree-title',
         'parent-operator':            '.ant-select-tree-treenode:nth-of-type(1) .anticon',
-        
+
         'vendor':                     'div.form_inputs:nth-child(1) input',
         'vendor-dropdown':            'div.ant-select-dropdown',
         'vendor-name':                '.ant-select-item-option-content',
@@ -51,6 +51,8 @@ export default {
 
         'summaryTable':               'table > thead > tr > th',
         'summaryRows':                '.table-auto.table-custom.min-w-full.table-lg tr',
+
+        'selection':                  'span.ant-select-selection-item'
     },
 
     login: 
@@ -148,6 +150,7 @@ export default {
             'gameId':                     '#game_id',
             'gameCode':                   '#game_code',
             'promoName':                  '#promo_name',
+            'summary-accordion':          '.toggle-summary-table-btn',
         },
 
         inputTable1: {

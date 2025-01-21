@@ -159,11 +159,11 @@ describe('Test', () => {
             cy.get(locators.report.filter['export']).click()
             cy.get(locators.report.filter['pop-up']).should('be.visible')
             cy.get(locators.report.filter['pop-up-head']).contains('OGAPIIntegration')
-            cy.get(locators.report.filter['pop-up-body']).contains('Your Vendor Summary export is currently in progress. You will be notified once it is complete.')
+            cy.get(locators.multimodule['pop-up-body']).contains('Your Vendor Summary export is currently in progress. You will be notified once it is complete.')
             cy.get(locators.report.filter['bell']).click()
             cy.get(locators.report.filter['notif']).click()
     
-            cy.get(locators.report.filter['reset']).click()
+            cy.get(locators.multimodule['reset']).click()
                 .then(() => {
                     cy.get(locators.report.filter['selection']).then(($spans) => {
                         // Validate the next three spans contain "All"

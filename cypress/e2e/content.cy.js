@@ -102,7 +102,7 @@ describe('Content Management Module Test', () => {
                     }
                 })
                     
-                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+                cy.get(locators.multimodule['table']).should('contain', 'No data available')
             })
 
         cy.log('All tests passed successfully!')
@@ -175,7 +175,7 @@ describe('Content Management Module Test', () => {
                     }
                 })
                     
-                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+                cy.get(locators.multimodule['table']).should('contain', 'No data available')
             })
 
         cy.log('All tests passed successfully!')
@@ -264,7 +264,7 @@ describe('Content Management Module Test', () => {
                     }
                 })
                     
-                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+                cy.get(locators.multimodule['table']).should('contain', 'No data available')
             })
 
         cy.log('All tests passed successfully!')
@@ -377,7 +377,7 @@ describe('Content Management Module Test', () => {
                         cy.get(locators.multimodule['search']).click()
                         cy.get(locators.content.comboxTable4[key]).contains(element.text())
                         // cy.get(locators.multimodule['reset']).click()
-                        // cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+                        // cy.get(locators.multimodule['table']).should('contain', 'No data available')
                     })
                 }
             }   
@@ -395,7 +395,7 @@ describe('Content Management Module Test', () => {
         cy.get(locators.multimodule['search']).click()
         // cy.get(locators.content.filter['form-input6']).contains('baccarat')
         // cy.get(locators.multimodule['reset']).click()
-        // cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+        // cy.get(locators.multimodule['table']).should('contain', 'No data available')
         
         //Export Table
         cy.get(locators.content.filter['export']).click()
@@ -417,7 +417,7 @@ describe('Content Management Module Test', () => {
                     }
                 })
                     
-                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+                cy.get(locators.multimodule['table']).should('contain', 'No data available')
                         })
 
         cy.then(() => {
@@ -482,7 +482,7 @@ describe('Content Management Module Test', () => {
         })
 
         // cy.get(locators.multimodule['reset']).click()
-        // cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+        // cy.get(locators.multimodule['table']).should('contain', 'No data available')
         // cy.wait(500)
     
         //Export Table
@@ -505,7 +505,7 @@ describe('Content Management Module Test', () => {
                     }
                 })
                     
-                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+                cy.get(locators.multimodule['table']).should('contain', 'No data available')
             })
 
         cy.then(() => {
@@ -576,7 +576,7 @@ describe('Content Management Module Test', () => {
         //                 cy.get(locators.multimodule['search']).click()
         //                 cy.get(locators.content.comboxTable5[key]).contains(element.text())
         //                 cy.get(locators.multimodule['reset']).click()
-        //                 cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+        //                 cy.get(locators.multimodule['table']).should('contain', 'No data available')
         //             })
         //         }
         //     }   
@@ -602,7 +602,7 @@ describe('Content Management Module Test', () => {
                     }
                 })
                     
-                cy.get(locators.profile.activity['table']).should('contain', 'No data available')
+                cy.get(locators.multimodule['table']).should('contain', 'No data available')
             })
 
         cy.then(() => {

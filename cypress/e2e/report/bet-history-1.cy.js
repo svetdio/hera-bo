@@ -3,24 +3,23 @@ import locators from "../../support/locators"
 Cypress.config('defaultCommandTimeout', 10000) // Set default command timeout to 10 seconds
 Cypress.config('requestTimeout', 10000)   // Increase timeout for network requests
 
-describe('Report Module Test', () => {
+describe('Betting Transaction History', () => {
     beforeEach(() => {
         const username = Cypress.env('username')
         const password = Cypress.env('password')
         cy.login(username, password)
+        cy.visit('/')
+        cy.navigateToBettingHistory()
     })
 
+
     //Betting Transaction History submodule
-    it('Betting Transaction', () => {
-        const operator = Cypress.env('operator')
-
+    it('User should be able to access the Betting Transaction History (Accessibility)', () => {
     //User should be able to access the Betting Transaction History (Accessibility)
-        cy.visit('/')
-        cy.get(locators.report['report']).click()
-        cy.get(locators.report['container']).should('be.visible')
-        cy.get(locators.report['betting-history']).click()
         cy.log(`Verify Betting Transaction History using (Module), PASSED`)
+    })
 
+    it('User should be able to validate the Form Inputs as Search Criteria (Search Criteria Accessibility)', () => {
     // User should be able to validate the Form Inputs as Search Criteria (Search Criteria Accessibility)
         cy.get(locators.multimodule['text-head']).should('contain.text', 'Betting Transaction History')
         const searchForm = [
@@ -45,10 +44,13 @@ describe('Report Module Test', () => {
                 })
         })
         cy.log(`Verify the Input Form fields by (Accessibility), PASSED`)
-
         // cy.log(`Verify the Input Form fields by (Functionality), PASSED`)
+    })
 
+    it('User should be able to manage Search Criteria of data table using (Search Button)', () => {
     //User should be able to manage Search Criteria of data table using (Search Button)
+        const operator = Cypress.env('operator')
+
         cy.get(locators.report.filter['transaction-date'])
                 .should('be.visible')
                 .click()
@@ -118,9 +120,12 @@ describe('Report Module Test', () => {
 
         //clear fields
         cy.get(locators.multimodule['reset']).click()
-        cy.wait(500)
+    })
 
+    it('User should be able to manage Search Criteria of data table using (Reset Button)', () => {
     // User should be able to manage Search Criteria of data table using (Reset Button)
+        const operator = Cypress.env('operator')
+
         cy.get(locators.report.filter['transaction-date'])
             .should('be.visible')
             .click()
@@ -252,10 +257,12 @@ describe('Report Module Test', () => {
         cy.get(locators.multimodule['reset']).click()
         cy.get(locators.multimodule['table']).should('contain.text', 'No data available')
         cy.log(`Verify the "Reset" button functionality with input in search fields (Empty Input), PASSED`)
+    })
 
-        cy.wait(500)
-
+    it('User should be able to manage Search Criteria of data table using (Export Button)', () => {
     //User should be able to validate the Search Criteria Transaction Date/Time and Operator Name as (Required Fields)
+        const operator = Cypress.env('operator')
+        
         cy.get(locators.report.filter['transaction-date'])
             .should('be.visible')
             .click()
@@ -359,7 +366,9 @@ describe('Report Module Test', () => {
             }
         })
         cy.log(`Verify the "Transaction Date/Time" and "Operator Name" as required fields (No Input - Both Field), PASSED`)
+    })
 
+    it('User should be able to validate Transaction Date/Time field (Transaction Date/Time)', () => {
     //User should be able to validate Transaction Date/Time field (Transaction Date/Time)
         cy.get(locators.multimodule['form']).should('contain.text', 'Transaction Date/Time')
         cy.get(locators.multimodule['form-input1']).should('be.visible')
@@ -368,9 +377,12 @@ describe('Report Module Test', () => {
 
         //clear fields
         cy.get(locators.multimodule['reset']).click()
-        cy.wait(500)
+    })
 
+    it('User should be able to manage Search Criteria using Transaction Date/Time field to present data table by (Time Range - Paramaters)', () => {
     //User should be able to manage Search Criteria using Transaction Date/Time field to present data table by (Time Range - Paramaters)
+        const operator = Cypress.env('operator')
+
         cy.get(locators.multimodule['form-input2']).type(operator, {delay: 200})
         cy.get(locators.multimodule['operator-dropdown']).should('be.visible')
         cy.get(locators.multimodule['parent-operator']).should('be.visible')
@@ -446,9 +458,12 @@ describe('Report Module Test', () => {
 
         //clear fields
         cy.get(locators.multimodule['reset']).click()
-        cy.wait(500)
+    })
 
+    it('User should be able to navigate Transaction Date/Time field to present data table using (Date Range - Paramaters)', () => {
     //User should be able to navigate Transaction Date/Time field to present data table using (Date Range - Paramaters)
+        const operator = Cypress.env('operator')
+
         cy.get(locators.report.filter['transaction-date'])
                 .should('be.visible')
                 .click()
@@ -731,8 +746,12 @@ describe('Report Module Test', () => {
             }
         })
         cy.log(`Validate the "Transaction Date/Time" field by (Three months ago or more), PASSED`)
-        
+    })
+    
+    it('User should be able to validate Operator Name field and manage Search Criteria of data table by (Operator Name)', () => {
     //User should be able to validate Operator Name field and manage Search Criteria of data table by (Operator Name)
+        const operator = Cypress.env('operator')
+
         cy.get(locators.multimodule['form-input2']).should('have.attr', 'type', 'search')
         cy.log(`Verify the Operator Name field by (Operator Name - Input Type)`)
 
@@ -764,6 +783,10 @@ describe('Report Module Test', () => {
         })
         cy.log(`Verify the Operator Name value in Search Criteria using (Valid)`)
 
+        //clear fields
+        cy.get(locators.multimodule['reset']).click()
+        cy.wait(500)
+
         cy.get(locators.report.filter['transaction-date'])
             .should('be.visible')
             .click()
@@ -788,6 +811,10 @@ describe('Report Module Test', () => {
             }
         })
         cy.log(`Verify the Operator Name value in Search Criteria using (Fuzzy)`)
+
+        //clear fields
+        cy.get(locators.multimodule['reset']).click()
+        cy.wait(500)
 
         cy.get(locators.report.filter['transaction-date'])
             .should('be.visible')
@@ -817,6 +844,10 @@ describe('Report Module Test', () => {
         })
         cy.log(`Verify the Operator Name value using (Invalid)`)
 
+        //clear fields
+        cy.get(locators.multimodule['reset']).click()
+        cy.wait(500)
+
         cy.get(locators.report.filter['transaction-date'])
             .should('be.visible')
             .click()
@@ -828,7 +859,9 @@ describe('Report Module Test', () => {
                 cy.get(locators.multimodule['operator-dropdown']).should('be.visible')
             })
         cy.log(`Verify the Operator Name value in Search Criteria using (Enter Key)`)
+    })
 
+    it('User should be to able validate and manage Search Criteria using Player ID field and its other function to present data table by (Player ID)', () => {
     //User should be to able validate and manage Search Criteria using Player ID field and its other function to present data table by (Player ID)
         
         cy.log(`Verify the Player ID field by (Player ID - Input Type)`)
@@ -838,14 +871,60 @@ describe('Report Module Test', () => {
         cy.log(`Verify the fuzzy Player ID value in Search Criteria using (Search exact Player ID - OFF)`)
         cy.log(`Verify the Player ID value using (Invalid)`)
         cy.log(`Verify the Player ID value in Search Criteria using (Enter Key)`)
-    
-    //User should be able to validate Transaction ID field and manage Search Criteria of data table by (Transaction ID)
-        cy.log(``)
-        cy.log(``)
-        cy.log(``)
-        cy.log(``)
-        cy.log(``)
-        cy.log(``)
-        cy.log(``)
     })
+    
+    it('User should be able to validate Transaction ID field and manage Search Criteria of data table by (Transaction ID)', () => {
+    //User should be able to validate Transaction ID field and manage Search Criteria of data table by (Transaction ID)
+        cy.get(locators.report.filter['playerId'])
+            .should('have.attr', 'type', 'text')
+            .should('be.visible')
+        cy.log(`Verify the Transaction ID field by (Transaction ID - Input Type)`)
+        cy.log(`Verify the Search exact Player ID field by(Accessibility)`)
+
+        //clear fields
+        cy.get(locators.multimodule['reset']).click()
+        cy.wait(500)
+        
+        cy.log(`Verify the Transaction ID value in Search Criteria using (Valid)`)
+
+        //clear fields
+        cy.get(locators.multimodule['reset']).click()
+        cy.wait(500)
+
+        cy.log(`Verify the Transaction ID value in Search Criteria using (Fuzzy)`)
+
+        //clear fields
+        cy.get(locators.multimodule['reset']).click()
+        cy.wait(500)
+
+        cy.log(`Verify the Transaction ID value using (Invalid)`)
+        
+        //clear fields
+        cy.get(locators.multimodule['reset']).click()
+        cy.wait(500)
+
+        cy.log(`Verify the Transaction ID value in Search Criteria using (Enter Key)`)
+
+        //clear fields
+        cy.get(locators.multimodule['reset']).click()
+
+    })
+
+    it('User should be able to validate Transaction Status field and manage Search Criteria of data table by (Transaction Status)', () => {
+    // User should be able to validate Transaction Status field and manage Search Criteria of data table by (Transaction Status)
+        cy.log(`Verify the Transaction Status field by (Transaction Status - Input Type)`)
+
+        //clear fields
+        cy.get(locators.multimodule['reset']).click()
+        cy.wait(500)
+
+        cy.log(`Validate the Transaction Status dropdown box by (Dropdown List)`)
+
+        //clear fields
+        cy.get(locators.multimodule['reset']).click()
+        cy.wait(500)
+
+
+    })
+
 })

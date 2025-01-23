@@ -734,11 +734,118 @@ describe('Report Module Test', () => {
         
     //User should be able to validate Operator Name field and manage Search Criteria of data table by (Operator Name)
         cy.get(locators.multimodule['form-input2']).should('have.attr', 'type', 'search')
-        cy.get(locators.multimodule['dropdown']).should('be,visible')
         cy.log(`Verify the Operator Name field by (Operator Name - Input Type)`)
+
+        cy.get(locators.multimodule['form-input2']).type(operator, {delay: 200})
+        cy.get(locators.multimodule['dropdown']).should('be.visible')
         cy.log(`Validate the Operator Name dropdown box by (Dropdown List)`)
+
+        cy.get(locators.report.filter['transaction-date'])
+            .should('be.visible')
+            .click()
+        cy.get(locators.report.filter['date-modal']).should('be.visible')
+        cy.get(locators.report.filter['lastMonth']).click()
+        cy.get(locators.multimodule['form-input2']).type(operator, {delay: 200})
+        cy.get(locators.multimodule['operator-dropdown']).should('be.visible')
+        cy.get(locators.multimodule['parent-operator']).should('be.visible')
+        cy.get(locators.multimodule['operator-name']).should('be.visible')
+        cy.get(locators.multimodule['operator-name']).each($element => {
+            if ($element.text() === operator){
+                cy.wrap($element).click()
+            }
+        })
+        cy.get(locators.multimodule['search']).click()
+        cy.get(locators.multimodule['rows']).then($rows => {
+            if ($rows.length > 1) {
+                cy.contains('No data available', { timeout: 20000 }).should('not.exist')
+            } else {
+                cy.contains('No data available', { timeout: 20000 }).should('be.visible')
+            }
+        })
         cy.log(`Verify the Operator Name value in Search Criteria using (Valid)`)
 
+        cy.get(locators.report.filter['transaction-date'])
+            .should('be.visible')
+            .click()
+        cy.get(locators.report.filter['date-modal']).should('be.visible')
+        cy.get(locators.report.filter['lastMonth']).click()
 
+        cy.get(locators.multimodule['form-input2']).type('qate', {delay: 200})
+        cy.get(locators.multimodule['operator-dropdown']).should('be.visible')
+        cy.get(locators.multimodule['parent-operator']).should('be.visible')
+        cy.get(locators.multimodule['operator-name']).should('be.visible')
+        cy.get(locators.multimodule['operator-name']).each($element => {
+            if ($element.text() === operator){
+                cy.wrap($element).click()
+            }
+        })
+        cy.get(locators.multimodule['search']).click()
+        cy.get(locators.multimodule['rows']).then($rows => {
+            if ($rows.length > 1) {
+                cy.contains('No data available', { timeout: 20000 }).should('not.exist')
+            } else {
+                cy.contains('No data available', { timeout: 20000 }).should('be.visible')
+            }
+        })
+        cy.log(`Verify the Operator Name value in Search Criteria using (Fuzzy)`)
+
+        cy.get(locators.report.filter['transaction-date'])
+            .should('be.visible')
+            .click()
+        cy.get(locators.report.filter['date-modal']).should('be.visible')
+        cy.get(locators.report.filter['lastMonth']).click()
+
+        cy.get(locators.multimodule['form-input2']).type('Abcde4', {delay: 200})
+            .then(() => {
+                cy.get(locators.multimodule['no-operator'])
+                    .should('be.visible')
+                    .should('have.text', 'No Matching Option')
+            })
+
+        cy.get(locators.multimodule['search']).click()
+
+        cy.get(locators.multimodule['error-msg'])
+            .should('be.visible')
+            .should('contain.text', 'The operator name field is required.')
+
+        cy.get(locators.multimodule['rows']).then($rows => {
+            if ($rows.length > 1) {
+                cy.contains('No data available', { timeout: 20000 }).should('not.exist')
+            } else {
+                cy.contains('No data available', { timeout: 20000 }).should('be.visible')
+            }
+        })
+        cy.log(`Verify the Operator Name value using (Invalid)`)
+
+        cy.get(locators.report.filter['transaction-date'])
+            .should('be.visible')
+            .click()
+        cy.get(locators.report.filter['date-modal']).should('be.visible')
+        cy.get(locators.report.filter['lastMonth']).click()
+
+        cy.get(locators.multimodule['form-input2']).type(operator + '{enter}', { delay: 200 })
+            .then(() => {
+                cy.get(locators.multimodule['operator-dropdown']).should('be.visible')
+            })
+        cy.log(`Verify the Operator Name value in Search Criteria using (Enter Key)`)
+
+    //User should be to able validate and manage Search Criteria using Player ID field and its other function to present data table by (Player ID)
+        
+        cy.log(`Verify the Player ID field by (Player ID - Input Type)`)
+        cy.log(`Verify the Search exact Player ID field by (Accessibility)`)
+        cy.log(`Verify the Player ID value using (Valid)`)
+        cy.log(`Verify the fuzzy Player ID value in Search Criteria using (Search exact Player ID - ON)`)
+        cy.log(`Verify the fuzzy Player ID value in Search Criteria using (Search exact Player ID - OFF)`)
+        cy.log(`Verify the Player ID value using (Invalid)`)
+        cy.log(`Verify the Player ID value in Search Criteria using (Enter Key)`)
+    
+    //User should be able to validate Transaction ID field and manage Search Criteria of data table by (Transaction ID)
+        cy.log(``)
+        cy.log(``)
+        cy.log(``)
+        cy.log(``)
+        cy.log(``)
+        cy.log(``)
+        cy.log(``)
     })
 })

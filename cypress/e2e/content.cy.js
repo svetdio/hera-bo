@@ -37,7 +37,7 @@ describe('Content Management Module Test', () => {
 
         cy.get(locators.content.filter['sub-operator']).click();
         cy.get(locators.content.filter['check']).should('be.visible');
-        cy.get(locators.report.filter['search']).click()
+        cy.get(locators.multimodule['search']).click()
 
         //Dropdown
         cy.get(locators.multimodule['rows']).then((rows) => {
@@ -218,7 +218,7 @@ describe('Content Management Module Test', () => {
 
         //Input
         cy.get(locators.content.filter['vendor']).type(vendor, { delay: 100 })
-        cy.get(locators.report.filter['search']).click()
+        cy.get(locators.multimodule['search']).click()
         cy.wait(500)
 
         //Dropdown

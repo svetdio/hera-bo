@@ -52,7 +52,8 @@ export default {
         'summaryTable':               'table > thead > tr > th',
         'summaryRows':                '.table-auto.table-custom.min-w-full.table-lg tr',
 
-        'selection':                  'span.ant-select-selection-item'
+        'selection':                  'span.ant-select-selection-item',
+        'error-msg':                  '.form-error'
     },
 
     login: 
@@ -129,20 +130,23 @@ export default {
         
         filter:
         {
-            'search':                     'button[type="submit"]',
-            'reset':                      'button[type="reset"]',
             'transaction-date':           '.form_inputs:first-of-type .dp__input_wrap input',
             'credit-date':                '.form_inputs:nth-child(2) .dp__input_wrap input',
+
             'date-modal':                 'div.dp__menu',
+
             'today':                      'div.items-start:nth-child(1) .presetDatesLabel',
             'yesterday':                  'div.items-start:nth-child(2) .presetDatesLabel',
-            'this-week':                  'div.items-start:nth-child(3) .presetDatesLabel',
-            'last-week':                  'div.items-start:nth-child(4) .presetDatesLabel',
-            'this-month':                 'div.items-start:nth-child(5) .presetDatesLabel',
-            'last-month':                 'div.items-start:nth-child(6) .presetDatesLabel',
-            'two-months-ago':             'div.items-start:nth-child(7) .presetDatesLabel',
+            'thisWeek':                  'div.items-start:nth-child(3) .presetDatesLabel',
+            'lastWeek':                  'div.items-start:nth-child(4) .presetDatesLabel',
+            'thisMonth':                 'div.items-start:nth-child(5) .presetDatesLabel',
+            'lastMonth':                 'div.items-start:nth-child(6) .presetDatesLabel',
+            'twoMonths':             'div.items-start:nth-child(7) .presetDatesLabel',
+
             'dpClear':                    '.dp__icon.dp__clear_icon.dp__input_icons',
+
             'parent-operator':            '.ant-select-tree-treenode:nth-of-type(1) .anticon',
+
             'transactionId':              '#transaction_id',
             'playerId':                   '#player_id',
             'gameName':                   '#game_name',
@@ -150,7 +154,47 @@ export default {
             'gameId':                     '#game_id',
             'gameCode':                   '#game_code',
             'promoName':                  '#promo_name',
+
             'summary-accordion':          '.toggle-summary-table-btn',
+
+            'apply':                      '.dp__action_button.dp__action_select',
+
+            'clock':                      '.dp__btn.dp__button',
+            'calendar':                   '.dp__btn.dp__button',
+
+            'month-select':               'button[aria-label="Open months overlay"]',
+            'month-picker':               '.dp__overlay_cell.dp__overlay_cell_pad',
+
+            'prevMonth':                  'button[aria-label="Previous month"]',
+            'nextMonth':                  'button[aria-label="Next month"]',
+
+            'dateStart':                  '[id="2025-01-01"]',
+            'dateEnd':                    '[id="2025-01-31"]',
+
+            'dateEnd1':                    '[id="2025-02-10"]',
+
+            'octdateStart':               '[id="2024-10-01"]',
+            'octdateEnd':                 '[id="2024-10-31"]',
+            
+            'incHrFrom':                  'button.dp__btn.dp__inc_dec_button[data-test="hours-time-inc-btn-0"]',
+            'incHrTo':                    'button.dp__btn.dp__inc_dec_button[data-test="hours-time-inc-btn-1"]',
+
+            'incMinFrom':                 'button.dp__btn.dp__inc_dec_button[data-test="minutes-time-inc-btn-0"]',
+            'incMinTo':                   'button.dp__btn.dp__inc_dec_button[data-test="minutes-time-inc-btn-1"]',
+
+            'incSecFrom':                 'button.dp__btn.dp__inc_dec_button[data-test="seconds-time-inc-btn-0"]',
+            'incSecTo':                   'button.dp__btn.dp__inc_dec_button[data-test="seconds-time-inc-btn-1"]',
+
+            'decHrFrom':                  'button.dp__btn.dp__inc_dec_button[data-test="hours-time-dec-btn-0"]',
+            'decHrTo':                    'button.dp__btn.dp__inc_dec_button[data-test="hours-time-dec-btn-1"]',
+
+            'decMinFrom':                 'button.dp__btn.dp__inc_dec_button[data-test="minutes-time-dec-btn-0"]',
+            'decMinTo':                   'button.dp__btn.dp__inc_dec_button[data-test="minutes-time-dec-btn-1"]',
+
+            'decSecFrom':                 'button.dp__btn.dp__inc_dec_button[data-test="seconds-time-dec-btn-0"]',
+            'decSecTo':                   'button.dp__btn.dp__inc_dec_button[data-test="seconds-time-dec-btn-1"]',
+
+            'datePreview':                '.dp__selection_preview',
         },
 
         inputTable1: {

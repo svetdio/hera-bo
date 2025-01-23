@@ -19,7 +19,6 @@ describe('Report Module Test', () => {
         cy.get(locators.report['report']).click()
         cy.get(locators.report['container']).should('be.visible')
         cy.get(locators.report['betting-history']).click()
-        cy.log(`Verify Betting Transaction History using Module., PASSED`)
 
         //Search Form Text Validation
         cy.get(locators.multimodule['text-head']).should('contain.text', 'Betting Transaction History')
@@ -91,7 +90,7 @@ describe('Report Module Test', () => {
             .should('be.visible')
             .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
-        cy.get(locators.report.filter['last-month']).click()
+        cy.get(locators.report.filter['lastMonth']).click()
         cy.get(locators.multimodule['form-input2']).type(operator, {delay: 200})
         cy.get(locators.multimodule['operator-dropdown']).should('be.visible')
         cy.get(locators.multimodule['parent-operator']).should('be.visible')
@@ -101,7 +100,7 @@ describe('Report Module Test', () => {
                 cy.wrap($element).click()
             }
         })
-        cy.get(locators.report.filter['search']).click()
+        cy.get(locators.multimodule['search']).click()
         // cy.get(locators.profile.activity['preloader']).should('be.visible')
         // cy.log('Preloader is visible, waiting for it to disappear.')
         // cy.get(locators.profile.activity['preloader'], { timeout: 100000 }).should('not.be.visible')
@@ -114,7 +113,7 @@ describe('Report Module Test', () => {
                 for (const key in table) {
                     cy.get(locators.report.inputTable1[key]).then(element => {
                         cy.get(locators.report.filter[key]).type(element.text(), { delay: 150})
-                        cy.get(locators.report.filter['search']).click()
+                        cy.get(locators.multimodule['search']).click()
                         cy.get(locators.report.inputTable1[key]).contains(element.text())
                         cy.get(locators.report.filter[key]).clear()
                     })
@@ -137,7 +136,7 @@ describe('Report Module Test', () => {
                                 cy.wrap($element).click()
                             }
                         })
-                        cy.get(locators.report.filter['search']).click()
+                        cy.get(locators.multimodule['search']).click()
                         cy.get(locators.report.comboxTable1[key]).contains(element.text())
                     })
                 }
@@ -274,7 +273,7 @@ describe('Report Module Test', () => {
             .should('be.visible')
             .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
-        cy.get(locators.report.filter['last-month']).click()
+        cy.get(locators.report.filter['lastMonth']).click()
         cy.get(locators.multimodule['form-input2']).type(operator, {delay: 200})
         cy.get(locators.multimodule['operator-dropdown']).should('be.visible')
         cy.get(locators.multimodule['parent-operator']).should('be.visible')
@@ -449,14 +448,14 @@ describe('Report Module Test', () => {
             .click()
         
         cy.get(locators.report.filter['date-modal']).should('be.visible')
-        cy.get(locators.report.filter['last-month']).click()
+        cy.get(locators.report.filter['lastMonth']).click()
         cy.get(locators.multimodule['form-input2']).type(operator, {delay: 200})
         cy.get(locators.multimodule['operator-dropdown']).should('be.visible')
         cy.get(locators.multimodule['parent-operator']).should('be.visible')
         cy.get(locators.multimodule['operator-name']).should('be.visible')
     
         // cy.get(locators.report.filter['date-modal']).should('be.visible')
-        // cy.get(locators.report.filter['last-month']).click()
+        // cy.get(locators.report.filter['lastMonth']).click()
         // cy.get(locators.multimodule['operator']).type(operator, {delay: 200})
         // cy.get(locators.multimodule['operator-dropdown']).should('be.visible')
         // cy.get(locators.multimodule['parent-operator']).should('be.visible')
@@ -630,7 +629,7 @@ describe('Report Module Test', () => {
             .should('be.visible')
             .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
-        cy.get(locators.report.filter['last-month']).click()
+        cy.get(locators.report.filter['lastMonth']).click()
         cy.get(locators.multimodule['search']).click()
 
         //Input
@@ -804,8 +803,8 @@ describe('Report Module Test', () => {
             .should('be.visible')
             .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
-        cy.get(locators.report.filter['last-month']).click()
-        cy.get(locators.report.filter['search']).click()
+        cy.get(locators.report.filter['lastMonth']).click()
+        cy.get(locators.multimodule['search']).click()
 
         //Vendor Name
         cy.get(locators.multimodule['form-input2']).type(vendor, {delay: 100, force: true })
@@ -827,7 +826,7 @@ describe('Report Module Test', () => {
                     cy.get(locators.report.inputTable4[key]).then(element => {
                         cy.get(locators.report.filter[key]).type(element.text(), { delay: 150})
                         cy.wait(500)
-                        cy.get(locators.report.filter['search']).click()
+                        cy.get(locators.multimodule['search']).click()
                         cy.get(locators.report.inputTable4[key]).contains(element.text())
                         cy.get(locators.report.filter[key]).clear()
                     })
@@ -989,7 +988,7 @@ describe('Report Module Test', () => {
             .should('be.visible')
             .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
-        cy.get(locators.report.filter['last-month']).click()
+        cy.get(locators.report.filter['lastMonth']).click()
 
         //Operator Name
         cy.get(locators.multimodule['form-input2']).type(operator, {delay: 200})
@@ -1185,7 +1184,7 @@ describe('Report Module Test', () => {
             .should('be.visible')
             .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
-        cy.get(locators.report.filter['last-month']).click()
+        cy.get(locators.report.filter['lastMonth']).click()
 
         //Operator Name
         cy.get(locators.multimodule['form-input2']).type(operator, {delay: 200})
@@ -1350,8 +1349,8 @@ describe('Report Module Test', () => {
             .should('be.visible')
             .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
-        cy.get(locators.report.filter['last-month']).click()
-        cy.get(locators.report.filter['search']).click()
+        cy.get(locators.report.filter['lastMonth']).click()
+        cy.get(locators.multimodule['search']).click()
 
         //Input
         cy.get(locators.multimodule['rows']).then((rows) => {
@@ -1524,7 +1523,7 @@ describe('Report Module Test', () => {
             .should('be.visible')
             .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
-        cy.get(locators.report.filter['last-month']).click()
+        cy.get(locators.report.filter['lastMonth']).click()
 
         //Operator Name
         cy.get(locators.multimodule['form-input2']).type(operator, {delay: 200})
@@ -1546,7 +1545,7 @@ describe('Report Module Test', () => {
                 for (const key in table) {
                     cy.get(locators.report.inputTable6[key]).then(element => {
                         cy.get(locators.report.filter[key]).type(element.text(), { delay: 150 })
-                        cy.get(locators.report.filter['search']).click()
+                        cy.get(locators.multimodule['search']).click()
                         cy.get(locators.report.inputTable6[key]).contains(element.text())
                         cy.get(locators.report.filter[key]).clear()
                     })
@@ -1713,7 +1712,7 @@ describe('Report Module Test', () => {
             .should('be.visible')
             .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
-        cy.get(locators.report.filter['last-month']).click()
+        cy.get(locators.report.filter['lastMonth']).click()
 
         //Operator Name
         cy.get(locators.multimodule['form-input3']).type(operator, {delay: 200})
@@ -1730,7 +1729,7 @@ describe('Report Module Test', () => {
             .should('be.visible')
             .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
-        cy.get(locators.report.filter['last-month']).click()
+        cy.get(locators.report.filter['lastMonth']).click()
         cy.get(locators.multimodule['search']).click()
         cy.get(locators.report.filter['dpClear']).eq(1).click()
 

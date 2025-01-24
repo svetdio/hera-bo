@@ -16,7 +16,14 @@ describe('Test', () => {
 
             cy.visit('/')
             cy.navigateToBettingHistory()
+
             cy.reportRequiredFields()
+            cy.get(locators.report.filter['playerId']).type('123457', {delay: 200})
+            cy.get(locators.multimodule['search']).click()
+            .then(() => {
+                if ()
+            })
+            
     })
     
     

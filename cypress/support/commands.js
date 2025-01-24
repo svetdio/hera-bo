@@ -18,6 +18,11 @@ Cypress.Commands.add('failing', (message) => {
     throw new Error(message);
 })
 
+Cypress.Commands.add('clearFields', () => {
+    cy.get(locators.multimodule['reset']).click()
+    cy.wait(500)
+})
+
 Cypress.Commands.add('navigateToBettingHistory', () => {
     cy.get(locators.report['report']).click()
     cy.get(locators.report['container']).should('be.visible')
@@ -42,5 +47,36 @@ Cypress.Commands.add('reportRequiredFields', () => {
             cy.wrap($element).click()
         }
     })
-    cy.get(locators.multimodule['search']).click()
+})
+
+Cypress.Commands.add('transactionDateTime', () => {
+    cy.get(locators.report.filter['transaction-date'])
+        .should('be.visible')
+        .click()
+    cy.get(locators.report.filter['date-modal']).should('be.visible')
+    cy.get(locators.report.filter['lastMonth']).click()
+})
+
+Cypress.Commands.add('operatorName', () => {
+    const operator = Cypress.env('operator')
+
+    cy.get(locators.multimodule['form-input2']).type(operator, {delay: 200})
+    cy.get(locators.multimodule['operator-dropdown']).should('be.visible')
+    cy.get(locators.multimodule['parent-operator']).should('be.visible')
+    cy.get(locators.multimodule['operator-name']).should('be.visible')
+    cy.get(locators.multimodule['operator-name']).each($element => {
+        if ($element.text() === operator){
+            cy.wrap($element).click()
+        }
+    })
+})
+
+Cypress.Commands.add('rows', () => {
+    cy.get(locators.multimodule['rows']).then($rows => {
+        if ($rows.length > 1) {
+            cy.contains('No data available', { timeout: 20000 }).should('not.exist')
+        } else {
+            cy.contains('No data available', { timeout: 20000 }).should('be.visible')
+        }
+    })
 })

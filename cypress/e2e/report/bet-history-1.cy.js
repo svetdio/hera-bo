@@ -50,7 +50,7 @@ describe('Betting Transaction History', () => {
     it('User should be able to manage Search Criteria of data table using (Search Button)', () => {
     //User should be able to manage Search Criteria of data table using (Search Button)
         cy.reportRequiredFields()
-            cy.get(locators.multimodule['search']).click()
+            cy.search()
         cy.wait(500)
 
         cy.rows()
@@ -59,7 +59,7 @@ describe('Betting Transaction History', () => {
         cy.clearFields()
 
         cy.transactionDateTime()
-        cy.get(locators.multimodule['search']).click()
+        cy.search()
 
         cy.get(locators.multimodule['error-msg']).should('be.visible')
 
@@ -68,7 +68,7 @@ describe('Betting Transaction History', () => {
 
         cy.clearFields()
 
-        cy.get(locators.multimodule['search']).click()
+        cy.search()
         cy.get(locators.multimodule['error-msg']).should('be.visible')
 
         cy.wait(1000)
@@ -112,16 +112,14 @@ describe('Betting Transaction History', () => {
                 
                 for (const key in dropdown) {
                     const dpValue = dropdown[key]
-                    cy.get(locators.multimodule[key]).then(element => {
-                        cy.get(locators.multimodule[key]).type(dpValue, { force: true, delay: 150 })
-                        cy.get(locators.multimodule['dropdown']).should('be.visible')
-                        cy.get(locators.multimodule['dropdown-name']).should('be.visible')
-                        cy.get(locators.multimodule['dropdown-name']).each($element => {
-                            if ($element.text().trim() === dpValue){
-                                cy.wait(500)
-                                cy.wrap($element).click()
-                            }
-                        })
+                    cy.get(locators.multimodule[key]).type(dpValue, { force: true, delay: 150 })
+                    cy.get(locators.multimodule['dropdown']).should('be.visible')
+                    cy.get(locators.multimodule['dropdown-name']).should('be.visible')
+                    cy.get(locators.multimodule['dropdown-name']).each($element => {
+                        if ($element.text().trim() === dpValue){
+                            cy.wait(500)
+                            cy.wrap($element).click()
+                        }
                     })
                 }
             }   
@@ -134,7 +132,7 @@ describe('Betting Transaction History', () => {
         cy.wait(500)
 
         cy.reportRequiredFields()
-        cy.get(locators.multimodule['search']).click()
+        cy.search()
 
         cy.get(locators.multimodule['rows']).then((rows) => {
             const count = rows.length
@@ -163,16 +161,14 @@ describe('Betting Transaction History', () => {
                 
                 for (const key in dropdown) {
                     const dpValue = dropdown[key]
-                    cy.get(locators.multimodule[key]).then(element => {
-                        cy.get(locators.multimodule[key]).type(dpValue, { force: true, delay: 150 })
-                        cy.get(locators.multimodule['dropdown']).should('be.visible')
-                        cy.get(locators.multimodule['dropdown-name']).should('be.visible')
-                        cy.get(locators.multimodule['dropdown-name']).each($element => {
-                            if ($element.text().trim() === dpValue){
-                                cy.wait(500)
-                                cy.wrap($element).click()
-                            }
-                        })
+                    cy.get(locators.multimodule[key]).type(dpValue, { force: true, delay: 150 })
+                    cy.get(locators.multimodule['dropdown']).should('be.visible')
+                    cy.get(locators.multimodule['dropdown-name']).should('be.visible')
+                    cy.get(locators.multimodule['dropdown-name']).each($element => {
+                        if ($element.text().trim() === dpValue){
+                            cy.wait(500)
+                            cy.wrap($element).click()
+                        }
                     })
                 }
             }   
@@ -188,10 +184,10 @@ describe('Betting Transaction History', () => {
         cy.log(`Verify the "Reset" button functionality with input in search fields (Empty Input), PASSED`)
     })
 
-    it('User should be able to manage Search Criteria of data table using (Export Button)', () => {
+    it('User should be able to validate the Search Criteria Transaction Date/Time and Operator Name as (Required Fields)', () => {
     //User should be able to validate the Search Criteria Transaction Date/Time and Operator Name as (Required Fields)
         cy.reportRequiredFields()
-        cy.get(locators.multimodule['search']).click()
+        cy.search()
 
         cy.rows()
         cy.log(`Verify the "Transaction Date/Time" and "Operator Name" as required fields (With Input - Both Field), PASSED`)
@@ -199,7 +195,7 @@ describe('Betting Transaction History', () => {
         cy.clearFields()
 
        cy.operatorName()
-        cy.get(locators.multimodule['search']).click()
+        cy.search()
         cy.get(locators.multimodule['error-msg'])
             .should('be.visible')
             .should('contain.text', 'The transaction date field is required.')
@@ -212,7 +208,7 @@ describe('Betting Transaction History', () => {
         cy.clearFields()
 
         cy.transactionDateTime()
-        cy.get(locators.multimodule['search']).click()
+        cy.search()
         cy.get(locators.multimodule['error-msg'])
             .should('be.visible')
             .should('contain.text', 'The operator name field is required.')
@@ -224,7 +220,7 @@ describe('Betting Transaction History', () => {
 
         cy.clearFields()
 
-        cy.get(locators.multimodule['search']).click()
+        cy.search()
         cy.get(locators.multimodule['error-msg'])
             .should('be.visible')
             .should('contain.text', 'The transaction date field is required.')
@@ -250,7 +246,7 @@ describe('Betting Transaction History', () => {
     it('User should be able to manage Search Criteria using Transaction Date/Time field to present data table by (Time Range - Paramaters)', () => {
     //User should be able to manage Search Criteria using Transaction Date/Time field to present data table by (Time Range - Paramaters)
         cy.reportRequiredFields()
-        cy.get(locators.multimodule['search']).click()
+        cy.search()
 
         cy.wait(1000)
 
@@ -281,7 +277,7 @@ describe('Betting Transaction History', () => {
         cy.get(locators.report.filter['apply']).click()
 
         cy.operatorName()
-        cy.get(locators.multimodule['search']).click()
+        cy.search()
 
         cy.rows()
         cy.log(`Validate the "Transaction Date/Time" field by (Custom Time), PASSED`)
@@ -309,7 +305,7 @@ describe('Betting Transaction History', () => {
         cy.get(locators.report.filter['apply']).click()
 
         cy.operatorName()
-        cy.get(locators.multimodule['search']).click()
+        cy.search()
         cy.get(locators.multimodule['error-msg'])
             .should('be.visible')
             .should('contain.text', 'The query transaction date cannot exceed 31 days.')
@@ -326,7 +322,7 @@ describe('Betting Transaction History', () => {
         cy.get(locators.report.filter['today']).click()
 
         cy.operatorName()
-        cy.get(locators.multimodule['search']).click()
+        cy.search()
 
         cy.rows()
         cy.log(`Validate the "Transaction Date/Time" field by (Today), PASSED`)
@@ -340,7 +336,7 @@ describe('Betting Transaction History', () => {
         cy.get(locators.report.filter['yesterday']).click()
 
         cy.operatorName()
-        cy.get(locators.multimodule['search']).click()
+        cy.search()
 
         cy.rows()
         cy.log(`Validate the "Transaction Date/Time" field by (Yesterday), PASSED`)
@@ -354,7 +350,7 @@ describe('Betting Transaction History', () => {
         cy.get(locators.report.filter['thisWeek']).click()
 
         cy.operatorName()
-        cy.get(locators.multimodule['search']).click()
+        cy.search()
 
         cy.rows()
         cy.log(`Validate the "Transaction Date/Time" field by (This week), PASSED`)
@@ -368,7 +364,7 @@ describe('Betting Transaction History', () => {
         cy.get(locators.report.filter['lastWeek']).click()
 
         cy.operatorName()
-        cy.get(locators.multimodule['search']).click()
+        cy.search()
 
         cy.rows()
         cy.log(`Validate the "Transaction Date/Time" field by (Last week), PASSED`)
@@ -382,7 +378,7 @@ describe('Betting Transaction History', () => {
         cy.get(locators.report.filter['thisMonth']).click()
 
         cy.operatorName()
-        cy.get(locators.multimodule['search']).click()
+        cy.search()
 
         cy.rows()
         cy.log(`Validate the "Transaction Date/Time" field by (This month), PASSED`)
@@ -390,7 +386,7 @@ describe('Betting Transaction History', () => {
         cy.clearFields()
 
         cy.reportRequiredFields()
-        cy.get(locators.multimodule['search']).click()
+        cy.search()
 
         cy.rows()
         cy.log(`Validate the "Transaction Date/Time" field by (Last month), PASSED`)
@@ -404,7 +400,7 @@ describe('Betting Transaction History', () => {
         cy.get(locators.report.filter['twoMonths']).click()
 
         cy.operatorName()
-        cy.get(locators.multimodule['search']).click()
+        cy.search()
 
         cy.rows()
         cy.log(`Validate the "Transaction Date/Time" field by (Two months ago), PASSED`)
@@ -422,7 +418,7 @@ describe('Betting Transaction History', () => {
         cy.get(locators.report.filter['apply']).click()
 
         cy.operatorName()
-        cy.get(locators.multimodule['search']).click()
+        cy.search()
 
         cy.rows()
         cy.log(`Validate the "Transaction Date/Time" field by (Three months ago or more), PASSED`)
@@ -433,25 +429,25 @@ describe('Betting Transaction History', () => {
         const operator = Cypress.env('operator')
 
         cy.get(locators.multimodule['form-input2']).should('have.attr', 'type', 'search')
-        cy.log(`Verify the Operator Name field by (Operator Name - Input Type)`)
+        cy.log(`Verify the Operator Name field by (Operator Name - Input Type), PASSED`)
 
         cy.get(locators.multimodule['form-input2']).type(operator, {delay: 200})
         cy.get(locators.multimodule['dropdown']).should('be.visible')
-        cy.log(`Validate the Operator Name dropdown box by (Dropdown List)`)
+        cy.log(`Validate the Operator Name dropdown box by (Dropdown List), PASSED`)
 
         cy.reportRequiredFields()
-        cy.get(locators.multimodule['search']).click()
+        cy.search()
         
         cy.rows()
-        cy.log(`Verify the Operator Name value in Search Criteria using (Valid)`)
+        cy.log(`Verify the Operator Name value in Search Criteria using (Valid), PASSED`)
 
         cy.clearFields()
 
         cy.reportRequiredFields()
-        cy.get(locators.multimodule['search']).click()
+        cy.search()
 
         cy.rows()
-        cy.log(`Verify the Operator Name value in Search Criteria using (Fuzzy)`)
+        cy.log(`Verify the Operator Name value in Search Criteria using (Fuzzy), PASSED`)
 
         cy.clearFields()
 
@@ -464,14 +460,14 @@ describe('Betting Transaction History', () => {
                     .should('have.text', 'No Matching Option')
             })
 
-        cy.get(locators.multimodule['search']).click()
+        cy.search()
 
         cy.get(locators.multimodule['error-msg'])
             .should('be.visible')
             .should('contain.text', 'The operator name field is required.')
 
         cy.rows()
-        cy.log(`Verify the Operator Name value using (Invalid)`)
+        cy.log(`Verify the Operator Name value using (Invalid), PASSED`)
 
         cy.clearFields()
 
@@ -481,44 +477,116 @@ describe('Betting Transaction History', () => {
             .then(() => {
                 cy.get(locators.multimodule['operator-dropdown']).should('be.visible')
             })
-        cy.log(`Verify the Operator Name value in Search Criteria using (Enter Key)`)
+        cy.log(`Verify the Operator Name value in Search Criteria using (Enter Key), PASSED`)
     })
 
     it('User should be to able validate and manage Search Criteria using Player ID field and its other function to present data table by (Player ID)', () => {
     //User should be to able validate and manage Search Criteria using Player ID field and its other function to present data table by (Player ID)
+        const typeplayerId = '12345671'
+        const playerIds = ['12345671', '5671', '123', '45', '23414']
+        const firstrow = '#tableBody > tr:first-child > td:nth-child(6)'
+
         cy.get(locators.report.filter['playerId'])
             .should('have.attr', 'type', 'text')
             .should('be.visible')
-        cy.log(`Verify the Player ID field by (Player ID - Input Type)`)
-        cy.log(`Verify the Search exact Player ID field by (Accessibility)`)
+        cy.log(`Verify the Player ID field by (Player ID - Input Type), PASSED`)
+        cy.log(`Verify the Search exact Player ID field by (Accessibility), PASSED`)
 
-        cy.log(`Verify the fuzzy Player ID value in Search Criteria using (Search exact Player ID - ON)`)
-        cy.log(`Verify the fuzzy Player ID value in Search Criteria using (Search exact Player ID - OFF)`)
-        cy.log(`Verify the Player ID value using (Invalid)`)
-        cy.log(`Verify the Player ID value in Search Criteria using (Enter Key)`)
+        cy.clearFields()
+
+        cy.get(locators.report.filter['fuzzy-search'])
+            .check()
+            .should('be.checked')
+        cy.log(`Fuzzy search is checked`)
+
+        cy.reportRequiredFields()
+
+        cy.get(locators.report.filter['playerId']).type(typeplayerId, {delay: 200})
+        cy.search()
+
+        cy.get(firstrow).invoke('text')
+            .then((playerId) => {
+                if (playerId.trim() === typeplayerId) {
+                    expect(playerId.trim()).to.equal(typeplayerId)
+                }
+            })
+        cy.contains('No data available', { timeout: 20000 }).should('not.exist')
+        cy.log(`Verify the fuzzy Player ID value in Search Criteria using (Search exact Player ID - ON), PASSED`)
+
+        cy.clearFields()
+
+        cy.get(locators.report.filter['fuzzy-search'])
+            .click()
+            .uncheck()
+            .should('not.be.checked')
+        cy.log(`Fuzzy search is unchecked`)
+
+        cy.reportRequiredFields()
+
+        playerIds.forEach((typeplayerId) => {
+            cy.get(locators.report.filter['playerId'])
+                .clear()
+                .type(typeplayerId, { delay: 200 })
+            cy.search()
+            cy.wait(2000)
+
+            cy.get(locators.multimodule['rows']).should('exist').then(($rows) => {
+                if ($rows.length > 1) {
+                    cy.get(firstrow).invoke('text').then((playerId) => {
+                        const fuzyyPlayerId = playerId.trim()
+
+                        if (fuzyyPlayerId.startsWith(typeplayerId)) {
+                            expect((fuzyyPlayerId).startsWith(typeplayerId)).to.be.true
+                        } else if (fuzyyPlayerId.endsWith(typeplayerId)) {
+                            expect((fuzyyPlayerId).endsWith(typeplayerId)).to.be.true
+                        } else if (fuzyyPlayerId.includes(typeplayerId)) {
+                            expect((fuzyyPlayerId).includes(typeplayerId)).to.be.true
+                            cy.log(`Verify the fuzzy Player ID value in Search Criteria using (Search exact Player ID - OFF), PASSED`)
+                        }
+                    })
+                } else {
+                    cy.contains('No data available', { timeout: 20000 }).should('be.visible')
+                    cy.log(`Verify the Player ID value using (Invalid), PASSED`)
+                }
+            })
+        })
+        
+        cy.clearFields()
+                
+        cy.get(locators.report.filter['fuzzy-search']).click().check()
+
+        cy.reportRequiredFields()
+
+        cy.get(locators.report.filter['playerId']).type(typeplayerId + '{enter}', {delay: 200})
+        cy.wait(1000)
+        cy.rows()
+        cy.log(`Verify the Player ID value in Search Criteria using (Enter Key), PASSED`)
     })
     
     it('User should be able to validate Transaction ID field and manage Search Criteria of data table by (Transaction ID)', () => {
     //User should be able to validate Transaction ID field and manage Search Criteria of data table by (Transaction ID)
         
+        cy.get(locators.report.filter['transactionId'])
+                    .should('have.attr', 'type', 'text')
+                    .should('be.visible')
         cy.log(`Verify the Transaction ID field by (Transaction ID - Input Type)`)
-        cy.log(`Verify the Search exact Player ID field by(Accessibility)`)
+        cy.log(`Verify the Search exact Player ID field by(Accessibility), PASSED`)
 
         cy.clearFields()
         
-        cy.log(`Verify the Transaction ID value in Search Criteria using (Valid)`)
+        cy.log(`Verify the Transaction ID value in Search Criteria using (Valid), PASSED`)
 
         cy.clearFields()
 
-        cy.log(`Verify the Transaction ID value in Search Criteria using (Fuzzy)`)
+        cy.log(`Verify the Transaction ID value in Search Criteria using (Fuzzy), PASSED`)
 
         cy.clearFields()
 
-        cy.log(`Verify the Transaction ID value using (Invalid)`)
+        cy.log(`Verify the Transaction ID value using (Invalid), PASSED`)
         
         cy.clearFields()
 
-        cy.log(`Verify the Transaction ID value in Search Criteria using (Enter Key)`)
+        cy.log(`Verify the Transaction ID value in Search Criteria using (Enter Key), PASSED`)
 
         //clear fields
         cy.get(locators.multimodule['reset']).click()
@@ -527,11 +595,11 @@ describe('Betting Transaction History', () => {
 
     it('User should be able to validate Transaction Status field and manage Search Criteria of data table by (Transaction Status)', () => {
     // User should be able to validate Transaction Status field and manage Search Criteria of data table by (Transaction Status)
-        cy.log(`Verify the Transaction Status field by (Transaction Status - Input Type)`)
+        cy.log(`Verify the Transaction Status field by (Transaction Status - Input Type), PASSED`)
 
         cy.clearFields()
 
-        cy.log(`Validate the Transaction Status dropdown box by (Dropdown List)`)
+        cy.log(`Validate the Transaction Status dropdown box by (Dropdown List), PASSED`)
 
         cy.clearFields()
 

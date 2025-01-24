@@ -131,6 +131,8 @@ export default {
         
         filter:
         {
+            'fuzzy-search':               'input.align-middle.cursor-pointer',
+            
             'transaction-date':           '.form_inputs:first-of-type .dp__input_wrap input',
             'credit-date':                '.form_inputs:nth-child(2) .dp__input_wrap input',
 

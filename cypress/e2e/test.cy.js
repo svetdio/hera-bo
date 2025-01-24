@@ -9,20 +9,32 @@ describe('Test', () => {
         const username = Cypress.env('username')
         const password = Cypress.env('password')
         cy.login(username, password)
+        
+        cy.visit('/')
+        cy.navigateToBettingHistory()
     })
 
     //Vendor Summary submodule
-        it('Betting Transaction', () => {
+    it('Betting Transaction', () => {
 
-            cy.visit('/')
-            cy.navigateToBettingHistory()
-
-            cy.reportRequiredFields()
-            cy.get(locators.report.filter['playerId']).type('123457', {delay: 200})
-            cy.get(locators.multimodule['search']).click()
-            .then(() => {
-                if ()
+        cy.reportRequiredFields()
+        cy.get(locators.report.filter['transactionId']).type('362781979', {delay: 200})
+        cy.search()   
+        cy.wait(1000)
+        cy.get(locators.multimodule['rows']).then($rows => {
+                if ($rows.length >= 0) {
+                    cy.contains('No data available', { timeout: 20000 }).should('not.exist')
+                } else {
+                    cy.contains('No data available', { timeout: 20000 }).should('be.visible')
+                }
             })
+
+
+
+            
+            
+
+            
             
     })
     

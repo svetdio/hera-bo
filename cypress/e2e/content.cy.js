@@ -37,7 +37,7 @@ describe('Content Management Module Test', () => {
 
         cy.get(locators.content.filter['sub-operator']).click();
         cy.get(locators.content.filter['check']).should('be.visible');
-        cy.get(locators.multimodule['search']).click()
+        cy.search()
 
         //Dropdown
         cy.get(locators.multimodule['rows']).then((rows) => {
@@ -54,7 +54,7 @@ describe('Content Management Module Test', () => {
                                 cy.wrap($element).click()
                             }
                         })
-                        cy.get(locators.multimodule['search']).click()
+                        cy.search()
                         cy.get(locators.content.comboxTable1[key]).contains(element.text())
                         // cy.get(locators.multimodule['reset'])
                     })
@@ -70,7 +70,7 @@ describe('Content Management Module Test', () => {
                 for (const key in table) {
                     cy.get(locators.content.inputTable1[key]).then(element => {
                         cy.get(locators.content.filter[key]).type(element.text(), { delay: 100 })
-                        cy.get(locators.multimodule['search']).click()
+                        cy.search()
                         cy.get(locators.profile.activity['preloader'], { timeout: 100000 }).should('not.be.visible')
                         cy.get(locators.content.inputTable1[key]).contains(element.text()) 
                         cy.get(locators.content.filter[key]).clear()
@@ -147,7 +147,7 @@ describe('Content Management Module Test', () => {
                                 cy.wrap($element).click()
                             }
                         })
-                        cy.get(locators.multimodule['search']).click()
+                        cy.search()
                         cy.get(locators.content.comboxTable2[key]).contains(element.text())
                         // cy.get(locators.multimodule['reset'])
                     })
@@ -218,7 +218,7 @@ describe('Content Management Module Test', () => {
 
         //Input
         cy.get(locators.content.filter['vendor']).type(vendor, { delay: 100 })
-        cy.get(locators.multimodule['search']).click()
+        cy.search()
         cy.wait(500)
 
         //Dropdown
@@ -236,7 +236,7 @@ describe('Content Management Module Test', () => {
                                 cy.wrap($element).click()
                             }
                         })
-                        cy.get(locators.multimodule['search']).click()
+                        cy.search()
                         cy.wait(1000)
                         cy.get(locators.content.comboxTable3[key]).contains(element.text())
                     })
@@ -340,7 +340,7 @@ describe('Content Management Module Test', () => {
                 cy.wrap($element).click()
             }
         })
-        cy.get(locators.multimodule['search']).click()
+        cy.search()
         // cy.get(locators.multimodule['reset']).click()
 
         // Input
@@ -351,7 +351,7 @@ describe('Content Management Module Test', () => {
                 for (const key in table) {
                     cy.get(locators.content.inputTable2[key]).then(element => {
                         cy.get(locators.content.filter[key]).type(element.text(), { delay: 100 })
-                        cy.get(locators.multimodule['search']).click()
+                        cy.search()
                         cy.get(locators.content.inputTable2[key]).contains(element.text())
                         cy.get(locators.content.filter[key]).clear()
                     })
@@ -374,7 +374,7 @@ describe('Content Management Module Test', () => {
                                 cy.wrap($element).click()
                             }
                         })
-                        cy.get(locators.multimodule['search']).click()
+                        cy.search()
                         cy.get(locators.content.comboxTable4[key]).contains(element.text())
                         // cy.get(locators.multimodule['reset']).click()
                         // cy.get(locators.multimodule['table']).should('contain', 'No data available')
@@ -392,7 +392,7 @@ describe('Content Management Module Test', () => {
                 cy.wrap($element).click()
             }
         })
-        cy.get(locators.multimodule['search']).click()
+        cy.search()
         // cy.get(locators.content.filter['form-input6']).contains('baccarat')
         // cy.get(locators.multimodule['reset']).click()
         // cy.get(locators.multimodule['table']).should('contain', 'No data available')
@@ -455,7 +455,7 @@ describe('Content Management Module Test', () => {
                                 cy.wait(500)
                             }
                         })
-                        cy.get(locators.multimodule['search']).click()
+                        cy.search()
                         cy.get(locators.content.comboxTable5[key]).contains(element.text())
                         // cy.get(locators.multimodule['reset'])
                     })
@@ -472,7 +472,7 @@ describe('Content Management Module Test', () => {
                 for (const key in table) {
                     cy.get(locators.content.inputTable3[key]).then(element => {
                         cy.get(locators.content.filter[key]).type(element.text(), { delay: 100 })
-                        cy.get(locators.multimodule['search']).click()
+                        cy.search()
                         // cy.get(locators.profile.activity['preloader'], { timeout: 100000 }).should('not.be.visible')
                         cy.get(locators.content.inputTable3[key]).contains(element.text()) 
                         cy.get(locators.content.filter[key]).clear()
@@ -537,7 +537,7 @@ describe('Content Management Module Test', () => {
                 for (const key in table) {
                     cy.get(locators.content.inputTable4[key]).then(element => {
                         cy.get(locators.content.filter[key]).type(element.text(), { delay: 100 })
-                        cy.get(locators.multimodule['search']).click()
+                        cy.search()
                         cy.get(locators.content.inputTable4[key]).contains(element.text())
                         cy.get(locators.content.filter[key]).clear()
                     })
@@ -555,7 +555,7 @@ describe('Content Management Module Test', () => {
             }
         })
         // cy.get(locators.content.filter['form-input2']).contains('CNY')
-        cy.get(locators.multimodule['search']).click()
+        cy.search()
         // cy.get(locators.multimodule['reset']).click()
         // cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')
         cy.wait(500)
@@ -573,7 +573,7 @@ describe('Content Management Module Test', () => {
         //                         cy.wrap($element).click()
         //                     }
         //                 })
-        //                 cy.get(locators.multimodule['search']).click()
+        //                 cy.search()
         //                 cy.get(locators.content.comboxTable5[key]).contains(element.text())
         //                 cy.get(locators.multimodule['reset']).click()
         //                 cy.get(locators.multimodule['table']).should('contain', 'No data available')
@@ -632,7 +632,7 @@ describe('Content Management Module Test', () => {
                 for (const key in table) {
                     cy.get(locators.content.inputTable5[key]).then(element => {
                         cy.get(locators.content.filter[key]).type(element.text(), { delay: 100 })
-                        cy.get(locators.multimodule['search']).click()
+                        cy.search()
                         cy.get(locators.content.inputTable5[key]).contains(element.text())
                         cy.get(locators.content.filter[key]).clear()
                     })

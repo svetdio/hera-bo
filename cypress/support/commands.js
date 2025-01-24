@@ -15,7 +15,11 @@ Cypress.Commands.add('login', (user=username, pass=password) => {
 })
 
 Cypress.Commands.add('failing', (message) => {
-    throw new Error(message);
+    throw new Error(message)
+})
+
+Cypress.Commands.add('search',() => {
+    cy.get(locators.multimodule['search']).click()
 })
 
 Cypress.Commands.add('clearFields', () => {
@@ -72,8 +76,9 @@ Cypress.Commands.add('operatorName', () => {
 })
 
 Cypress.Commands.add('rows', () => {
+    cy.wait(1000)
     cy.get(locators.multimodule['rows']).then($rows => {
-        if ($rows.length > 1) {
+        if ($rows.length >= 1) {
             cy.contains('No data available', { timeout: 20000 }).should('not.exist')
         } else {
             cy.contains('No data available', { timeout: 20000 }).should('be.visible')

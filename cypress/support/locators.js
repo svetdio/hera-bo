@@ -49,6 +49,7 @@ export default {
         'tableBody':                  'div:nth-child(3) .table-auto',
         'dataTable-rows':             'thead > th',
         'rows':                       '#tableBody tr',
+        'noData':                     'td.whitespace-nowrap.py-4.text-sm.text-center',
 
         'summaryTable':               'table > thead > tr > th',
         'summaryRows':                '.table-auto.table-custom.min-w-full.table-lg tr',

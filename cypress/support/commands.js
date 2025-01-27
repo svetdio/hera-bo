@@ -77,11 +77,11 @@ Cypress.Commands.add('operatorName', () => {
 
 Cypress.Commands.add('rows', () => {
     cy.wait(1000)
-    cy.get(locators.multimodule['rows']).then($rows => {
-        if ($rows.length >= 1) {
-            cy.contains('No data available', { timeout: 20000 }).should('not.exist')
-        } else {
+    cy.get(locators.multimodule['table']).then(table => {
+        if (table.find(locators.multimodule['noData']).length > 0) {
             cy.contains('No data available', { timeout: 20000 }).should('be.visible')
+        } else {
+            cy.contains('No data available', { timeout: 20000 }).should('not.exist')
         }
     })
-})
+}) 

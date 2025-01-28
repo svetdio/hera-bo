@@ -13,6 +13,7 @@ export default {
         'operator-name':              'div.filter-node .ant-select-tree-title',
         'parent-operator':            '.ant-select-tree-treenode:nth-of-type(1) .anticon',
         'no-operator':                '.ant-select-empty',
+        'invalid-option':              '.ant-select-dropdown .ant-select-item-empty h1',
 
         'vendor':                     'div.form_inputs:nth-child(1) input',
         'vendor-dropdown':            'div.ant-select-dropdown',

@@ -16,11 +16,11 @@ describe('Promotion Module Test', () => {
         cy.get(locators.promotion['promo']).click()
         cy.get(locators.promotion['container']).should('be.visible')
         cy.get(locators.promotion['promo-manage']).click()
-        cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')
+        cy.get(locators.multimodule['table']).should('not.contain', 'No data available')
 
         //Currency Text Validation
         cy.get(locators.multimodule['text-head']).should('contain.text', 'Promo Manage')
-        cy.get(locators.report.filter['form'])
+        cy.get(locators.multimodule['form'])
             .should('contain.text', 'Promo Name')    
 
         //Input
@@ -43,7 +43,7 @@ describe('Promotion Module Test', () => {
         cy.get(locators.multimodule['reset'])
             .click()
             .then(() => {
-                cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')
+                cy.get(locators.multimodule['table']).should('not.contain', 'No data available')
             })
 
         cy.then(() => {

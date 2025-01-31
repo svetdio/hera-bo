@@ -101,7 +101,7 @@ describe('Activity Logs', () => {
     it('table entries verification', ()=>{
         cy.get(locators.profile.activity['tab']).click()
         cy.get(locators.profile.activity['preloader']).should('not.visible')
-        cy.get(locators.profile.activity['table']).should('be.visible')
+        cy.get(locators.multimodule['table']).should('be.visible')
         cy.get(locators.profile.activity['total']).then($element => {
             const count = $element.text()
             if (count >= 200){

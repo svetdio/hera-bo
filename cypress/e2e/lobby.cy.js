@@ -16,7 +16,7 @@ describe('Lobby Management Module Test', () => {
         cy.get(locators.lobby['lobby']).click()
         cy.get(locators.lobby['container']).should('be.visible')
         cy.get(locators.lobby['media']).click()
-        cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')
+        cy.get(locators.multimodule['table']).should('not.contain', 'No data available')
 
         //Currency Text Validation
         cy.get(locators.multimodule['text-head']).should('contain.text', 'Media Components')
@@ -42,7 +42,7 @@ describe('Lobby Management Module Test', () => {
         cy.get(locators.multimodule['reset'])
             .click()
             .then(() => {
-                cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')
+                cy.get(locators.multimodule['table']).should('not.contain', 'No data available')
             })
 
         //Action Table
@@ -84,7 +84,7 @@ describe('Lobby Management Module Test', () => {
         cy.get(locators.lobby['lobby']).click()
         cy.get(locators.lobby['container']).should('be.visible')
         cy.get(locators.lobby['announce']).click()
-        cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')
+        cy.get(locators.multimodule['table']).should('not.contain', 'No data available')
 
         //Currency Text Validation
         cy.get(locators.multimodule['text-head']).should('contain.text', 'Announcements')
@@ -110,7 +110,7 @@ describe('Lobby Management Module Test', () => {
         cy.get(locators.multimodule['reset'])
             .click()
             .then(() => {
-                cy.get(locators.profile.activity['table']).should('not.contain', 'No data available')
+                cy.get(locators.multimodule['table']).should('not.contain', 'No data available')
             })
 
         //Action Table

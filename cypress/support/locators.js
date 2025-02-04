@@ -173,13 +173,16 @@ export default {
             'prevMonth':                  'button[aria-label="Previous month"]',
             'nextMonth':                  'button[aria-label="Next month"]',
 
-            'dateStart':                  '[id="2025-01-01"]',
-            'dateEnd':                    '[id="2025-01-31"]',
+            //editable
+            'dateStart':                  '[id="2025-02-01"]',
+            'dateEnd':                    '[id="2025-02-20"]',
 
-            'dateEnd1':                    '[id="2025-02-10"]',
+            //editable
+            'dateEnd1':                    '[id="2025-03-10"]',
 
-            'octdateStart':               '[id="2024-10-01"]',
-            'octdateEnd':                 '[id="2024-10-31"]',
+            //editable
+            'octdateStart':               '[id="2024-11-01"]',
+            'octdateEnd':                 '[id="2024-11-28"]',
             
             'incHrFrom':                  'button.dp__btn.dp__inc_dec_button[data-test="hours-time-inc-btn-0"]',
             'incHrTo':                    'button.dp__btn.dp__inc_dec_button[data-test="hours-time-inc-btn-1"]',

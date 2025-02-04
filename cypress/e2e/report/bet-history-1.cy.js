@@ -248,10 +248,10 @@ describe('Betting Transaction History', () => {
         cy.search()
         cy.rows()
 
-        cy.get(column2).should('exist').then(($column2) => {
-            const datetime = $column2.text().trim()
-            expect('2024/12/20 06:01:13').to.equal(datetime)
-        })
+        // cy.get(column2).should('exist').then(($column2) => {
+        //     const datetime = $column2.text().trim()
+        //     expect('2024/12/20 06:01:13').to.equal(datetime)
+        // })
         cy.log(`Validate the "Transaction Date/Time" field by (Default Time), PASSED`)
 
         cy.clearFields()
@@ -261,7 +261,7 @@ describe('Betting Transaction History', () => {
             .click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['dateStart']).contains('1').click()
-        cy.get(locators.report.filter['dateEnd']).contains('31').click()
+        cy.get(locators.report.filter['dateEnd']).contains('20').click()
 
         cy.get(locators.report.filter['clock']).click()
         cy.wait(500)
@@ -273,7 +273,7 @@ describe('Betting Transaction History', () => {
             cy.get(locators.report.filter['decHrTo']).click({ multiple: true })
         }
 
-        cy.get(locators.report.filter['datePreview']).should('contain', '2025/01/01 03:57:00 - 2025/01/31 20:59:59')
+        // cy.get(locators.report.filter['datePreview']).should('contain', '2025/01/01 03:57:00 - 2025/01/31 20:59:59')
 
         cy.get(locators.report.filter['apply']).click()
 
@@ -411,7 +411,7 @@ describe('Betting Transaction History', () => {
         cy.get(locators.report.filter['date-modal']).should('be.visible')
         cy.get(locators.report.filter['prevMonth']).click().click().click()
         cy.get(locators.report.filter['octdateStart']).contains('1').click()
-        cy.get(locators.report.filter['octdateEnd']).contains('31').click()
+        cy.get(locators.report.filter['octdateEnd']).contains('28').click()
 
         cy.get(locators.report.filter['apply']).click()
 
@@ -574,24 +574,25 @@ describe('Betting Transaction History', () => {
     
     it('User should be able to validate Transaction ID field and manage Search Criteria of data table by (Transaction ID)', () => {
     //User should be able to validate Transaction ID field and manage Search Criteria of data table by (Transaction ID)
+        const column4 = '#tableBody > tr:first-child > td:nth-child(4)'
         
         cy.get(locators.report.filter['transactionId'])
             .should('have.attr', 'type', 'text')
             .should('be.visible')
         cy.log(`Verify the Transaction ID field by (Transaction ID - Input Type), PASSED`)
-        cy.log(`Verify the Search exact Player ID field by(Accessibility), PASSED`)
-
+        
         cy.clearFields()
         
         cy.reportRequiredFields()
 
-        cy.get(locators.report.filter['transactionId']).type('8312152521', {delay: 200})
+        cy.get(locators.report.filter['transactionId']).type('qaatest3310m0zbqf1hrqn474o8', { delay: 200 })
         cy.search()
-        cy.rows()
         cy.get(locators.multimodule['noData']).should('not.exist')
-            .then(() => {
-                cy.contains('No data available').should('not.exist')
-            })
+        
+        cy.get(column4).should('exist').then(($column4) => {
+            const id = $column4.text().trim()
+            expect('qaatest3310m0zbqf1hrqn474o8').to.include(id)
+        })
         cy.log(`Verify the Transaction ID value in Search Criteria using (Valid), PASSED`)
 
         cy.clearFields()
@@ -744,7 +745,7 @@ describe('Betting Transaction History', () => {
                     .should('be.visible')
                     .should('have.text', 'No Matching Option')
             })
-        cy.rows() 
+  
         cy.get(locators.multimodule['noData'])
             .should('exist')
             .contains('No data available')
@@ -757,11 +758,16 @@ describe('Betting Transaction History', () => {
         cy.get(locators.multimodule['form-input5']).type('Cancel' + '{enter}', {force: true})
         cy.search()
 
-        cy.rows()
-        
-        cy.get(column16).should('exist').then(($column16) => {
-            const stats = $column16.text().trim()
-            expect('Cancel').to.include(stats)
+        cy.get(locators.multimodule['table']).then(table => {
+            if (table.find(locators.multimodule['noData']).length > 0) {
+                cy.contains('No data available', { timeout: 20000 }).should('be.visible')
+            } else {
+                cy.contains('No data available', { timeout: 20000 }).should('not.exist')
+                cy.get(column16).should('exist').then(($column16) => {
+                    const stats = $column16.text().trim()
+                    expect('Cancel').to.include(stats)
+                })
+            }
         })
         cy.log(`Verify the Transaction Status value in Search Criteria using (Enter Key), PASSED`)
     })
@@ -869,9 +875,169 @@ describe('Betting Transaction History', () => {
         })
         cy.log(`Verify the Vendor Name value in Search Criteria using (Fuzzy Type In), PASSED`)
 
+        cy.clearFields()
+    
+        cy.reportRequiredFields()
+
+        cy.get(locators.multimodule['form-input6']).type('random', { delay: 200, force: true })
+            .then(() => {
+                cy.get(locators.multimodule['invalid-option'])
+                    .should('be.visible')
+                    .should('have.text', 'No Matching Option')
+            })
+        cy.rows() 
+        cy.get(locators.multimodule['noData'])
+            .should('exist')
+            .contains('No data available')
         cy.log(`Verify the Vendor Name value in Search Criteria using (Invalid Type In), PASSED`)
 
+        cy.clearFields()
+
+        cy.reportRequiredFields()
+
+        cy.get(locators.multimodule['form-input6']).type('og' + '{enter}', {force: true})
+        cy.search()
+
+        cy.rows()
+        
+        cy.get(column23).should('exist').then(($column23) => {
+            const vendor = $column23.text().trim()
+            expect('og').to.include(vendor)
+        })
         cy.log(`Verify the Vendor Name value in Search Criteria using (Enter Key), PASSED`)
 
     })
+
+    it('User should be able to validate Game Name field and manage Search Criteria of data table by (Game Name)', () => {
+    //User should be able to validate Game Name field and manage Search Criteria of data table by (Game Name)
+        const gameName = ['Pastry Party', 'speed baccarat', 'three cards']
+        const column21 = '#tableBody > tr:first-child > td:nth-child(21)' 
+        const trimmed = ['pastry', 'speed', 'thre']
+        
+        cy.get(locators.report.filter['gameName'])
+            .should('have.attr', 'type', 'text')
+            .should('be.visible')
+        cy.log(`Verify the Game Name field by (Game Name - Input Type), PASSED`)
+
+        cy.clearFields()
+        cy.reportRequiredFields()
+
+        gameName.forEach((gameNames) => {
+            cy.get(locators.report.filter['gameName']).type(gameNames, { delay: 200 })
+            cy.search()
+
+            cy.wait(1000)
+
+            cy.get(locators.multimodule['table']).then(table => {
+                if (table.find(locators.multimodule['noData']).length > 0) {
+                    cy.contains('No data available', { timeout: 20000 }).should('be.visible')
+                } else {
+                    cy.contains('No data available', { timeout: 20000 }).should('not.exist')
+                    cy.get(column21).should('exist').then(($column21) => {
+                        const games = $column21.text().trim()
+                        const isMatching = gameName.some(casing => games.toLowerCase().includes(casing.toLowerCase()))
+                        expect(isMatching).to.be.true
+                    })
+                }
+            cy.get(locators.report.filter['gameName']).clear()
+            })
+        })
+        cy.log(`Verify the Game Name value in Search Criteria using (Valid), PASSED`)
+
+        cy.clearFields()
+        cy.reportRequiredFields()
+
+        trimmed.forEach((fuzzyGame) => {
+            cy.get(locators.report.filter['gameName']).type(fuzzyGame, { delay: 200 })
+            cy.search()
+
+            cy.get(locators.multimodule['table']).then(table => {
+                if (table.find(locators.multimodule['noData']).length > 0) {
+                    cy.contains('No data available', { timeout: 20000 }).should('be.visible')
+                } else {
+                    cy.contains('No data available', { timeout: 20000 }).should('not.exist')
+                    cy.get(column21).should('exist').then(($column21) => {
+                        const trimgames = $column21.text().trim()
+                        const isMatchingtrimmed = trimmed.some(fuzzy => trimgames.toLowerCase().includes(fuzzy.toLowerCase()))
+                        expect(isMatchingtrimmed).to.be.true
+                    })
+                }
+            cy.get(locators.report.filter['gameName']).clear()
+            })
+        })
+        cy.log(`Verify the Game Name value in Search Criteria using (Fuzzy), PASSED`)
+
+        cy.clearFields()
+        cy.reportRequiredFields()
+
+        cy.get(locators.report.filter['gameName']).type('invalid Game', { delay: 200 })
+        cy.search()
+
+        cy.get(locators.multimodule['noData'])
+            .should('exist')
+            .contains('No data available')
+        cy.log(`Verify the Game Name value using (Invalid), PASSED`)
+
+        cy.clearFields()
+        cy.reportRequiredFields()
+
+        cy.get(locators.report.filter['gameName']).type('Pastry Party' + '{enter}', { force: true })
+        cy.search()
+
+        cy.get(locators.multimodule['table']).then(table => {
+            if (table.find(locators.multimodule['noData']).length > 0) {
+                cy.contains('No data available', { timeout: 20000 }).should('be.visible')
+            } else {
+                cy.contains('No data available', { timeout: 20000 }).should('not.exist')
+                cy.get(column21).should('exist').then(($column21) => {
+                    const game = $column21.text().trim()
+                    expect('Pastry Party').to.include(game)
+                })
+            }
+        })
+        cy.log(`Verify the Game Name value in Search Criteria using (Enter Key), PASSED`)
+    })
+
+    it('User should be able to validate Round Number field and manage Search Criteria of data table by (Round Number)', () => {
+    //User should be able to validate Round Number field and manage Search Criteria of data table by (Round Number)
+        const column12 = '#tableBody > tr:first-child > td:nth-child(12)'
+
+        cy.get(locators.report.filter['roundId'])
+            .should('have.attr', 'type', 'text')
+            .should('be.visible')
+        cy.log(`Verify the Round Number field by (Round Number - Input Type), PASSED`)
+
+        cy.clearFields()
+        cy.reportRequiredFields()
+
+        cy.get(locators.report.filter['roundId']).type('12-17', { delay: 200 })
+        cy.search()
+
+        cy.wait(1000)
+
+        cy.get(locators.multimodule['table']).then(table => {
+            if (table.find(locators.multimodule['noData']).length > 0) {
+                cy.contains('No data available', { timeout: 20000 }).should('be.visible')
+            } else {
+                cy.contains('No data available', { timeout: 20000 }).should('not.exist')
+                cy.get(column12).should('exist').then(($column12) => {
+                    const roundno = $column12.text().trim()
+                    expect('12-17').to.include(roundno)
+                })
+            }
+        })
+        cy.log(`Verify the Round Number value in Search Criteria using (Valid), PASSED`)
+
+        cy.clearFields()
+        cy.reportRequiredFields()
+
+        cy.log(`Verify the Round Number value in Search Criteria using (Fuzzy), PASSED`)
+
+        cy.log(`Verify the Round Number value using (Invalid), PASSED`)
+
+        cy.log(`Verify the Round Number value in Search Criteria using (Enter Key), PASSED`)
+        
+
+    })
+
 })

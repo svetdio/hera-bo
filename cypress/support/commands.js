@@ -23,7 +23,7 @@ Cypress.Commands.add('search',() => {
 })
 
 Cypress.Commands.add('clearFields', () => {
-    cy.get(locators.multimodule['reset']).click()
+    cy.get(locators.multimodule['reset']).click({ force: true })
     cy.wait(500)
 })
 

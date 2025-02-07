@@ -640,8 +640,8 @@ describe('Betting Transaction History', () => {
 
         cy.clearFields()
 
-        cy.get(locators.multimodule['form-input5']).click({force: true})
-        cy.get(locators.multimodule['dropdown']).should('be.visible')
+        // cy.get(locators.multimodule['form-input5']).click({force: true})
+        // cy.get(locators.multimodule['dropdown']).should('be.visible')
 
         status.forEach((status) => {
             cy.get(locators.multimodule['form-input5']).click({force: true})
@@ -806,7 +806,6 @@ describe('Betting Transaction History', () => {
         cy.log(`Verify the Vendor Name value in Search Criteria using (Default Status), PASSED`)
 
         cy.clearFields()
-
         cy.reportRequiredFields()
                                 
         cy.get(locators.multimodule['form-input6']).click({force: true})
@@ -885,14 +884,13 @@ describe('Betting Transaction History', () => {
                     .should('be.visible')
                     .should('have.text', 'No Matching Option')
             })
-        cy.rows() 
+
         cy.get(locators.multimodule['noData'])
             .should('exist')
             .contains('No data available')
         cy.log(`Verify the Vendor Name value in Search Criteria using (Invalid Type In), PASSED`)
 
         cy.clearFields()
-
         cy.reportRequiredFields()
 
         cy.get(locators.multimodule['form-input6']).type('og' + '{enter}', {force: true})
@@ -951,6 +949,8 @@ describe('Betting Transaction History', () => {
             cy.get(locators.report.filter['gameName']).type(fuzzyGame, { delay: 200 })
             cy.search()
 
+            cy.wait(1000)
+
             cy.get(locators.multimodule['table']).then(table => {
                 if (table.find(locators.multimodule['noData']).length > 0) {
                     cy.contains('No data available', { timeout: 20000 }).should('be.visible')
@@ -1001,6 +1001,7 @@ describe('Betting Transaction History', () => {
     it('User should be able to validate Round Number field and manage Search Criteria of data table by (Round Number)', () => {
     //User should be able to validate Round Number field and manage Search Criteria of data table by (Round Number)
         const column12 = '#tableBody > tr:first-child > td:nth-child(12)'
+        const roundNo = ['test', '100']
 
         cy.get(locators.report.filter['roundId'])
             .should('have.attr', 'type', 'text')
@@ -1031,13 +1032,210 @@ describe('Betting Transaction History', () => {
         cy.clearFields()
         cy.reportRequiredFields()
 
+        cy.get(locators.report.filter['roundId']).type('12', { delay: 200 })
+        cy.search()
+
+        cy.get(locators.multimodule['noData'])
+            .contains('No data available')
+            .should('exist')
         cy.log(`Verify the Round Number value in Search Criteria using (Fuzzy), PASSED`)
 
+        cy.clearFields()
+        cy.reportRequiredFields()
+
+        cy.get(locators.report.filter['roundId']).type('invalid round id', { delay: 200 })
+        cy.search()
+
+        cy.get(locators.multimodule['noData'])
+            .contains('No data available')
+            .should('exist')
         cy.log(`Verify the Round Number value using (Invalid), PASSED`)
 
-        cy.log(`Verify the Round Number value in Search Criteria using (Enter Key), PASSED`)
-        
+        cy.clearFields()
+        cy.reportRequiredFields()
 
+        roundNo.forEach((roundID) => {
+            cy.get(locators.report.filter['roundId']).type(roundID + '{enter}', { delay: 200 })
+            cy.search()
+
+            cy.wait(1000)
+
+            cy.get(locators.multimodule['table']).then(table => {
+                if (table.find(locators.multimodule['noData']).length > 0) {
+                    cy.contains('No data available', { timeout: 20000 }).should('be.visible')
+                } else {
+                    cy.contains('No data available', { timeout: 20000 }).should('not.exist')
+                    cy.get(column12).should('exist').then(($column12) => {
+                        const roundno = $column12.text().trim()
+                        const isMatching = roundNo.some(round => roundno.toLowerCase().includes(round.toLowerCase()))
+                        expect(isMatching).to.be.true
+                    })
+                }
+            cy.get(locators.report.filter['roundId']).clear()
+            })
+        })
+        cy.log(`Verify the Round Number value in Search Criteria using (Enter Key), PASSED`)
     })
+
+    it('User should be able to validate Game Type field and manage Search Criteria of data table by (Game Type)', () => {
+    //User should be able to validate Game Type field and manage Search Criteria of data table by (Game Type)
+        const gameType = ['All', 'Chess Game', 'Live Game', 'Lottery Game', 'Other', 'Slot Game', 'Sports Game']
+        const column22 = '#tableBody > tr:first-child > td:nth-child(22)'
+        const trimmed = ['chess', 'lott', 'live g']
+
+        cy.get(locators.multimodule['form-input9']).should('have.attr', 'type', 'search')
+        cy.log(`Verify the Game Type field by (Game Type - Input Type), PASSED`)
+        
+        cy.clearFields()
+
+        cy.get(locators.multimodule['form-input9']).click({force: true})
+        cy.get(locators.multimodule['dropdown']).should('be.visible')
+
+        gameType.forEach((gameType) => {
+            cy.get(locators.multimodule['form-input9']).click({force:true})
+            cy.get(locators.multimodule['dropdown'])
+                .should('be.visible')
+                .contains(gameType)
+                .should('exist')
+        })
+        cy.log(`Validate the Game Type dropdown box by (Dropdown List), PASSED`)
+        
+        cy.clearFields()
+        cy.reportRequiredFields()
+
+        cy.get(locators.multimodule['form-input9']).should('exist')
+        cy.get(locators.multimodule['selection']).contains('All')
+        cy.search()
+
+        cy.rows()
+
+        cy.get(column22).should('exist').then(($column22) => {
+            const types = $column22.text().trim()
+            expect(gameType).to.include(types)
+        })
+        cy.log(`Verify the Game Type value in Search Criteria using (Default Status), PASSED`)
+        
+        cy.clearFields()
+        cy.reportRequiredFields()
+
+        gameType.forEach((gametype) => {
+            cy.get(locators.multimodule['form-input9']).click({ force: true })
+            cy.get(locators.multimodule['dropdown'])
+                .contains(gametype)
+                .click()
+            cy.search()
+
+            cy.wait(1000)
+            
+            cy.get(locators.multimodule['table']).then(table => {
+                if (table.find(locators.multimodule['noData']).length > 0) {
+                    cy.contains('No data available', { timeout: 20000 }).should('be.visible')
+                } else {
+                    cy.contains('No data available', { timeout: 20000 }).should('not.exist')
+                    cy.get(column22).should('exist').then(($column22) => {
+                        const gametypes = $column22.text().trim()
+                        expect(gameType).to.include(gametypes)
+                    })
+                }
+            })
+        })
+        cy.log(`Verify the Game Type value in Search Criteria using (Select Status), PASSED`)
+        
+        cy.clearFields()
+        cy.reportRequiredFields()
+
+        gameType.forEach((clickType) => {
+            cy.get(locators.multimodule['form-input9']).type(clickType, { delay: 200, force: true }).then(() => {
+                cy.get(locators.multimodule['dropdown-name'])
+                    .contains(clickType)
+                    .click()
+            })
+            cy.search()
+
+            cy.wait(1000)
+            cy.get(locators.multimodule['table']).then(table => {
+                if (table.find(locators.multimodule['noData']).length > 0) {
+                    cy.contains('No data available', { timeout: 20000 }).should('be.visible')
+                } else {
+                    cy.contains('No data available', { timeout: 20000 }).should('not.exist')
+                    cy.get(column22).should('exist').then(($column22) => {
+                        const type = $column22.text().trim()
+                        expect(gameType).to.include(type)
+                    })
+                }
+            cy.wait(500)
+            })
+        })
+
+        cy.log(`Verify the Game Type value in Search Criteria using (Valid Type In), PASSED`)
+        
+        cy.clearFields()
+        cy.reportRequiredFields()
+
+        trimmed.forEach((fuzzyGameType) => {
+            cy.get(locators.multimodule['form-input9']).type(fuzzyGameType, { delay: 200, force: true }).then(() => {
+                cy.get(locators.multimodule['dropdown-name'])
+                    .contains(new RegExp (`${fuzzyGameType}`, 'i'))
+                    .click()
+            })
+            cy.search()
+
+            cy.wait(1000)
+            cy.get(locators.multimodule['table']).then(table => {
+                if (table.find(locators.multimodule['noData']).length > 0) {
+                    cy.contains('No data available', { timeout: 20000 }).should('be.visible')
+                } else {
+                    cy.contains('No data available', { timeout: 20000 }).should('not.exist')
+                    cy.get(column22).should('exist').then(($column22) => {
+                        const types = $column22.text().trim()
+                        const isMatching = trimmed.some(fuzzy => types.toLowerCase().includes(fuzzy.toLowerCase()))
+                        expect(isMatching).to.be.true
+                    })
+                }
+            cy.wait(500)
+            })
+        })
+        cy.log(`Verify the Game Type value in Search Criteria using (Fuzzy Type In), PASSED`)
+        
+        cy.clearFields()
+        cy.reportRequiredFields()
+
+        cy.get(locators.multimodule['form-input9']).type('invalid', { delay: 200, force: true })
+            .then(() => {
+                cy.get(locators.multimodule['invalid-option'])
+                    .should('be.visible')
+                    .should('have.text', 'No Matching Option')
+            })
+        cy.get(locators.multimodule['noData'])
+            .should('exist')
+            .contains('No data available')
+        cy.log(`Verify the Game Type value in Search Criteria using (Invalid Type In), PASSED`)
+        
+        cy.clearFields()
+        cy.reportRequiredFields()
+
+        cy.get(locators.multimodule['form-input9']).type(gameType, + '{enter}', { delay: 200, force: true })
+        cy.search()
+
+        cy.wait(1000)
+        cy.get(locators.multimodule['table']).then(table => {
+            if (table.find(locators.multimodule['noData']).length > 0) {
+                cy.contains('No data available', { timeout: 20000 }).should('be.visible')
+            } else {
+                cy.contains('No data available', { timeout: 20000 }).should('not.exist')
+                cy.get(column22).should('exist').then(($column22) => {
+                    const type = $column22.text().trim()
+                    expect(gameType).to.include(type)
+                })
+            }
+        cy.wait(500)
+        })
+        cy.log(`Verify the Game Type value in Search Criteria using (Enter Key), PASSED`)
+    })
+
+
+
+
+
 
 })

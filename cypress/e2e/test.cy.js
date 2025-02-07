@@ -16,72 +16,37 @@ describe('Test', () => {
 
     it('Betting Transaction', () => {
 
-        const gameName = ['Pastry Party', 'speed baccarat', 'three cards']
-        const column21 = '#tableBody > tr:first-child > td:nth-child(21)' 
-        const trimmed = ['pastry', 'speed', 'thre']
+        const gameType = ['All', 'Chess Game', 'Live Game', 'Lottery Game', 'Other', 'Slot Game', 'Sports Game']
+        const column22 = '#tableBody > tr:first-child > td:nth-child(22)'
+        const trimmed = ['chess', 'lott', 'live g','SPo', 'o']
 
+        cy.reportRequiredFields()
 
-        cy.get(locators.report.filter['gameName'])
-                    .should('have.attr', 'type', 'text')
-                    .should('be.visible')
-                cy.log(`Verify the Game Name field by (Game Name - Input Type), PASSED`)
-        
-                cy.clearFields()
-                cy.reportRequiredFields()
-        
-                cy.get(locators.report.filter['gameName'])
-                    .should('have.attr', 'type', 'text')
-                    .should('be.visible')
-                cy.log(`Verify the Game Name field by (Game Name - Input Type), PASSED`)
-        
-                cy.clearFields()
-                cy.reportRequiredFields()
-        
-                gameName.forEach((gameNames) => {
-                    cy.get(locators.report.filter['gameName']).type(gameNames, { delay: 200 })
-                    cy.search()
-        
-                    cy.wait(1000)
-        
-                    cy.get(locators.multimodule['table']).then(table => {
-                        if (table.find(locators.multimodule['noData']).length > 0) {
-                            cy.contains('No data available', { timeout: 20000 }).should('be.visible')
-                        } else {
-                            cy.contains('No data available', { timeout: 20000 }).should('not.exist')
-                            cy.get(column21).should('exist').then(($column21) => {
-                                const games = $column21.text().trim()
-                                const isMatching = gameName.some(casing => games.toLowerCase().includes(casing.toLowerCase()))
-                                expect(isMatching).to.be.true
-                            })
-                        }
-                    cy.get(locators.report.filter['gameName']).clear()
+        trimmed.forEach((fuzzyGameType) => {
+            cy.get(locators.multimodule['form-input9']).type(fuzzyGameType, { delay: 200, force: true }).then(() => {
+                cy.get(locators.multimodule['dropdown-name'])
+                    .contains(new RegExp (`${fuzzyGameType}`, 'i'))
+                    .click()
+            })
+            cy.search()
+
+            cy.wait(1000)
+            cy.get(locators.multimodule['table']).then(table => {
+                if (table.find(locators.multimodule['noData']).length > 0) {
+                    cy.contains('No data available', { timeout: 20000 }).should('be.visible')
+                } else {
+                    cy.contains('No data available', { timeout: 20000 }).should('not.exist')
+                    cy.get(column22).should('exist').then(($column22) => {
+                        const types = $column22.text().trim()
+                        const isMatching = trimmed.some(fuzzy => types.toLowerCase().includes(fuzzy.toLowerCase()))
+                        expect(isMatching).to.be.true
                     })
-                })
-                cy.log(`Verify the Game Name value in Search Criteria using (Valid), PASSED`)
+                }
+            cy.wait(500)
+            })
+        })
+
         
-                cy.clearFields()
-                cy.reportRequiredFields()
-        
-                trimmed.forEach((fuzzyGame) => {
-                    cy.get(locators.report.filter['gameName']).type(fuzzyGame, { delay: 200 })
-                    cy.search()
-        
-                    cy.get(locators.multimodule['table']).then(table => {
-                        if (table.find(locators.multimodule['noData']).length > 0) {
-                            cy.contains('No data available', { timeout: 20000 }).should('be.visible')
-                        } else {
-                            cy.contains('No data available', { timeout: 20000 }).should('not.exist')
-                            cy.get(column21).should('exist').then(($column21) => {
-                                const trimgames = $column21.text().trim()
-                                const isMatchingtrimmed = trimmed.some(fuzzy => trimgames.toLowerCase().includes(fuzzy.toLowerCase()))
-                                expect(isMatchingtrimmed).to.be.true
-                            })
-                        }
-                    cy.get(locators.report.filter['gameName']).clear()
-                    })
-                })
-        
-                
 
 
 

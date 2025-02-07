@@ -1214,7 +1214,8 @@ describe('Betting Transaction History', () => {
         cy.clearFields()
         cy.reportRequiredFields()
 
-        cy.get(locators.multimodule['form-input9']).type(gameType, + '{enter}', { delay: 200, force: true })
+
+        cy.get(locators.multimodule['form-input9']).type('Live Game' + '{enter}', { delay: 200, force: true })
         cy.search()
 
         cy.wait(1000)
@@ -1230,6 +1231,7 @@ describe('Betting Transaction History', () => {
             }
         cy.wait(500)
         })
+   
         cy.log(`Verify the Game Type value in Search Criteria using (Enter Key), PASSED`)
     })
 

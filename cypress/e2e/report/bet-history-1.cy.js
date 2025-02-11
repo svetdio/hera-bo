@@ -1235,8 +1235,242 @@ describe('Betting Transaction History', () => {
         cy.log(`Verify the Game Type value in Search Criteria using (Enter Key), PASSED`)
     })
 
+    it('User should be able to validate Game ID field and manage Search Criteria of data table by (Game ID)', () => {
+    //User should be able to validate Game ID field and manage Search Criteria of data table by (Game ID)
+        const gameID = ['55', '125', '31']
+        const column19 = '#tableBody > tr:first-child > td:nth-child(19)'
+        const trimmed = ['12', '3']
+
+        cy.get(locators.report.filter['gameId'])
+            .should('have.attr', 'type', 'text')
+            .should('be.visible')
+        cy.log(`Verify the Game ID field by (Game Name - Input Type), PASSED`)
+
+        cy.clearFields()
+        cy.reportRequiredFields()
+
+        gameID.forEach((gameIDs) => {
+            cy.get(locators.report.filter['gameId']).type(gameIDs, { delay : 200 })
+            cy.search()
+            cy.wait(1000)
+
+            cy.get(locators.multimodule['table']).then(table => {
+                if (table.find(locators.multimodule['noData']).length > 0) {
+                    cy.contains('No data available', { timeout: 20000 }).should('be.visible')
+                } else {
+                    cy.contains('No data available', { timeout: 20000 }).should('not.exist')
+                    cy.get(column19).should('exist').then(($column19) => {
+                        const games = $column19.text().trim()
+                        const isMatching = gameID.some(casing => games.toLowerCase().includes(casing.toLowerCase()))
+                        expect(isMatching).to.be.true
+                    })
+                }
+            cy.get(locators.report.filter['gameId']).clear()
+            })
+        })
+        cy.log(`Verify the Game ID value in Search Criteria using (Valid), PASSED`)
+
+        cy.clearFields()
+        cy.reportRequiredFields()
+
+        trimmed.forEach((fuzzyGameID) => {
+            cy.get(locators.report.filter['gameId']).type(fuzzyGameID, { delay: 200 })
+            cy.search()
+
+            cy.get(locators.multimodule['noData'])
+                .should('exist')
+                .contains('No data available')
+            
+            cy.wait(500)
+        })
+        cy.log(`Verify the Game ID value in Search Criteria using (Fuzzy), PASSED`)
+
+        cy.clearFields()
+        cy.reportRequiredFields()
+
+        cy.get(locators.report.filter['gameId']).type('sample', { delay: 200 })
+        cy.search()
+
+        cy.get(locators.multimodule['error-msg'])
+            .should('be.visible')
+            .should('contains.text', 'The game id must be a number.')
+        cy.log(`Verify the Game ID value in Search Criteria using (Other Character), PASSED`)
+
+        cy.clearFields()
+        cy.reportRequiredFields()
+
+        cy.get(locators.report.filter['gameId']).type('000', { delay: 200 })
+        cy.search()
+
+        cy.get(locators.multimodule['noData'])
+            .should('exist')
+            .contains('No data available')
+        cy.log(`Verify the Game ID value using (Invalid), PASSED`)
+
+        cy.clearFields()
+        cy.reportRequiredFields()
+
+        gameID.forEach((gameIDs) => {
+            cy.get(locators.report.filter['gameId']).type(gameIDs + '{enter}', { delay : 200 })
+            cy.wait(1000)
+
+            cy.get(locators.multimodule['table']).then(table => {
+                if (table.find(locators.multimodule['noData']).length > 0) {
+                    cy.contains('No data available', { timeout: 20000 }).should('be.visible')
+                } else {
+                    cy.contains('No data available', { timeout: 20000 }).should('not.exist')
+                    cy.get(column19).should('exist').then(($column19) => {
+                        const games = $column19.text().trim()
+                        const isMatching = gameID.some(casing => games.toLowerCase().includes(casing.toLowerCase()))
+                        expect(isMatching).to.be.true
+                    })
+                }
+            cy.get(locators.report.filter['gameId']).clear()
+            })
+        })
+        cy.log(`Verify the Game ID value in Search Criteria using (Enter Key), PASSED`)
+    })
+
+    it('User should be able to manage Betting Transaction History by validating and verifying the content and elements of (Summary Table)', () => {
+        //User should be able to manage Betting Transaction History by validating and verifying the content and elements of (Summary Table)
+
+        const label = [
+            'Total Transaction Count',
+            'Total Player Count',
+            'Currency',
+            'Total Transaction Amount',
+            'Total Payout',
+            'Total Win-Lose Amount',
+            'Total Turnover Amount'
+        ]
+        label.forEach((summaryColumn) => {
+            cy.get(locators.multimodule['summaryRows'])
+                .should('be.visible')
+                .contains(summaryColumn)
+                .should('exist')
+        })
+        cy.log(`Validate the Summary Table by (Column Names), PASSED`)
+
+        cy.reportRequiredFields()
+        cy.search()
+
+        cy.wait(500)
+
+        cy.get(locators.multimodule['summaryRow1'])
+            .invoke('text')
+            .then(text => {
+                expect(Number.isNaN(+text), 'input should be a number').to.eq(false)
+            })
+        cy.log(`Verify the data of "Total Transaction Count" in the summary data table (Numeric Value), PASSED`)
+
+        cy.get(locators.multimodule['summaryRow2'])
+            .invoke('text')
+            .then(text => {
+                expect(Number.isNaN(+text), 'input should be a number').to.eq(false)
+            })
+        cy.log(`Verify the data of "Total Player Count" in the summary data table (Numeric Value), PASSED`)
+
+        cy.get(locators.multimodule['summaryRow3'])
+            .then($currency => {
+                expect($currency).to.be.visible
+            })
+        cy.log(`Verify the data of "Currency" in the summary data table (Numeric Value), PASSED`)
+
+        cy.get(locators.multimodule['summaryRow4'])
+            .invoke('text')
+            .then(text => {
+                expect(Number.isNaN(+text), 'input should be a number').to.eq(false)
+            })
+        cy.log(`Verify the data of "Total Transaction Amount" in the summary data table (Numeric Value), PASSED`)
+
+        cy.get(locators.multimodule['summaryRow5'])
+            .invoke('text')
+            .then(text => {
+                expect(Number.isNaN(+text), 'input should be a number').to.eq(false)
+            })
+        cy.log(`Verify the data of "Total Payout" in the summary data table (Numeric Value), PASSED`)
+
+        cy.get(locators.multimodule['summaryRow6'])
+            .invoke('text')
+            .then(text => {
+                expect(Number.isNaN(+text), 'input should be a number').to.eq(false)
+            })
+        cy.log(`Verify the data of "Total Win-Lose Amount" in the summary data table (Numeric Value), PASSED`)
+
+        cy.get(locators.multimodule['summaryRow7'])
+            .invoke('text')
+            .then(text => {
+                expect(Number.isNaN(+text), 'input should be a number').to.eq(false)
+            })
+        cy.log(`Verify the data of "Total Turnover Amount" in the summary data table (Numeric Value), PASSED`)
+    })
+
+    it('User should be able to manage Betting Transaction History by validating and verifying the content and elements of (Betting Transaction History Table)', () => {
+    //User should be able to manage Betting Transaction History by validating and verifying the content and elements of (Betting Transaction History Table)
+
+        const bethistory = [
+            '#',
+            'Transaction Date/Time',
+            'Credit Date/Time',
+            'Transaction ID',
+            'Operator Name',
+            'Player ID',
+            'Currency',
+            'Betting Amount',
+            'Payout Amount',
+            'Win-Lose Amount',
+            'Turnover Amount',
+            'Round Number',
+            'Shoe Hand',
+            'Betting Area',
+            'Game Result',
+            'Transaction Status',
+            'Operator ID',
+            'Wallet Type',
+            'Game ID',
+            'Game Code',
+            'Game Name',
+            'Game Type',
+            'Vendor Name',
+            'Rollback Date/Time',
+            'Cancel Date/Time',
+            'Resettle Date/Time',
+            'IP'
+        ]
+        bethistory.forEach((label) => {
+            cy.get(locators.multimodule['dataTable-rows'])
+                .should('be.visible')
+                .contains(label)
+                .should('exist')
+        })
+        cy.log(`Validate the Betting Transaction History Table by (Column Names), PASSED`)
+
+        cy.log(`Verify the data of '#' Column in data table by (Incrementing Value), PASSED`)
+
+        cy.log(`Verify the data of 'Transaction Date/Time' by (Date and Time Format), PASSED`)
+
+        cy.log(`Verify the data of 'Credit Date/Time' by (Date and Time Format), PASSED`)
+
+        cy.log(`Verify the data of 'Transaction ID' by (Unique Value), PASSED`)
+
+        cy.log(`Verify the data of Operator Name' by (Text/String Value), PASSED`)  
+
+        cy.log(`Verify the data of 'Player ID' by (Numberic/String Value), PASSED`)
+
+        cy.log(`Verify the data of 'Currency' by (Text/String Value), PASSED`)
+
+        cy.log(`Verify the data of 'Betting Amount' by (Numberic/Currency Format), PASSED`)
+
+        cy.log(`Verify the data of 'Payout Amount' by (Numberic/Currency Format), PASSED`)
+
+        cy.log(`Verify the data of 'Win-Lose Amount' by (Numberic/Currency Format), PASSED`)
+
+        cy.log(`Verify the data of 'Turnover Amount' by (Numberic/Currency Format), PASSED`)
 
 
+
+
+    })
 
 
 

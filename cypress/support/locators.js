@@ -54,6 +54,13 @@ export default {
 
         'summaryTable':               'table > thead > tr > th',
         'summaryRows':                '.table-auto.table-custom.min-w-full.table-lg tr',
+        'summaryRow1':                '.table-auto.table-custom.min-w-full.table-lg td:nth-child(1)',
+        'summaryRow2':                '.table-auto.table-custom.min-w-full.table-lg td:nth-child(2)',
+        'summaryRow3':                '.table-auto.table-custom.min-w-full.table-lg td:nth-child(3)',
+        'summaryRow4':                '.table-auto.table-custom.min-w-full.table-lg td:nth-child(4)',
+        'summaryRow5':                '.table-auto.table-custom.min-w-full.table-lg td:nth-child(5)',
+        'summaryRow6':                '.table-auto.table-custom.min-w-full.table-lg td:nth-child(6)',
+        'summaryRow7':                '.table-auto.table-custom.min-w-full.table-lg td:nth-child(7)',
 
         'selection':                  'span.ant-select-selection-item',
         'error-msg':                  '.form-error'
@@ -120,6 +127,7 @@ export default {
         'report':                         '.nav-container:nth-of-type(1) span',
         'container':                      '.nav-container:nth-child(1)',
         'text-head':                      'h1.page-header-title',
+
         'betting-history':                '.nav-container:nth-of-type(1) a:nth-child(1)',
         'transfer-history':               '.nav-container:nth-of-type(1) a:nth-child(2)',
         'player-cashflow':                '.nav-container:nth-of-type(1) a:nth-child(3)',
@@ -348,6 +356,7 @@ export default {
     {
         'content':                         '.nav-container:nth-of-type(2) span',
         'container':                       '.nav-container:nth-child(2)',
+        
         'player':                          '.nav-container:nth-of-type(2) a:nth-child(1)',
         'operator':                        '.nav-container:nth-of-type(2) a:nth-child(2)',
         'vendor':                          '.nav-container:nth-of-type(2) a:nth-child(3)',
@@ -355,6 +364,7 @@ export default {
         'sub-game':                        '.nav-container:nth-of-type(2) a:nth-child(5)',
         'bet-limit':                       '.nav-container:nth-of-type(2) a:nth-child(6)',
         'currency':                        '.nav-container:nth-of-type(2) a:nth-child(7)',
+        
         'operator-name':                   'input[type="text"][id="operator_id"]',
         'search':                          'button[type="submit"]',
         'add-operator':                    'button.btn.btn-success[type="button"]',
@@ -439,6 +449,7 @@ export default {
     {
         'lobby':                          '.nav-container:nth-of-type(3) span',
         'container':                      '.nav-container:nth-child(3)',
+        
         'media':                          '.nav-container:nth-of-type(3) a:nth-child(1)',
         'announce':                       '.nav-container:nth-of-type(3) a:nth-child(2)',
     
@@ -468,6 +479,7 @@ export default {
     {
         'promo':                            '.nav-container:nth-of-type(4) span',
         'container':                        '.nav-container:nth-child(4)',
+        
         'promo-manage':                     '.nav-container:nth-of-type(4) a:nth-child(1)',
 
         filter: {
@@ -483,8 +495,11 @@ export default {
 
     permission:
     {
-        'permission':                          '.nav-container:nth-of-type(5) span',
-        'container':                           '.nav-container:nth-child(5)'
+        'permission':                        '.nav-container:nth-of-type(5) span',
+        'container':                         '.nav-container:nth-child(5)',
+
+        'role':                              '.nav-container:nth-of-type(5) a:nth-child(1)',
+        'user':                              '.nav-container:nth-of-type(5) a:nth-child(2)',
     },
 
     system:
@@ -495,6 +510,9 @@ export default {
 
     logs:
     {
-        'logs':                               '.nav-container:nth-of-type(7) span'
+        'logs':                               '.nav-container:nth-of-type(7) span',
+        'container':                          '.nav-container:nth-child(7)',
+
+        'act-logs':                           '.nav-container:nth-of-type(7) a:nth-child(1)',
     }
 }

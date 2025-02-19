@@ -50,7 +50,78 @@ export default {
         'tableBody':                  'div:nth-child(3) .table-auto',
         'dataTable-rows':             'thead > th',
         'rows':                       '#tableBody tr',
+
         'noData':                     'td.whitespace-nowrap.py-4.text-sm.text-center',
+
+        '1row1':                       '#tableBody > tr:nth-child(1) > td:nth-child(1)',
+        '1row2':                       '#tableBody > tr:nth-child(2) > td:nth-child(1)',
+        '1row3':                       '#tableBody > tr:nth-child(3) > td:nth-child(1)',
+        '1row4':                       '#tableBody > tr:nth-child(4) > td:nth-child(1)',
+        '1row5':                       '#tableBody > tr:nth-child(5) > td:nth-child(1)',
+
+        '2row1':                       '#tableBody > tr:nth-child(1) > td:nth-child(2)',
+        '2row2':                       '#tableBody > tr:nth-child(2) > td:nth-child(2)',
+        '2row3':                       '#tableBody > tr:nth-child(3) > td:nth-child(2)',
+        '2row4':                       '#tableBody > tr:nth-child(4) > td:nth-child(2)',
+        '2row5':                       '#tableBody > tr:nth-child(5) > td:nth-child(2)',
+
+        '3row4':                       '#tableBody > tr:nth-child(4) > td:nth-child(3)',
+        '3row7':                       '#tableBody > tr:nth-child(7) > td:nth-child(3)',
+        '3row8':                       '#tableBody > tr:nth-child(8) > td:nth-child(3)',
+
+        '4row1':                       '#tableBody > tr:nth-child(1) > td:nth-child(4)',
+        '4row2':                       '#tableBody > tr:nth-child(2) > td:nth-child(4)',
+        '4row3':                       '#tableBody > tr:nth-child(3) > td:nth-child(4)',
+        '4row4':                       '#tableBody > tr:nth-child(4) > td:nth-child(4)',
+        '4row5':                       '#tableBody > tr:nth-child(5) > td:nth-child(4)',
+
+        '5row1':                       '#tableBody > tr:nth-child(1) > td:nth-child(5)',
+        '5row2':                       '#tableBody > tr:nth-child(2) > td:nth-child(5)',
+        '5row3':                       '#tableBody > tr:nth-child(3) > td:nth-child(5)',
+        '5row4':                       '#tableBody > tr:nth-child(4) > td:nth-child(5)',
+        '5row5':                       '#tableBody > tr:nth-child(5) > td:nth-child(5)',
+
+        '6row1':                       '#tableBody > tr:nth-child(1) > td:nth-child(6)',
+        '6row2':                       '#tableBody > tr:nth-child(2) > td:nth-child(6)',
+        '6row3':                       '#tableBody > tr:nth-child(3) > td:nth-child(6)',
+        '6row4':                       '#tableBody > tr:nth-child(4) > td:nth-child(6)',
+        '6row5':                       '#tableBody > tr:nth-child(5) > td:nth-child(6)',
+
+        '7row1':                       '#tableBody > tr:nth-child(1) > td:nth-child(7)',
+        '7row2':                       '#tableBody > tr:nth-child(2) > td:nth-child(7)',
+        '7row3':                       '#tableBody > tr:nth-child(3) > td:nth-child(7)',
+        '7row4':                       '#tableBody > tr:nth-child(4) > td:nth-child(7)',
+        '7row5':                       '#tableBody > tr:nth-child(5) > td:nth-child(7)',
+
+        '8row1':                       '#tableBody > tr:nth-child(1) > td:nth-child(8)',
+        '8row2':                       '#tableBody > tr:nth-child(2) > td:nth-child(8)',
+        '8row3':                       '#tableBody > tr:nth-child(3) > td:nth-child(8)',
+        '8row4':                       '#tableBody > tr:nth-child(4) > td:nth-child(8)',
+        '8row5':                       '#tableBody > tr:nth-child(5) > td:nth-child(8)',
+
+        '9row1':                       '#tableBody > tr:nth-child(1) > td:nth-child(9)',
+        '9row2':                       '#tableBody > tr:nth-child(2) > td:nth-child(9)',
+        '9row3':                       '#tableBody > tr:nth-child(3) > td:nth-child(9)',
+        '9row4':                       '#tableBody > tr:nth-child(4) > td:nth-child(9)',
+        '9row5':                       '#tableBody > tr:nth-child(5) > td:nth-child(9)',
+
+        '10row1':                       '#tableBody > tr:nth-child(1) > td:nth-child(10)',
+        '10row2':                       '#tableBody > tr:nth-child(2) > td:nth-child(10)',
+        '10row3':                       '#tableBody > tr:nth-child(3) > td:nth-child(10)',
+        '10row4':                       '#tableBody > tr:nth-child(4) > td:nth-child(10)',
+        '10row5':                       '#tableBody > tr:nth-child(5) > td:nth-child(10)',
+
+        '11row1':                       '#tableBody > tr:nth-child(1) > td:nth-child(11)',
+        '11row2':                       '#tableBody > tr:nth-child(2) > td:nth-child(11)',
+        '11row3':                       '#tableBody > tr:nth-child(3) > td:nth-child(11)',
+        '11row4':                       '#tableBody > tr:nth-child(4) > td:nth-child(11)',
+        '11row5':                       '#tableBody > tr:nth-child(5) > td:nth-child(11)',
+
+        '12row1':                       '#tableBody > tr:nth-child(1) > td:nth-child(12)',
+        '12row2':                       '#tableBody > tr:nth-child(2) > td:nth-child(12)',
+        '12row3':                       '#tableBody > tr:nth-child(3) > td:nth-child(12)',
+        '12row4':                       '#tableBody > tr:nth-child(4) > td:nth-child(12)',
+        '12row5':                       '#tableBody > tr:nth-child(5) > td:nth-child(12)',
 
         'summaryTable':               'table > thead > tr > th',
         'summaryRows':                '.table-auto.table-custom.min-w-full.table-lg tr',

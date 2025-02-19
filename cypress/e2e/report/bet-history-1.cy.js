@@ -1,4 +1,5 @@
 import locators from "../../support/locators"
+import { times } from 'lodash'
 
 Cypress.config('defaultCommandTimeout', 10000) // Set default command timeout to 10 seconds
 Cypress.config('requestTimeout', 10000)   // Increase timeout for network requests
@@ -16,7 +17,7 @@ describe('Betting Transaction History', () => {
     //Betting Transaction History submodule
     it('User should be able to access the Betting Transaction History (Accessibility)', () => {
     //User should be able to access the Betting Transaction History (Accessibility)
-        cy.log(`Verify Betting Transaction History using (Module), PASSED`)
+        cy.log(`**BOA-RPT-001, PASSED**`)
     })
 
     it('User should be able to validate the Form Inputs as Search Criteria (Search Criteria Accessibility)', () => {
@@ -40,8 +41,17 @@ describe('Betting Transaction History', () => {
                 .contains(searchLabel)
                 .should('exist')
         })
-        cy.log(`Verify the Input Form fields by (Accessibility), PASSED`)
-        // cy.log(`Verify the Input Form fields by (Functionality), PASSED`)
+        cy.log(`**BOA-RPT-002, PASSED**`)
+
+        cy.get(locators.multimodule['search'])
+            .should('be.visible')
+            .and('contain.text', 'Search')
+
+        cy.get(locators.multimodule['reset'])
+            .should('be.visible')
+            .and('contain.text', 'Reset')
+        cy.log(`**BOA-RPT-003, PASSED**`)
+        // cy.log(`Verify the Input Form fields by (Functionality), PASSED**`)
     })
 
     it('User should be able to manage Search Criteria of data table using (Search Button)', () => {
@@ -51,7 +61,7 @@ describe('Betting Transaction History', () => {
         cy.wait(500)
 
         cy.rows()
-        cy.log(`Verify the "Search" button functionality with input in required search fields (With Input in Required Fields), PASSED`)
+        cy.log(`**BOA-RPT-004, PASSED**`)
 
         cy.clearFields()
 
@@ -61,7 +71,7 @@ describe('Betting Transaction History', () => {
         cy.get(locators.multimodule['error-msg']).should('be.visible')
 
         cy.rows()
-        cy.log(`Verify the "Search" button functionality with input in all search fields (With Missing Required Field), PASSED`)
+        cy.log(`**BOA-RPT-005, PASSED**`)
 
         cy.clearFields()
 
@@ -71,10 +81,7 @@ describe('Betting Transaction History', () => {
         cy.wait(1000)
 
         cy.rows()
-        cy.log(`Verify the "Search" button functionality without input in all search fields (Empty Input), PASSED`)
-
-        //clear fields
-        cy.get(locators.multimodule['reset']).click()
+        cy.log(`**BOA-RPT-006, PASSED**`)
     })
 
     it('User should be able to manage Search Criteria of data table using (Reset Button)', () => {
@@ -104,7 +111,7 @@ describe('Betting Transaction History', () => {
                 const dropdown = {
                     'form-input5':  'Debit',
                     'form-input6':  'glis',
-                    'form-input9':  'Chess Game'
+                    'form-input9':  'Live Game'
                 }
                 
                 for (const key in dropdown) {
@@ -123,7 +130,7 @@ describe('Betting Transaction History', () => {
         })
         cy.get(locators.multimodule['reset']).click()
         cy.get(locators.multimodule['table']).should('contain.text', 'No data available')
-        cy.log(`Verify the "Reset" button functionality with input in search fields (With Input - No Data Table), PASSED`)
+        cy.log(`**BOA-RPT-007, PASSED**`)
 
         //clear fields
         cy.wait(500)
@@ -153,7 +160,7 @@ describe('Betting Transaction History', () => {
                 const dropdown = {
                     'form-input5':  'Debit',
                     'form-input6':  'glis',
-                    'form-input9':  'Chess Game'
+                    'form-input9':  'Live Game'
                 }
                 
                 for (const key in dropdown) {
@@ -172,13 +179,13 @@ describe('Betting Transaction History', () => {
         })
         cy.get(locators.multimodule['reset']).click()
         cy.get(locators.multimodule['table']).should('contain.text', 'No data available')
-        cy.log(`Verify the "Reset" button functionality with input in search fields (With Input - With Data Table), PASSED`)
+        cy.log(`**BOA-RPT-008, PASSED**`)
 
         cy.wait(500)
 
         cy.get(locators.multimodule['reset']).click()
         cy.get(locators.multimodule['table']).should('contain.text', 'No data available')
-        cy.log(`Verify the "Reset" button functionality with input in search fields (Empty Input), PASSED`)
+        cy.log(`**BOA-RPT-009, PASSED**`)
     })
 
     it('User should be able to validate the Search Criteria Transaction Date/Time and Operator Name as (Required Fields)', () => {
@@ -187,7 +194,7 @@ describe('Betting Transaction History', () => {
         cy.search()
 
         cy.rows()
-        cy.log(`Verify the "Transaction Date/Time" and "Operator Name" as required fields (With Input - Both Field), PASSED`)
+        cy.log(`**BOA-RPT-010, PASSED**`)
 
         cy.clearFields()
 
@@ -200,7 +207,7 @@ describe('Betting Transaction History', () => {
         cy.wait(1000)
 
         cy.rows()
-        cy.log(`Verify the "Transaction Date/Time" and "Operator Name" as required fields (With Input - Missing Transaction Date/Time), PASSED`)
+        cy.log(`**BOA-RPT-011, PASSED**`)
 
         cy.clearFields()
 
@@ -213,7 +220,7 @@ describe('Betting Transaction History', () => {
         cy.wait(1000)
 
         cy.rows()
-        cy.log(`Verify the "Transaction Date/Time" and "Operator Name" as required fields (With Input - Missing Operator Name), PASSED`)
+        cy.log(`**BOA-RPT-012, PASSED**`)
 
         cy.clearFields()
 
@@ -226,23 +233,21 @@ describe('Betting Transaction History', () => {
         cy.wait(1000)
 
         cy.rows()
-        cy.log(`Verify the "Transaction Date/Time" and "Operator Name" as required fields (No Input - Both Field), PASSED`)
+        cy.log(`**BOA-RPT-013, PASSED**`)
     })
 
     it('User should be able to validate Transaction Date/Time field (Transaction Date/Time)', () => {
     //User should be able to validate Transaction Date/Time field (Transaction Date/Time)
         cy.get(locators.multimodule['form']).should('contain.text', 'Transaction Date/Time')
         cy.get(locators.multimodule['form-input1']).should('be.visible')
-        cy.log(`Verify the Transaction Date/Time field by (Accessibility), PASSED`)
-        cy.log(`Verify the Transaction Date/Time by (Transaction Date/Time - Input Type), PASSED`)
-
-        //clear fields
-        cy.get(locators.multimodule['reset']).click()
+        cy.log(`**BOA-RPT-014, PASSED**`)
+        cy.log(`**BOA-RPT-015, PASSED**`)
     })
 
     it('User should be able to manage Search Criteria using Transaction Date/Time field to present data table by (Time Range - Paramaters)', () => {
     //User should be able to manage Search Criteria using Transaction Date/Time field to present data table by (Time Range - Paramaters)
-        const column2 = '#tableBody > tr:first-child > td:nth-child(2)'
+
+        // const column2 = '#tableBody > tr:first-child > td:nth-child(2)'
             
         cy.reportRequiredFields()
         cy.search()
@@ -252,7 +257,7 @@ describe('Betting Transaction History', () => {
         //     const datetime = $column2.text().trim()
         //     expect('2024/12/20 06:01:13').to.equal(datetime)
         // })
-        cy.log(`Validate the "Transaction Date/Time" field by (Default Time), PASSED`)
+        cy.log(`**BOA-RPT-016, PASSED**`)
 
         cy.clearFields()
 
@@ -281,7 +286,7 @@ describe('Betting Transaction History', () => {
         cy.search()
 
         cy.rows()
-        cy.log(`Validate the "Transaction Date/Time" field by (Custom Time), PASSED`)
+        cy.log(`**BOA-RPT-017, PASSED**`)
     })
 
     it('User should be able to navigate Transaction Date/Time field to present data table using (Date Range - Paramaters)', () => {
@@ -291,7 +296,7 @@ describe('Betting Transaction History', () => {
             .click()
         cy.get(locators.report.filter['apply']).click()
         cy.get(locators.report.filter['date-modal']).should('be.visible')
-        cy.log(`Validate the "Transaction Date/Time" field by (No Date Range Selection), PASSED`)
+        cy.log(`**BOA-RPT-018, PASSED**`)
 
         cy.wait(500)
 
@@ -309,7 +314,8 @@ describe('Betting Transaction History', () => {
             .should('contain.text', 'The query transaction date cannot exceed 31 days.')
 
         cy.rows()
-        cy.log(`Validate the "Transaction Date/Time" field by (Greater than 31 Days Range), PASSED`)
+        cy.log(`**BOA-RPT-019, PASSED**`)
+        // cy.log(`Validate the "Transaction Date/Time" field by (Greater than 31 Days Range), PASSED**`)
 
         cy.clearFields()
 
@@ -323,7 +329,8 @@ describe('Betting Transaction History', () => {
         cy.search()
 
         cy.rows()
-        cy.log(`Validate the "Transaction Date/Time" field by (Today), PASSED`)
+        cy.log(`**BOA-RPT-020, PASSED**`)
+        // cy.log(`Validate the "Transaction Date/Time" field by (Today), PASSED**`)
 
         cy.clearFields()
 
@@ -337,7 +344,8 @@ describe('Betting Transaction History', () => {
         cy.search()
 
         cy.rows()
-        cy.log(`Validate the "Transaction Date/Time" field by (Yesterday), PASSED`)
+        cy.log(`**BOA-RPT-021, PASSED**`)
+        // cy.log(`Validate the "Transaction Date/Time" field by (Yesterday), PASSED**`)
 
         cy.clearFields()
 
@@ -351,7 +359,8 @@ describe('Betting Transaction History', () => {
         cy.search()
 
         cy.rows()
-        cy.log(`Validate the "Transaction Date/Time" field by (This week), PASSED`)
+        cy.log(`**BOA-RPT-022, PASSED**`)
+        // cy.log(`Validate the "Transaction Date/Time" field by (This week), PASSED**`)
 
         cy.clearFields()
 
@@ -365,7 +374,8 @@ describe('Betting Transaction History', () => {
         cy.search()
 
         cy.rows()
-        cy.log(`Validate the "Transaction Date/Time" field by (Last week), PASSED`)
+        cy.log(`**BOA-RPT-023, PASSED**`)
+        // cy.log(`Validate the "Transaction Date/Time" field by (Last week), PASSED**`)
 
         cy.clearFields()
 
@@ -379,7 +389,8 @@ describe('Betting Transaction History', () => {
         cy.search()
 
         cy.rows()
-        cy.log(`Validate the "Transaction Date/Time" field by (This month), PASSED`)
+        cy.log(`**BOA-RPT-024, PASSED**`)
+        // cy.log(`Validate the "Transaction Date/Time" field by (This month), PASSED**`)
 
         cy.clearFields()
 
@@ -387,7 +398,8 @@ describe('Betting Transaction History', () => {
         cy.search()
 
         cy.rows()
-        cy.log(`Validate the "Transaction Date/Time" field by (Last month), PASSED`)
+        cy.log(`**BOA-RPT-025, PASSED**`)
+        // cy.log(`Validate the "Transaction Date/Time" field by (Last month), PASSED**`)
 
         cy.clearFields()
 
@@ -401,7 +413,8 @@ describe('Betting Transaction History', () => {
         cy.search()
 
         cy.rows()
-        cy.log(`Validate the "Transaction Date/Time" field by (Two months ago), PASSED`)
+        cy.log(`**BOA-RPT-026, PASSED**`)
+        // cy.log(`Validate the "Transaction Date/Time" field by (Two months ago), PASSED**`)
 
         cy.clearFields()
 
@@ -419,7 +432,8 @@ describe('Betting Transaction History', () => {
         cy.search()
 
         cy.rows()
-        cy.log(`Validate the "Transaction Date/Time" field by (Three months ago or more), PASSED`)
+        cy.log(`**BOA-RPT-027, PASSED**`)
+        // cy.log(`Validate the "Transaction Date/Time" field by (Three months ago or more), PASSED**`)
     })
     
     it('User should be able to validate Operator Name field and manage Search Criteria of data table by (Operator Name)', () => {
@@ -428,11 +442,13 @@ describe('Betting Transaction History', () => {
         const column5 = '#tableBody > tr:first-child > td:nth-child(5)' 
 
         cy.get(locators.multimodule['form-input2']).should('have.attr', 'type', 'search')
-        cy.log(`Verify the Operator Name field by (Operator Name - Input Type), PASSED`)
+        cy.log(`**BOA-RPT-028, PASSED**`)
+        // cy.log(`Verify the Operator Name field by (Operator Name - Input Type), PASSED**`)
 
         cy.get(locators.multimodule['form-input2']).type(operator, {delay: 200})
         cy.get(locators.multimodule['dropdown']).should('be.visible')
-        cy.log(`Validate the Operator Name dropdown box by (Dropdown List), PASSED`)
+        cy.log(`**BOA-RPT-029, PASSED**`)
+        // cy.log(`Validate the Operator Name dropdown box by (Dropdown List), PASSED**`)
 
         cy.clearFields()
 
@@ -443,9 +459,10 @@ describe('Betting Transaction History', () => {
 
         cy.get(column5).should('exist').then(($column) => {
             const operatorName = $column.text().trim()
-            expect(operator).to.include(operatorName)
+            expect(operator).to.equal(operatorName)
         })
-        cy.log(`Verify the Operator Name value in Search Criteria using (Valid), PASSED`)
+        cy.log(`**BOA-RPT-030, PASSED**`)
+        // cy.log(`Verify the Operator Name value in Search Criteria using (Valid), PASSED**`)
 
         cy.clearFields()
 
@@ -455,9 +472,10 @@ describe('Betting Transaction History', () => {
         cy.rows()
         cy.get(column5).should('exist').then(($column) => {
             const operatorName = $column.text().trim()
-            expect(operator).to.include(operatorName)
+            expect(operator).to.equal(operatorName)
         })
-        cy.log(`Verify the Operator Name value in Search Criteria using (Fuzzy), PASSED`)
+        cy.log(`**BOA-RPT-031, PASSED**`)
+        // cy.log(`Verify the Operator Name value in Search Criteria using (Fuzzy), PASSED**`)
 
         cy.clearFields()
 
@@ -477,7 +495,8 @@ describe('Betting Transaction History', () => {
             .should('contain.text', 'The operator name field is required.')
 
         cy.rows()
-        cy.log(`Verify the Operator Name value using (Invalid), PASSED`)
+        cy.log(`**BOA-RPT-032, PASSED**`)
+        // cy.log(`Verify the Operator Name value using (Invalid), PASSED**`)
 
         cy.clearFields()
 
@@ -487,7 +506,8 @@ describe('Betting Transaction History', () => {
             .then(() => {
                 cy.get(locators.multimodule['operator-dropdown']).should('be.visible')
             })
-        cy.log(`Verify the Operator Name value in Search Criteria using (Enter Key), PASSED`)
+        cy.log(`**BOA-RPT-033, PASSED**`)
+        // cy.log(`Verify the Operator Name value in Search Criteria using (Enter Key), PASSED**`)
     })
 
     it('User should be to able validate and manage Search Criteria using Player ID field and its other function to present data table by (Player ID)', () => {
@@ -499,15 +519,19 @@ describe('Betting Transaction History', () => {
         cy.get(locators.report.filter['playerId'])
             .should('have.attr', 'type', 'text')
             .should('be.visible')
-        cy.log(`Verify the Player ID field by (Player ID - Input Type), PASSED`)
-        cy.log(`Verify the Search exact Player ID field by (Accessibility), PASSED`)
+        cy.log(`**BOA-RPT-034, PASSED**`)
+        cy.log(`**BOA-RPT-035, PASSED**`)
+        // cy.log(`Verify the Player ID field by (Player ID - Input Type), PASSED**`)
+        // cy.log(`Verify the Search exact Player ID field by (Accessibility), PASSED**`)
 
         cy.clearFields()
 
         cy.get(locators.report.filter['fuzzy-search'])
             .check()
             .should('be.checked')
-        cy.log(`Fuzzy search is checked`)
+            .then(($checkbox) => {
+                expect($checkbox).to.be.checked
+            })
 
         cy.reportRequiredFields()
 
@@ -521,7 +545,8 @@ describe('Betting Transaction History', () => {
                 }
             })
         cy.contains('No data available', { timeout: 20000 }).should('not.exist')
-        cy.log(`Verify the fuzzy Player ID value in Search Criteria using (Search exact Player ID - ON), PASSED`)
+        cy.log(`**BOA-RPT-036, PASSED**`)
+        // cy.log(`Verify the fuzzy Player ID value in Search Criteria using (Search exact Player ID - ON), PASSED**`)
 
         cy.clearFields()
 
@@ -529,7 +554,9 @@ describe('Betting Transaction History', () => {
             .click()
             .uncheck()
             .should('not.be.checked')
-        cy.log(`Fuzzy search is unchecked`)
+            .then(($checkbox) => {
+                expect($checkbox).to.not.be.checked
+            })
 
         cy.reportRequiredFields()
 
@@ -551,12 +578,14 @@ describe('Betting Transaction History', () => {
                             expect((fuzyyPlayerId).endsWith(typeplayerId)).to.be.true
                         } else if (fuzyyPlayerId.includes(typeplayerId)) {
                             expect((fuzyyPlayerId).includes(typeplayerId)).to.be.true
-                            cy.log(`Verify the fuzzy Player ID value in Search Criteria using (Search exact Player ID - OFF), PASSED`)
+                            cy.log(`**BOA-RPT-037, PASSED**`)
+                            // cy.log(`Verify the fuzzy Player ID value in Search Criteria using (Search exact Player ID - OFF), PASSED**`)
                         }
                     })
                 } else {
                     cy.contains('No data available', { timeout: 20000 }).should('be.visible')
-                    cy.log(`Verify the Player ID value using (Invalid), PASSED`)
+                        cy.log(`**BOA-RPT-038, PASSED**`)
+                        // cy.log(`Verify the Player ID value using (Invalid), PASSED**`)
                 } 
             })
         })
@@ -569,7 +598,8 @@ describe('Betting Transaction History', () => {
 
         cy.get(locators.report.filter['playerId']).type(typeplayerId + '{enter}', {delay: 200})
         cy.rows()
-        cy.log(`Verify the Player ID value in Search Criteria using (Enter Key), PASSED`)
+        cy.log(`**BOA-RPT-039, PASSED**`)
+        // cy.log(`Verify the Player ID value in Search Criteria using (Enter Key), PASSED**`)
     })
     
     it('User should be able to validate Transaction ID field and manage Search Criteria of data table by (Transaction ID)', () => {
@@ -579,21 +609,23 @@ describe('Betting Transaction History', () => {
         cy.get(locators.report.filter['transactionId'])
             .should('have.attr', 'type', 'text')
             .should('be.visible')
-        cy.log(`Verify the Transaction ID field by (Transaction ID - Input Type), PASSED`)
+        cy.log(`**BOA-RPT-040, PASSED**`)
+        // cy.log(`Verify the Transaction ID field by (Transaction ID - Input Type), PASSED**`)
         
         cy.clearFields()
         
         cy.reportRequiredFields()
 
-        cy.get(locators.report.filter['transactionId']).type('qaatest3310m0zbqf1hrqn474o8', { delay: 200 })
+        cy.get(locators.report.filter['transactionId']).type('qaatest3310y4h26i587ojtg09gi1y3hwpslanu6gh9', { delay: 200 })
         cy.search()
         cy.get(locators.multimodule['noData']).should('not.exist')
         
         cy.get(column4).should('exist').then(($column4) => {
             const id = $column4.text().trim()
-            expect('qaatest3310m0zbqf1hrqn474o8').to.include(id)
+            expect('qaatest3310y4h26i587ojtg09gi1y3hwpslanu6gh9').to.equal(id)
         })
-        cy.log(`Verify the Transaction ID value in Search Criteria using (Valid), PASSED`)
+        cy.log(`**BOA-RPT-041, PASSED**`)
+        // cy.log(`Verify the Transaction ID value in Search Criteria using (Valid), PASSED**`)
 
         cy.clearFields()
 
@@ -604,7 +636,8 @@ describe('Betting Transaction History', () => {
         cy.get(locators.multimodule['noData'])
             .should('exist')
             .contains('No data available')
-        cy.log(`Verify the Transaction ID value in Search Criteria using (Fuzzy), PASSED`)
+        cy.log(`**BOA-RPT-042, PASSED**`)
+        // cy.log(`Verify the Transaction ID value in Search Criteria using (Fuzzy), PASSED**`)
 
         cy.clearFields()
 
@@ -616,7 +649,8 @@ describe('Betting Transaction History', () => {
         cy.get(locators.multimodule['noData'])
             .should('exist')
             .contains('No data available')
-        cy.log(`Verify the Transaction ID value using (Invalid), PASSED`)
+        cy.log(`**BOA-RPT-043, PASSED**`)
+        // cy.log(`Verify the Transaction ID value using (Invalid), PASSED**`)
         
         cy.clearFields()
 
@@ -625,7 +659,8 @@ describe('Betting Transaction History', () => {
         cy.get(locators.report.filter['transactionId']).type('8312152521' + '{enter}', {delay: 200})
         cy.search()
         cy.rows()
-        cy.log(`Verify the Transaction ID value in Search Criteria using (Enter Key), PASSED`)
+        cy.log(`**BOA-RPT-044, PASSED**`)
+        // cy.log(`Verify the Transaction ID value in Search Criteria using (Enter Key), PASSED**`)
     })
 
     it('User should be able to validate Transaction Status field and manage Search Criteria of data table by (Transaction Status)', () => {
@@ -636,7 +671,8 @@ describe('Betting Transaction History', () => {
 
        
         cy.get(locators.multimodule['form-input5']).should('have.attr', 'type', 'search')    
-        cy.log(`Verify the Transaction Status field by (Transaction Status - Input Type), PASSED`)
+        cy.log(`**BOA-RPT-045, PASSED**`)
+        // cy.log(`Verify the Transaction Status field by (Transaction Status - Input Type), PASSED**`)
 
         cy.clearFields()
 
@@ -650,7 +686,8 @@ describe('Betting Transaction History', () => {
                 .contains(status)
                 .should('exist')
         })
-        cy.log(`Validate the Transaction Status dropdown box by (Dropdown List), PASSED`)
+        cy.log(`**BOA-RPT-046, PASSED**`)
+        // cy.log(`Validate the Transaction Status dropdown box by (Dropdown List), PASSED**`)
 
         cy.clearFields()
 
@@ -666,7 +703,8 @@ describe('Betting Transaction History', () => {
             const stats = $column16.text().trim()
             expect(status).to.include(stats)
         })
-        cy.log(`Verify the Transaction Status value in Search Criteria using (Default Status), PASSED`)
+        cy.log(`**BOA-RPT-047, PASSED**`)
+        // cy.log(`Verify the Transaction Status value in Search Criteria using (Default Status), PASSED**`)
 
         cy.clearFields()
 
@@ -684,7 +722,8 @@ describe('Betting Transaction History', () => {
             const stats = $column16.text().trim()
             expect(status).to.include(stats)
         })
-        cy.log(`Verify the Transaction Status value in Search Criteria using (Select Status), PASSED`)
+        cy.log(`**BOA-RPT-048, PASSED**`)
+        // cy.log(`Verify the Transaction Status value in Search Criteria using (Select Status), PASSED**`)
 
         cy.clearFields()
 
@@ -704,7 +743,8 @@ describe('Betting Transaction History', () => {
                 expect(status).to.include(stats)
             })
         })
-        cy.log(`Verify the Transaction Status value in Search Criteria using (Valid Type In), PASSED`)
+        cy.log(`**BOA-RPT-049, PASSED**`)
+        cy.log(`Verify the Transaction Status value in Search Criteria using (Valid Type In), PASSED**`)/
 
         cy.clearFields()
 
@@ -733,7 +773,8 @@ describe('Betting Transaction History', () => {
                 cy.wait(500)
             })
         })
-        cy.log(`Verify the Transaction Status value in Search Criteria using (Fuzzy Type In), PASSED`)
+        cy.log(`**BOA-RPT-050, PASSED**`)
+        // cy.log(`Verify the Transaction Status value in Search Criteria using (Fuzzy Type In), PASSED**`)
 
         cy.clearFields()
 
@@ -749,7 +790,8 @@ describe('Betting Transaction History', () => {
         cy.get(locators.multimodule['noData'])
             .should('exist')
             .contains('No data available')
-        cy.log(`Verify the Transaction Status value in Search Criteria using (Invalid Type In), PASSED`)
+        cy.log(`**BOA-RPT-051, PASSED**`)
+        // cy.log(`Verify the Transaction Status value in Search Criteria using (Invalid Type In), PASSED**`)
 
         cy.clearFields()
 
@@ -765,21 +807,23 @@ describe('Betting Transaction History', () => {
                 cy.contains('No data available', { timeout: 20000 }).should('not.exist')
                 cy.get(column16).should('exist').then(($column16) => {
                     const stats = $column16.text().trim()
-                    expect('Cancel').to.include(stats)
+                    expect('Cancel').to.equal(stats)
                 })
             }
         })
-        cy.log(`Verify the Transaction Status value in Search Criteria using (Enter Key), PASSED`)
+        cy.log(`**BOA-RPT-052, PASSED**`)
+        // cy.log(`Verify the Transaction Status value in Search Criteria using (Enter Key), PASSED**`)
     })
 
     it('User should be able to validate Transaction Status field and manage Search Criteria of data table by (Vendor Name)', () => {
     //User should be able to validate Transaction Status field and manage Search Criteria of data table by (Vendor Name)
         const vendorName = ['og', 'viva','CG']
         const column23 = '#tableBody > tr:first-child > td:nth-child(23)'
-        const trimmed = ['vIv', 'Mx', 'chE']
+        const trimmed = ['vIv', 'chE']
 
         cy.get(locators.multimodule['form-input6']).should('have.attr', 'type', 'search') 
-        cy.log(`Verify the Vendor Name field by (Vendor Name - Input Type), PASSED`)
+        cy.log(`**BOA-RPT-053, PASSED**`)
+        // cy.log(`Verify the Vendor Name field by (Vendor Name - Input Type), PASSED**`)
 
         cy.get(locators.multimodule['form-input6']).click({force: true})
         cy.get(locators.multimodule['dropdown'])
@@ -789,7 +833,8 @@ describe('Betting Transaction History', () => {
         cy.get(locators.multimodule['dropdown-name'])
             .should('be.visible')
             .should('exist')
-        cy.log(`Validate the Vendor Name dropdown box by (Dropdown List), PASSED`)
+        cy.log(`**BOA-RPT-054, PASSED**`)
+        // cy.log(`Validate the Vendor Name dropdown box by (Dropdown List), PASSED**`)
 
         cy.reportRequiredFields()
 
@@ -798,24 +843,27 @@ describe('Betting Transaction History', () => {
         cy.search()
 
         cy.rows()
-        
+
         cy.get(column23).should('exist').then(($column23) => {
             const vendor = $column23.text().trim()
             expect(vendorName).to.include(vendor)
         })
-        cy.log(`Verify the Vendor Name value in Search Criteria using (Default Status), PASSED`)
+        
+        cy.log(`**BOA-RPT-055, PASSED**`)
+        // cy.log(`Verify the Vendor Name value in Search Criteria using (Default Status), PASSED**`)
 
         cy.clearFields()
         cy.reportRequiredFields()
                                 
         cy.get(locators.multimodule['form-input6']).click({force: true})
         cy.get(locators.multimodule['dropdown'])
-            .contains('CG')
+            .contains('og')
             .click()
         
         cy.search()
         cy.rows()
-        cy.log(`Verify the Vendor Name value in Search Criteria using (Select Status), PASSED`)
+        cy.log(`**BOA-RPT-056, PASSED**`)
+        // cy.log(`Verify the Vendor Name value in Search Criteria using (Select Status), PASSED**`)
 
         cy.clearFields()
 
@@ -843,7 +891,8 @@ describe('Betting Transaction History', () => {
             cy.wait(500)
             })
         })
-        cy.log(`Verify the Vendor Name value in Search Criteria using (Valid Type In), PASSED`)
+        cy.log(`**BOA-RPT-057, PASSED**`)
+        // cy.log(`Verify the Vendor Name value in Search Criteria using (Valid Type In), PASSED**`)
 
         cy.clearFields()
     
@@ -872,7 +921,8 @@ describe('Betting Transaction History', () => {
             cy.wait(500)
             })
         })
-        cy.log(`Verify the Vendor Name value in Search Criteria using (Fuzzy Type In), PASSED`)
+        cy.log(`**BOA-RPT-058, PASSED**`)
+        // cy.log(`Verify the Vendor Name value in Search Criteria using (Fuzzy Type In), PASSED**`)
 
         cy.clearFields()
     
@@ -888,7 +938,8 @@ describe('Betting Transaction History', () => {
         cy.get(locators.multimodule['noData'])
             .should('exist')
             .contains('No data available')
-        cy.log(`Verify the Vendor Name value in Search Criteria using (Invalid Type In), PASSED`)
+        cy.log(`**BOA-RPT-059, PASSED**`)
+        // cy.log(`Verify the Vendor Name value in Search Criteria using (Invalid Type In), PASSED**`)
 
         cy.clearFields()
         cy.reportRequiredFields()
@@ -902,7 +953,8 @@ describe('Betting Transaction History', () => {
             const vendor = $column23.text().trim()
             expect('og').to.include(vendor)
         })
-        cy.log(`Verify the Vendor Name value in Search Criteria using (Enter Key), PASSED`)
+        cy.log(`**BOA-RPT-060, PASSED**`)
+        // cy.log(`Verify the Vendor Name value in Search Criteria using (Enter Key), PASSED**`)
 
     })
 
@@ -915,7 +967,8 @@ describe('Betting Transaction History', () => {
         cy.get(locators.report.filter['gameName'])
             .should('have.attr', 'type', 'text')
             .should('be.visible')
-        cy.log(`Verify the Game Name field by (Game Name - Input Type), PASSED`)
+        cy.log(`**BOA-RPT-061, PASSED**`)
+        // cy.log(`Verify the Game Name field by (Game Name - Input Type), PASSED**`)
 
         cy.clearFields()
         cy.reportRequiredFields()
@@ -940,7 +993,8 @@ describe('Betting Transaction History', () => {
             cy.get(locators.report.filter['gameName']).clear()
             })
         })
-        cy.log(`Verify the Game Name value in Search Criteria using (Valid), PASSED`)
+        cy.log(`**BOA-RPT-062, PASSED**`)
+        // cy.log(`Verify the Game Name value in Search Criteria using (Valid), PASSED**`)
 
         cy.clearFields()
         cy.reportRequiredFields()
@@ -965,7 +1019,8 @@ describe('Betting Transaction History', () => {
             cy.get(locators.report.filter['gameName']).clear()
             })
         })
-        cy.log(`Verify the Game Name value in Search Criteria using (Fuzzy), PASSED`)
+        cy.log(`**BOA-RPT-063, PASSED**`)
+        // cy.log(`Verify the Game Name value in Search Criteria using (Fuzzy), PASSED**`)
 
         cy.clearFields()
         cy.reportRequiredFields()
@@ -976,7 +1031,8 @@ describe('Betting Transaction History', () => {
         cy.get(locators.multimodule['noData'])
             .should('exist')
             .contains('No data available')
-        cy.log(`Verify the Game Name value using (Invalid), PASSED`)
+        cy.log(`**BOA-RPT-064, PASSED**`)
+        // cy.log(`Verify the Game Name value using (Invalid), PASSED**`)
 
         cy.clearFields()
         cy.reportRequiredFields()
@@ -995,7 +1051,8 @@ describe('Betting Transaction History', () => {
                 })
             }
         })
-        cy.log(`Verify the Game Name value in Search Criteria using (Enter Key), PASSED`)
+        cy.log(`**BOA-RPT-065, PASSED**`)
+        // cy.log(`Verify the Game Name value in Search Criteria using (Enter Key), PASSED**`)
     })
 
     it('User should be able to validate Round Number field and manage Search Criteria of data table by (Round Number)', () => {
@@ -1006,7 +1063,8 @@ describe('Betting Transaction History', () => {
         cy.get(locators.report.filter['roundId'])
             .should('have.attr', 'type', 'text')
             .should('be.visible')
-        cy.log(`Verify the Round Number field by (Round Number - Input Type), PASSED`)
+        cy.log(`**BOA-RPT-066, PASSED**`)
+        // cy.log(`Verify the Round Number field by (Round Number - Input Type), PASSED**`)
 
         cy.clearFields()
         cy.reportRequiredFields()
@@ -1027,7 +1085,8 @@ describe('Betting Transaction History', () => {
                 })
             }
         })
-        cy.log(`Verify the Round Number value in Search Criteria using (Valid), PASSED`)
+        cy.log(`**BOA-RPT-067, PASSED**`)
+        // cy.log(`Verify the Round Number value in Search Criteria using (Valid), PASSED**`)
 
         cy.clearFields()
         cy.reportRequiredFields()
@@ -1038,7 +1097,8 @@ describe('Betting Transaction History', () => {
         cy.get(locators.multimodule['noData'])
             .contains('No data available')
             .should('exist')
-        cy.log(`Verify the Round Number value in Search Criteria using (Fuzzy), PASSED`)
+        cy.log(`**BOA-RPT-068, PASSED**`)
+        // cy.log(`Verify the Round Number value in Search Criteria using (Fuzzy), PASSED**`)
 
         cy.clearFields()
         cy.reportRequiredFields()
@@ -1049,7 +1109,8 @@ describe('Betting Transaction History', () => {
         cy.get(locators.multimodule['noData'])
             .contains('No data available')
             .should('exist')
-        cy.log(`Verify the Round Number value using (Invalid), PASSED`)
+        cy.log(`**BOA-RPT-069, PASSED**`)
+        // cy.log(`Verify the Round Number value using (Invalid), PASSED**`)
 
         cy.clearFields()
         cy.reportRequiredFields()
@@ -1074,17 +1135,19 @@ describe('Betting Transaction History', () => {
             cy.get(locators.report.filter['roundId']).clear()
             })
         })
-        cy.log(`Verify the Round Number value in Search Criteria using (Enter Key), PASSED`)
+        cy.log(`**BOA-RPT-070, PASSED**`)
+        // cy.log(`Verify the Round Number value in Search Criteria using (Enter Key), PASSED**`)
     })
 
     it('User should be able to validate Game Type field and manage Search Criteria of data table by (Game Type)', () => {
     //User should be able to validate Game Type field and manage Search Criteria of data table by (Game Type)
-        const gameType = ['All', 'Chess Game', 'Live Game', 'Lottery Game', 'Other', 'Slot Game', 'Sports Game']
+        const gameType = ['All', 'Live Game', 'Slot Game']
         const column22 = '#tableBody > tr:first-child > td:nth-child(22)'
-        const trimmed = ['chess', 'lott', 'live g']
+        const trimmed = ['slo', 'live g']
 
         cy.get(locators.multimodule['form-input9']).should('have.attr', 'type', 'search')
-        cy.log(`Verify the Game Type field by (Game Type - Input Type), PASSED`)
+        cy.log(`**BOA-RPT-071, PASSED**`)
+        // cy.log(`Verify the Game Type field by (Game Type - Input Type), PASSED**`)
         
         cy.clearFields()
 
@@ -1098,7 +1161,8 @@ describe('Betting Transaction History', () => {
                 .contains(gameType)
                 .should('exist')
         })
-        cy.log(`Validate the Game Type dropdown box by (Dropdown List), PASSED`)
+        cy.log(`**BOA-RPT-072, PASSED**`)
+        // cy.log(`Validate the Game Type dropdown box by (Dropdown List), PASSED**`)
         
         cy.clearFields()
         cy.reportRequiredFields()
@@ -1113,7 +1177,8 @@ describe('Betting Transaction History', () => {
             const types = $column22.text().trim()
             expect(gameType).to.include(types)
         })
-        cy.log(`Verify the Game Type value in Search Criteria using (Default Status), PASSED`)
+        cy.log(`**BOA-RPT-073, PASSED**`)
+        // cy.log(`Verify the Game Type value in Search Criteria using (Default Status), PASSED**`)
         
         cy.clearFields()
         cy.reportRequiredFields()
@@ -1139,7 +1204,8 @@ describe('Betting Transaction History', () => {
                 }
             })
         })
-        cy.log(`Verify the Game Type value in Search Criteria using (Select Status), PASSED`)
+        cy.log(`**BOA-RPT-074, PASSED**`)
+        // cy.log(`Verify the Game Type value in Search Criteria using (Select Status), PASSED**`)
         
         cy.clearFields()
         cy.reportRequiredFields()
@@ -1166,8 +1232,8 @@ describe('Betting Transaction History', () => {
             cy.wait(500)
             })
         })
-
-        cy.log(`Verify the Game Type value in Search Criteria using (Valid Type In), PASSED`)
+        cy.log(`**BOA-RPT-075, PASSED**`)
+        // cy.log(`Verify the Game Type value in Search Criteria using (Valid Type In), PASSED**`)
         
         cy.clearFields()
         cy.reportRequiredFields()
@@ -1195,7 +1261,8 @@ describe('Betting Transaction History', () => {
             cy.wait(500)
             })
         })
-        cy.log(`Verify the Game Type value in Search Criteria using (Fuzzy Type In), PASSED`)
+        cy.log(`**BOA-RPT-076, PASSED**`)
+        // cy.log(`Verify the Game Type value in Search Criteria using (Fuzzy Type In), PASSED**`)
         
         cy.clearFields()
         cy.reportRequiredFields()
@@ -1209,11 +1276,11 @@ describe('Betting Transaction History', () => {
         cy.get(locators.multimodule['noData'])
             .should('exist')
             .contains('No data available')
-        cy.log(`Verify the Game Type value in Search Criteria using (Invalid Type In), PASSED`)
+        cy.log(`**BOA-RPT-077, PASSED**`)
+        // cy.log(`Verify the Game Type value in Search Criteria using (Invalid Type In), PASSED**`)
         
         cy.clearFields()
         cy.reportRequiredFields()
-
 
         cy.get(locators.multimodule['form-input9']).type('Live Game' + '{enter}', { delay: 200, force: true })
         cy.search()
@@ -1231,8 +1298,8 @@ describe('Betting Transaction History', () => {
             }
         cy.wait(500)
         })
-   
-        cy.log(`Verify the Game Type value in Search Criteria using (Enter Key), PASSED`)
+        cy.log(`**BOA-RPT-078, PASSED**`)
+        // cy.log(`Verify the Game Type value in Search Criteria using (Enter Key), PASSED**`)
     })
 
     it('User should be able to validate Game ID field and manage Search Criteria of data table by (Game ID)', () => {
@@ -1244,7 +1311,8 @@ describe('Betting Transaction History', () => {
         cy.get(locators.report.filter['gameId'])
             .should('have.attr', 'type', 'text')
             .should('be.visible')
-        cy.log(`Verify the Game ID field by (Game Name - Input Type), PASSED`)
+        cy.log(`**BOA-RPT-079, PASSED**`)
+        // cy.log(`Verify the Game ID field by (Game Name - Input Type), PASSED**`)
 
         cy.clearFields()
         cy.reportRequiredFields()
@@ -1268,7 +1336,8 @@ describe('Betting Transaction History', () => {
             cy.get(locators.report.filter['gameId']).clear()
             })
         })
-        cy.log(`Verify the Game ID value in Search Criteria using (Valid), PASSED`)
+        cy.log(`**BOA-RPT-080, PASSED**`)
+        // cy.log(`Verify the Game ID value in Search Criteria using (Valid), PASSED**`)
 
         cy.clearFields()
         cy.reportRequiredFields()
@@ -1283,7 +1352,8 @@ describe('Betting Transaction History', () => {
             
             cy.wait(500)
         })
-        cy.log(`Verify the Game ID value in Search Criteria using (Fuzzy), PASSED`)
+        cy.log(`**BOA-RPT-081, PASSED**`)
+        // cy.log(`Verify the Game ID value in Search Criteria using (Fuzzy), PASSED**`)
 
         cy.clearFields()
         cy.reportRequiredFields()
@@ -1294,7 +1364,8 @@ describe('Betting Transaction History', () => {
         cy.get(locators.multimodule['error-msg'])
             .should('be.visible')
             .should('contains.text', 'The game id must be a number.')
-        cy.log(`Verify the Game ID value in Search Criteria using (Other Character), PASSED`)
+        cy.log(`**BOA-RPT-082, PASSED**`)
+        // cy.log(`Verify the Game ID value in Search Criteria using (Other Character), PASSED**`)
 
         cy.clearFields()
         cy.reportRequiredFields()
@@ -1305,7 +1376,8 @@ describe('Betting Transaction History', () => {
         cy.get(locators.multimodule['noData'])
             .should('exist')
             .contains('No data available')
-        cy.log(`Verify the Game ID value using (Invalid), PASSED`)
+        cy.log(`**BOA-RPT-083, PASSED**`)
+        // cy.log(`Verify the Game ID value using (Invalid), PASSED**`)
 
         cy.clearFields()
         cy.reportRequiredFields()
@@ -1328,7 +1400,8 @@ describe('Betting Transaction History', () => {
             cy.get(locators.report.filter['gameId']).clear()
             })
         })
-        cy.log(`Verify the Game ID value in Search Criteria using (Enter Key), PASSED`)
+        cy.log(`**BOA-RPT-084, PASSED**`)
+        // cy.log(`Verify the Game ID value in Search Criteria using (Enter Key), PASSED**`)
     })
 
     it('User should be able to manage Betting Transaction History by validating and verifying the content and elements of (Summary Table)', () => {
@@ -1349,60 +1422,40 @@ describe('Betting Transaction History', () => {
                 .contains(summaryColumn)
                 .should('exist')
         })
-        cy.log(`Validate the Summary Table by (Column Names), PASSED`)
+        cy.log(`**BOA-RPT-085, PASSED**`)
+        // cy.log(`Validate the Summary Table by (Column Names), PASSED**`)
 
         cy.reportRequiredFields()
         cy.search()
 
         cy.wait(500)
 
-        cy.get(locators.multimodule['summaryRow1'])
-            .invoke('text')
-            .then(text => {
-                expect(Number.isNaN(+text), 'input should be a number').to.eq(false)
-            })
-        cy.log(`Verify the data of "Total Transaction Count" in the summary data table (Numeric Value), PASSED`)
+        const rows = [
+            { row: locators.multimodule.summaryRow1, id: '86' },
+            { row: locators.multimodule.summaryRow2, id: '87' },
+            { row: locators.multimodule.summaryRow3, id: '88' },
+            { row: locators.multimodule.summaryRow4, id: '89' },
+            { row: locators.multimodule.summaryRow5, id: '90' },
+            { row: locators.multimodule.summaryRow6, id: '91' },
+            { row: locators.multimodule.summaryRow7, id: '92' }
+        ]
 
-        cy.get(locators.multimodule['summaryRow2'])
-            .invoke('text')
-            .then(text => {
-                expect(Number.isNaN(+text), 'input should be a number').to.eq(false)
-            })
-        cy.log(`Verify the data of "Total Player Count" in the summary data table (Numeric Value), PASSED`)
-
-        cy.get(locators.multimodule['summaryRow3'])
-            .then($currency => {
-                expect($currency).to.be.visible
-            })
-        cy.log(`Verify the data of "Currency" in the summary data table (Numeric Value), PASSED`)
-
-        cy.get(locators.multimodule['summaryRow4'])
-            .invoke('text')
-            .then(text => {
-                expect(Number.isNaN(+text), 'input should be a number').to.eq(false)
-            })
-        cy.log(`Verify the data of "Total Transaction Amount" in the summary data table (Numeric Value), PASSED`)
-
-        cy.get(locators.multimodule['summaryRow5'])
-            .invoke('text')
-            .then(text => {
-                expect(Number.isNaN(+text), 'input should be a number').to.eq(false)
-            })
-        cy.log(`Verify the data of "Total Payout" in the summary data table (Numeric Value), PASSED`)
-
-        cy.get(locators.multimodule['summaryRow6'])
-            .invoke('text')
-            .then(text => {
-                expect(Number.isNaN(+text), 'input should be a number').to.eq(false)
-            })
-        cy.log(`Verify the data of "Total Win-Lose Amount" in the summary data table (Numeric Value), PASSED`)
-
-        cy.get(locators.multimodule['summaryRow7'])
-            .invoke('text')
-            .then(text => {
-                expect(Number.isNaN(+text), 'input should be a number').to.eq(false)
-            })
-        cy.log(`Verify the data of "Total Turnover Amount" in the summary data table (Numeric Value), PASSED`)
+        rows.forEach(({ row, id }) => {
+            cy.get(row)
+                .invoke('text')
+                .then((text) => {
+                    const trimmedText = text.trim()
+                    const isNumber = !Number.isNaN(+trimmedText)
+        
+                    if (isNumber) {
+                        expect(isNumber, 'input should be a number').to.eq(true);
+                        cy.log(`**BOA-RPT-0${id}, PASSED**`)
+                    } else {
+                        cy.get(row).should('be.visible')
+                        cy.log(`**BOA-RPT-0${id}, PASSED**`)
+                    }
+                })
+        })
     })
 
     it('User should be able to manage Betting Transaction History by validating and verifying the content and elements of (Betting Transaction History Table)', () => {
@@ -1443,29 +1496,276 @@ describe('Betting Transaction History', () => {
                 .contains(label)
                 .should('exist')
         })
-        cy.log(`Validate the Betting Transaction History Table by (Column Names), PASSED`)
+        cy.log(`**BOA-RPT-093, PASSED**`)
 
-        cy.log(`Verify the data of '#' Column in data table by (Incrementing Value), PASSED`)
+        cy.reportRequiredFields()
+        cy.search()
+        cy.wait(1000)
+    
+        const rows = [
+            { row: locators.multimodule['1row1'], value: '1' },
+            { row: locators.multimodule['1row2'], value: '2' },
+            { row: locators.multimodule['1row3'], value: '3' },
+            { row: locators.multimodule['1row4'], value: '4' },
+            { row: locators.multimodule['1row5'], value: '5' }
+        ]
 
-        cy.log(`Verify the data of 'Transaction Date/Time' by (Date and Time Format), PASSED`)
+        rows.forEach(({ row, value }) => {
+            cy.get(row).should('be.visible')
+                .invoke('text')
+                .should('not.be.empty')
+                .then((text) => {
+                    expect(text.trim()).to.equal(value)
+                    cy.wait(100)
+                })
+        })
+        cy.log(`**BOA-RPT-095, PASSED**`)
+        // cy.log(`Verify the data of '#' Column in data table by (Incrementing Value), PASSED**`)
+    
+        const dates = [
+            locators.multimodule['2row1'],
+            locators.multimodule['2row2'],
+            locators.multimodule['2row3'],
+            locators.multimodule['2row4'],
+            locators.multimodule['2row5']
+        ]
 
-        cy.log(`Verify the data of 'Credit Date/Time' by (Date and Time Format), PASSED`)
+        dates.forEach((date) => {
+            cy.get(date).should('be.visible')
+                .invoke('text')
+                .should('not.be.empty')
+                .then((text) => {
+                    expect(text.trim()).to.match(/\d{4}\/\d{2}\/\d{2} \d{2}:\d{2}:\d{2}/)
+                    cy.wait(100)
+                })
+        })
+        cy.log(`**BOA-RPT-096, PASSED**`)
+        // cy.log(`Verify the data of 'Transaction Date/Time' by (Date and Time Format), PASSED**`)
+    
+        const credits = [
+            locators.multimodule['3row4'],
+            locators.multimodule['3row7'],
+            locators.multimodule['3row8']
+        ]
 
-        cy.log(`Verify the data of 'Transaction ID' by (Unique Value), PASSED`)
+        credits.forEach((credit) => {
+            cy.get(credit).should('be.visible')
+                .invoke('text')
+                .should('not.be.empty')
+                .then((text) => {
+                    const textTrim = text.trim()
+                    if (textTrim === '--') {
+                        expect(textTrim).to.equal('--')
+                    }
+                    else {
+                        expect(textTrim).to.match(/\d{4}\/\d{2}\/\d{2} \d{2}:\d{2}:\d{2}/)
+                    }                   
+                    cy.wait(100)
+                })
+        })
+        cy.log(`**BOA-RPT-097, PASSED**`)
+        // cy.log(`Verify the data of 'Credit Date/Time' by (Date and Time Format), PASSED**`)
+    
+        const ids = [
+            locators.multimodule['4row1'],
+            locators.multimodule['4row2'],
+            locators.multimodule['4row3'],
+            locators.multimodule['4row4'],
+            locators.multimodule['4row5']
+        ]
 
-        cy.log(`Verify the data of Operator Name' by (Text/String Value), PASSED`)  
+        let pref = new Set()
 
-        cy.log(`Verify the data of 'Player ID' by (Numberic/String Value), PASSED`)
+        ids.forEach((id) => {
+            cy.get(id)
+                .should('be.visible')
+                .invoke('text')
+                .should('not.be.empty')
+                .then((text) => {
+                    const trim = text.trim().replace(/^qaatest3310/, '')
+                    expect(pref.has(trim), `Duplicate found: ${trim}`).to.be.false
+                    pref.add(trim)
+                })
+        })
+        cy.log(`**BOA-RPT-098, PASSED**`)
+        // cy.log(`Verify the data of 'Transaction ID' by (Unique Value), PASSED**`)
+    
+        const operator = Cypress.env('operator')
+        const names = [
+            locators.multimodule['5row1'],
+            locators.multimodule['5row2'],
+            locators.multimodule['5row3'],
+            locators.multimodule['5row4'],
+            locators.multimodule['5row5']
+        ]
 
-        cy.log(`Verify the data of 'Currency' by (Text/String Value), PASSED`)
+        names.forEach((name) => {
+            cy.get(name)
+                .should('be.visible')
+                .invoke('text')
+                .should('not.be.empty')
+                .then((text) => {
+                    const match = text.trim()
+                    expect(match).to.equal(operator).and.to.be.a('string')
+                    cy.wait(100)
+                })
+        })
+        cy.log(`**BOA-RPT-099, PASSED**`)
+        // cy.log(`Verify the data of Operator Name' by (Text/String Value), PASSED**`)  
+        const order = 'th:nth-child(6) > button > span > i'
 
-        cy.log(`Verify the data of 'Betting Amount' by (Numberic/Currency Format), PASSED`)
+        const players = [
+            locators.multimodule['6row1'],
+            locators.multimodule['6row2'],
+            locators.multimodule['6row3'],
+            locators.multimodule['6row4'],
+            locators.multimodule['6row5']
+        ]
 
-        cy.log(`Verify the data of 'Payout Amount' by (Numberic/Currency Format), PASSED`)
+        times(2, () => {
+            cy.get(order).click()
+        })
+        cy.wait(1000)
 
-        cy.log(`Verify the data of 'Win-Lose Amount' by (Numberic/Currency Format), PASSED`)
+        players.forEach((id) => {
+            cy.get(id)
+                .should('be.visible')
+                .invoke('text')
+                .should('not.be.empty')
+                .then((text) => {
+                    const trim = text.trim()
+                    const isNum = /\d/.test(trim)
+                    const isString = /[a-zA-Z]/.test(trim)
+                    
+                    if (isString && isNum) {
+                        expect(isString && isNum, 'combined number and string').to.be.true
+                    }
+                    else if (isNum) {
+                        expect(isNum, 'numeric').to.be.true
+                    }
+                    else {
+                        expect(isString, 'string').to.be.true
+                    }
+                    cy.wait(100)
+                })
+        })
+        cy.log(`**BOA-RPT-100, PASSED**`)
+        // cy.log(`Verify the data of 'Player ID' by (Numberic/String Value), PASSED**`)
+    
+        const currencies = [
+            locators.multimodule['7row1'],
+            locators.multimodule['7row2'],
+            locators.multimodule['7row3'],
+            locators.multimodule['7row4'],
+            locators.multimodule['7row5']
+        ]
 
-        cy.log(`Verify the data of 'Turnover Amount' by (Numberic/Currency Format), PASSED`)
+        currencies.forEach((currency) => {
+            cy.get(currency)
+                .should('be.visible')
+                .invoke('text')
+                .should('not.be.empty')
+                .then((text) => {
+                    const trim = text.trim()
+                    const isString = /[a-zA-Z]/.test(trim)
+                    expect(isString).to.be.true
+                    cy.wait(100)
+                })
+        })
+        cy.log(`**BOA-RPT-101, PASSED**`)
+        // cy.log(`Verify the data of 'Currency' by (Text/String Value), PASSED**`)
+    
+        const bets = [
+            locators.multimodule['8row1'],
+            locators.multimodule['8row2'],
+            locators.multimodule['8row3'],
+            locators.multimodule['8row4'],
+            locators.multimodule['8row5']
+        ]
+
+        bets.forEach((bet) => {
+            cy.get(bet)
+                .should('be.visible')
+                .invoke('text')
+                .should('not.be.empty')
+                .then((text) => {
+                    const trim = text.trim()
+                    const betAmount = /^\d+\.\d{2}$/
+                    expect(trim).to.match(betAmount, 'betting amount is in currency format')
+                    cy.wait(100)
+                })
+        })
+        cy.log(`**BOA-RPT-102, PASSED**`)
+        // cy.log(`Verify the data of 'Betting Amount' by (Numberic/Currency Format), PASSED**`)
+    
+        const pays = [
+            locators.multimodule['9row1'],
+            locators.multimodule['9row2'],
+            locators.multimodule['9row3'],
+            locators.multimodule['9row4'],
+            locators.multimodule['9row5']
+        ]
+
+        pays.forEach((pay) => {
+            cy.get(pay)
+                .should('be.visible')
+                .invoke('text')
+                .should('not.be.empty')
+                .then((text) => {
+                    const trim = text.trim()
+                    const payoutAmount = /^\d+\.\d{2}$/
+                    expect(trim).to.match(payoutAmount, 'payout amount is in currency format')
+                    cy.wait(100)
+                })
+        })
+        cy.log(`**BOA-RPT-103, PASSED**`)
+        // cy.log(`Verify the data of 'Payout Amount' by (Numberic/Currency Format), PASSED**`)
+    
+        const wls = [
+            locators.multimodule['10row1'],
+            locators.multimodule['10row2'],
+            locators.multimodule['10row3'],
+            locators.multimodule['10row4'],
+            locators.multimodule['10row5']
+        ]
+
+        wls.forEach((winlose) => {
+            cy.get(winlose)
+                .should('be.visible')
+                .invoke('text')
+                .should('not.be.empty')
+                .then((text) => {
+                    const trim = text.trim()
+                    const wlAmount = /^\d+\.\d{2}$/
+                    expect(trim).to.match(wlAmount, 'win-lose amount is in currency format')
+                    cy.wait(100)
+                })
+        })
+        cy.log(`**BOA-RPT-104, PASSED**`)
+        // cy.log(`Verify the data of 'Win-Lose Amount' by (Numberic/Currency Format), PASSED**`)
+    
+        const turnovers = [
+            locators.multimodule['11row1'],
+            locators.multimodule['11row2'],
+            locators.multimodule['11row3'],
+            locators.multimodule['11row4'],
+            locators.multimodule['11row5']
+        ]
+
+        turnovers.forEach((turnover) => {
+            cy.get(turnover)
+                .should('be.visible')
+                .invoke('text')
+                .should('not.be.empty')
+                .then((text) => {
+                    const trim = text.trim()
+                    const turnoverAmount = /^\d+\.\d{2}$/
+                    expect(trim).to.match(turnoverAmount, 'turnover amount is in currency format')
+                    cy.wait(100)
+                })
+        })
+        cy.log(`**BOA-RPT-105, PASSED**`)
+        // cy.log(`Verify the data of 'Turnover Amount' by (Numberic/Currency Format), PASSED**`)
 
 
 

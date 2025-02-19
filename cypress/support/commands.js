@@ -40,7 +40,7 @@ Cypress.Commands.add('reportRequiredFields', () => {
         .should('be.visible')
         .click()
     cy.get(locators.report.filter['date-modal']).should('be.visible')
-    cy.get(locators.report.filter['lastMonth']).click()
+    cy.get(locators.report.filter['twoMonths']).click()
 
     cy.get(locators.multimodule['form-input2']).type(operator, {delay: 200})
     cy.get(locators.multimodule['operator-dropdown']).should('be.visible')

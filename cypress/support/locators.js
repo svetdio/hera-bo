@@ -123,6 +123,31 @@ export default {
         '12row4':                       '#tableBody > tr:nth-child(4) > td:nth-child(12)',
         '12row5':                       '#tableBody > tr:nth-child(5) > td:nth-child(12)',
 
+        '12row1':                       '#tableBody > tr:nth-child(1) > td:nth-child(12)',
+        '12row2':                       '#tableBody > tr:nth-child(2) > td:nth-child(12)',
+        '12row3':                       '#tableBody > tr:nth-child(3) > td:nth-child(12)',
+        '12row4':                       '#tableBody > tr:nth-child(4) > td:nth-child(12)',
+        '12row5':                       '#tableBody > tr:nth-child(5) > td:nth-child(12)',
+
+        '13row1':                       '#tableBody > tr:nth-child(1) > td:nth-child(13)',
+        '13row2':                       '#tableBody > tr:nth-child(2) > td:nth-child(13)',
+        '13row3':                       '#tableBody > tr:nth-child(3) > td:nth-child(13)',
+        '13row4':                       '#tableBody > tr:nth-child(4) > td:nth-child(13)',
+        '13row5':                       '#tableBody > tr:nth-child(5) > td:nth-child(13)',
+
+        '14row1':                       '#tableBody > tr:nth-child(1) > td:nth-child(14)',
+        '14row2':                       '#tableBody > tr:nth-child(2) > td:nth-child(14)',
+        '14row3':                       '#tableBody > tr:nth-child(3) > td:nth-child(14)',
+        '14row4':                       '#tableBody > tr:nth-child(4) > td:nth-child(14)',
+        '14row5':                       '#tableBody > tr:nth-child(5) > td:nth-child(14)',
+
+        '15row1':                       '#tableBody > tr:nth-child(1) > td:nth-child(15)',
+        '15row2':                       '#tableBody > tr:nth-child(2) > td:nth-child(15)',
+        '15row3':                       '#tableBody > tr:nth-child(3) > td:nth-child(15)',
+        '15row4':                       '#tableBody > tr:nth-child(4) > td:nth-child(15)',
+        '15row5':                       '#tableBody > tr:nth-child(5) > td:nth-child(15)',
+        
+
         'summaryTable':               'table > thead > tr > th',
         'summaryRows':                '.table-auto.table-custom.min-w-full.table-lg tr',
         'summaryRow1':                '.table-auto.table-custom.min-w-full.table-lg td:nth-child(1)',
@@ -219,13 +244,13 @@ export default {
 
             'date-modal':                 'div.dp__menu',
 
-            'today':                      'div.items-start:nth-child(1) .presetDatesLabel',
-            'yesterday':                  'div.items-start:nth-child(2) .presetDatesLabel',
+            'today':                     'div.items-start:nth-child(1) .presetDatesLabel',
+            'yesterday':                 'div.items-start:nth-child(2) .presetDatesLabel',
             'thisWeek':                  'div.items-start:nth-child(3) .presetDatesLabel',
             'lastWeek':                  'div.items-start:nth-child(4) .presetDatesLabel',
             'thisMonth':                 'div.items-start:nth-child(5) .presetDatesLabel',
             'lastMonth':                 'div.items-start:nth-child(6) .presetDatesLabel',
-            'twoMonths':             'div.items-start:nth-child(7) .presetDatesLabel',
+            'twoMonths':                 'div.items-start:nth-child(7) .presetDatesLabel',
 
             'dpClear':                    '.dp__icon.dp__clear_icon.dp__input_icons',
 

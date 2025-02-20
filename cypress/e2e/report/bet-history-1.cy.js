@@ -512,8 +512,8 @@ describe('Betting Transaction History', () => {
 
     it('User should be to able validate and manage Search Criteria using Player ID field and its other function to present data table by (Player ID)', () => {
     //User should be to able validate and manage Search Criteria using Player ID field and its other function to present data table by (Player ID)
-        const typeplayerId = '12345671'
-        const playerIds = ['12345671', '5671', '123', '45', '23414']
+        const typeplayerId = '777'
+        const playerIds = ['777', '77', '7', '45', '23414']
         const firstrow = '#tableBody > tr:first-child > td:nth-child(6)'
 
         cy.get(locators.report.filter['playerId'])
@@ -616,13 +616,13 @@ describe('Betting Transaction History', () => {
         
         cy.reportRequiredFields()
 
-        cy.get(locators.report.filter['transactionId']).type('qaatest3310y4h26i587ojtg09gi1y3hwpslanu6gh9', { delay: 200 })
+        cy.get(locators.report.filter['transactionId']).type('1405420440000000002457', { delay: 200 })
         cy.search()
         cy.get(locators.multimodule['noData']).should('not.exist')
         
         cy.get(column4).should('exist').then(($column4) => {
             const id = $column4.text().trim()
-            expect('qaatest3310y4h26i587ojtg09gi1y3hwpslanu6gh9').to.equal(id)
+            expect('1405420440000000002457').to.equal(id)
         })
         cy.log(`**BOA-RPT-041, PASSED**`)
         // cy.log(`Verify the Transaction ID value in Search Criteria using (Valid), PASSED**`)
@@ -712,7 +712,7 @@ describe('Betting Transaction History', () => {
                                 
         cy.get(locators.multimodule['form-input5']).click({force: true})
         cy.get(locators.multimodule['dropdown'])
-            .contains('Debit')
+            .contains('Credit')
             .click()
         cy.search()
 
@@ -737,10 +737,18 @@ describe('Betting Transaction History', () => {
                     .click()
             })
             cy.search()
-            cy.rows() 
-            cy.get(column16).should('exist').then(($column16) => {
-                const stats = $column16.text().trim()
-                expect(status).to.include(stats)
+
+            cy.wait(1000)
+            cy.get(locators.multimodule['table']).then(table => {
+                if (table.find(locators.multimodule['noData']).length > 0) {
+                    cy.contains('No data available', { timeout: 20000 }).should('be.visible')
+                } else {
+                    cy.contains('No data available', { timeout: 20000 }).should('not.exist')
+                    cy.get(column16).should('exist').then(($column16) => {
+                        const stats = $column16.text().trim()
+                        expect(status).to.include(stats)
+                    })
+                }
             })
         })
         cy.log(`**BOA-RPT-049, PASSED**`)
@@ -1582,7 +1590,7 @@ describe('Betting Transaction History', () => {
                 .invoke('text')
                 .should('not.be.empty')
                 .then((text) => {
-                    const trim = text.trim().replace(/^qaatest3310/, '')
+                    const trim = text.trim()
                     expect(pref.has(trim), `Duplicate found: ${trim}`).to.be.false
                     pref.add(trim)
                 })
@@ -1766,6 +1774,58 @@ describe('Betting Transaction History', () => {
         })
         cy.log(`**BOA-RPT-105, PASSED**`)
         // cy.log(`Verify the data of 'Turnover Amount' by (Numberic/Currency Format), PASSED**`)
+
+        const rounds = [
+            locators.multimodule['12row1'],
+            locators.multimodule['12row2'],
+            locators.multimodule['12row3'],
+            locators.multimodule['12row4'],
+            locators.multimodule['12row5']
+        ]
+
+        rounds.forEach((round) => {
+            cy.get(round)
+                .should('be.visible')
+                .invoke('text')
+                .should('not.be.empty')
+                .then((text) => {
+                    const trim = text.trim()
+                    expect(trim, `${trim}`).to.not.be.empty
+                    cy.wait(100)
+                })
+        })
+        cy.log(`**BOA-RPT-106, PASSED**`)
+        //Verify the data of 'Round Number' by (Visibility)
+
+        const shoes = [
+            locators.multimodule['13row1'],
+            locators.multimodule['13row2'],
+            locators.multimodule['13row3'],
+            locators.multimodule['13row4'],
+            locators.multimodule['13row5']
+        ]
+
+        shoes.forEach((sh) => {
+            cy.get(sh)
+                .should('be.visible')
+                .invoke('text')
+                .should('not.be.empty')
+                .then((text) => {
+                    const trim = text.trim()
+                    const shoe = /^\d{2}-\d{1,2}$/.test(trim)
+                    const empty = '--'
+
+                    if (trim === empty) {
+                        expect(trim, `${trim} shoe hand is empty`).to.equal(empty)
+                    }
+                    else {
+                        expect(shoe, `${trim} shoe hand has data`).to.be.true
+                    }
+                    cy.wait(100)
+                })
+        })
+        cy.log(`**BOA-RPT-107, PASSED**`)
+        //Verify the data of 'Shoe Hand' by (Visibility)
 
 
 

@@ -42,7 +42,7 @@ module.exports = defineConfig({
   env: {
     username: 'superqa',
     password: '4dmin',
-    operator: 'QATest6',
+    operator: 'testerQA12',
     vendor: 'og'
     // operator: 'testerQA12'
   },

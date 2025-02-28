@@ -20,51 +20,23 @@ describe('Test', () => {
         cy.search()
 
         cy.wait(1000)
-
-        const rounds = [
-            locators.multimodule['12row1'],
-            locators.multimodule['12row2'],
-            locators.multimodule['12row3'],
-            locators.multimodule['12row4'],
-            locators.multimodule['12row5']
+   
+        const id = [
+            locators.multimodule['17row1'],
+            locators.multimodule['17row2'],
+            locators.multimodule['17row3'],
+            locators.multimodule['17row4'],
+            locators.multimodule['17row5']
         ]
 
-        rounds.forEach((round) => {
-            cy.get(round)
+        id.forEach((op) => {
+            cy.get(op)
                 .should('be.visible')
                 .invoke('text')
-                .should('not.be.empty')
                 .then((text) => {
                     const trim = text.trim()
-                    expect(trim, `${trim}`).to.not.be.empty
-                    cy.wait(100)
-                })
-        })
-
-        const shoes = [
-            locators.multimodule['13row1'],
-            locators.multimodule['13row2'],
-            locators.multimodule['13row3'],
-            locators.multimodule['13row4'],
-            locators.multimodule['13row5']
-        ]
-
-        shoes.forEach((sh) => {
-            cy.get(sh)
-                .should('be.visible')
-                .invoke('text')
-                .should('not.be.empty')
-                .then((text) => {
-                    const trim = text.trim()
-                    const shoe = /^\d{2}-\d{1,2}$/.test(trim)
-                    const empty = '--'
-
-                    if (trim === empty) {
-                        expect(trim, `${trim} shoe hand is empty`).to.equal(empty)
-                    }
-                    else {
-                        expect(shoe, `${trim} shoe hand has data`).to.be.true
-                    }
+                    const isNumber = !Number.isNaN(+trim)
+                    expect(isNumber, 'id should be a number').to.eq(true)            
                     cy.wait(100)
                 })
         })

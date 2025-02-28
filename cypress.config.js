@@ -14,6 +14,7 @@ const { defineConfig } = require("cypress");
 const installLogsPrinter = require('cypress-terminal-report/src/installLogsPrinter');
 
 module.exports = defineConfig({
+  projectId: 'tfe91x',
   e2e: {
     baseUrl: 'https://hera.pwqr820.com',
     viewportWidth: 1920,
@@ -40,8 +41,8 @@ module.exports = defineConfig({
     // },
   },
   env: {
-    username: 'superqa',
-    password: '4dmin',
+    username: 'testersvet',
+    password: '1234567',
     operator: 'testerQA12',
     vendor: 'og'
     // operator: 'testerQA12'

@@ -825,7 +825,7 @@ describe('Betting Transaction History', () => {
 
     it('User should be able to validate Transaction Status field and manage Search Criteria of data table by (Vendor Name)', () => {
     //User should be able to validate Transaction Status field and manage Search Criteria of data table by (Vendor Name)
-        const vendorName = ['og', 'viva','CG']
+        const vendorName = ['og', 'suolaier', 'glis'] //changeable
         const column23 = '#tableBody > tr:first-child > td:nth-child(23)'
         const trimmed = ['vIv', 'chE']
 
@@ -851,7 +851,6 @@ describe('Betting Transaction History', () => {
         cy.search()
 
         cy.rows()
-
         cy.get(column23).should('exist').then(($column23) => {
             const vendor = $column23.text().trim()
             expect(vendorName).to.include(vendor)
@@ -1456,7 +1455,7 @@ describe('Betting Transaction History', () => {
                     const isNumber = !Number.isNaN(+trimmedText)
         
                     if (isNumber) {
-                        expect(isNumber, 'input should be a number').to.eq(true);
+                        expect(isNumber, 'input should be a number').to.eq(true)
                         cy.log(`**BOA-RPT-0${id}, PASSED**`)
                     } else {
                         cy.get(row).should('be.visible')
@@ -1744,7 +1743,7 @@ describe('Betting Transaction History', () => {
                 .should('not.be.empty')
                 .then((text) => {
                     const trim = text.trim()
-                    const wlAmount = /^\d+\.\d{2}$/
+                    const wlAmount = /^-?\d{1,3}(,\d{3})*\.\d{2}$/
                     expect(trim).to.match(wlAmount, 'win-lose amount is in currency format')
                     cy.wait(100)
                 })
@@ -1827,7 +1826,102 @@ describe('Betting Transaction History', () => {
         cy.log(`**BOA-RPT-107, PASSED**`)
         //Verify the data of 'Shoe Hand' by (Visibility)
 
+        const place = [
+            locators.multimodule['14row1'],
+            locators.multimodule['14row2'],
+            locators.multimodule['14row3'],
+            locators.multimodule['14row4'],
+            locators.multimodule['14row5']
+        ]
 
+        place.forEach((betplace) => {
+            cy.get(betplace)
+                .should('be.visible')
+                .invoke('text')
+                .should('not.be.empty')
+                .then((text) => {
+                    const trim = text.trim()
+                    expect(trim, `${trim}`).to.not.be.empty
+                    cy.wait(100)
+            })
+        })
+        cy.log(`**BOA-RPT-108, PASSED**`)
+        //Verify the data of 'Betting Area' by (Visibility)
+
+        const vw = [
+            locators.multimodule['15row1'],
+            locators.multimodule['15row2'],
+            locators.multimodule['15row3'],
+            locators.multimodule['15row4'],
+            locators.multimodule['15row5']
+        ]
+        
+        vw.forEach((view) => {
+            cy.get(view)
+                .should('be.visible')
+                .invoke('text')
+                .should('not.be.empty')
+                .then((text) => {
+                    const trim = text.trim()
+                    const result = 'View Result'
+                    expect(trim).to.eq(result)
+
+                    cy.get(view).click()
+                    cy.get('.modal-inner')
+                        .should('be.visible')
+                        .should('contain.text', 'Game Result')
+
+                    cy.get('.btn.btn-light').click()
+                    cy.wait(100)
+                })
+        })
+        cy.log(`**BOA-RPT-109, PASSED**`)
+        //Verify the data of 'Game Result' by (View Result)
+
+        const options = ['Dedit', 'Credit', 'Rollback', 'Cancel', 'Resettle']   
+        const stats = [
+            locators.multimodule['16row1'],
+            locators.multimodule['16row2'],
+            locators.multimodule['16row3'],
+            locators.multimodule['16row4'],
+            locators.multimodule['16row5']
+        ]
+
+        stats.forEach((transact) => {
+            cy.get(transact)
+                .should('be.visible')
+                .invoke('text')
+                .should('not.be.empty')
+                .then((text) => {
+                    const trim = text.trim()
+                    expect(options).to.include(trim)             
+                    cy.wait(100)
+                })
+        })
+        cy.log(`**BOA-RPT-110, PASSED**`)
+        //Verify the data of 'Transaction Status' by (Correct Status)
+
+        const id = [
+            locators.multimodule['17row1'],
+            locators.multimodule['17row2'],
+            locators.multimodule['17row3'],
+            locators.multimodule['17row4'],
+            locators.multimodule['17row5']
+        ]
+
+        id.forEach((op) => {
+            cy.get(op)
+                .should('be.visible')
+                .invoke('text')
+                .then((text) => {
+                    const trim = text.trim()
+                    const isNumber = !Number.isNaN(+trim)
+                    expect(isNumber, 'id should be a number').to.eq(true)            
+                    cy.wait(100)
+                })
+        })
+        cy.log(`**BOA-RPT-111, PASSED**`)
+        //"Verify the data of 'Operator ID' by (Numeric Value)
 
 
     })

@@ -42,9 +42,9 @@ describe('Change Password Test Security', () => {
 
     const password = Cypress.env('password')
     const passEnv = Cypress.env('passwords')
-    const passwords = passEnv.split(':')
-    const selectPassword = Math.floor(Math.random() * passwords.length)
-    const selectedPass = passwords[selectPassword]
+    // const passwords = passEnv.split(':')
+    // const selectPassword = Math.floor(Math.random() * passwords.length)
+    // const selectedPass = passwords[selectPassword]
 
     const passwordChange = (password, selectedPass, mismatched=false) => {
         cy.get(locators.profile.security['current-pass']).clear().type(password)

@@ -21,6 +21,11 @@ export default {
         
         'dropdown':                   'div.ant-select-dropdown',
         'dropdown-name':              '.ant-select-item-option-content',
+
+        'form1':                      'form > div > div:nth-child(1)',
+        'form2':                      'form > div > div:nth-child(2)',
+        'form3':                      'form > div > div:nth-child(3)',
+        'form4':                      'form > div > div:nth-child(4)',
         
         'form-input1':                'div.form_inputs:nth-child(1) input',
         'form-input2':                'div.form_inputs:nth-child(2) input',

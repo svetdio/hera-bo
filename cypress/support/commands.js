@@ -85,4 +85,9 @@ Cypress.Commands.add('rows', () => {
             cy.contains('No data available', { timeout: 20000 }).should('not.exist')
         }
     })
-}) 
+})
+
+Cypress.Commands.add('navigateToActivityLogs', () => {
+    cy.get(locators.logs['logs']).click()
+    cy.get(locators.multimodule['text-head']).should('contain.text', 'Activity Logs')
+})

@@ -237,8 +237,122 @@ it('User should be able to see the content of the table in activity logs using (
     cy.log(`**BOA-ACT-016, PASSED**`)
 })
 
+it(`User should be able to see the content of the table in activity logs using (Operator/Vendor Name)`, () => {
+    const orderOperator = 'th:nth-child(3) > button'
+    const operator = [
+        locators.multimodule['3row1'],
+        locators.multimodule['3row2'],
+        locators.multimodule['3row3'],
+        locators.multimodule['3row4'],
+        locators.multimodule['3row5']
+    ]
+    
+    //navigate to Activity Logs
+    cy.get(locators.multimodule['dataTable-rows'])
+        .contains('Operator / Vendor Name')
+        .should('be.visible')
 
+    cy.wait(1000)
 
+    operator.forEach((operators) => {
+        cy.get(operators)
+            .should('not.be.empty')
+            .invoke('text')
+            .then((text) => {
+                if (text === '--') {
+                    expect(text.trim()).to.eq('--')
+                } else {
+                    expect(text.trim()).to.not.be.empty
+                }
+            })
+    })
+    cy.log(`**BOA-ACT-017, PASSED**`)
+
+    cy.get(orderOperator).click()
+        cy.wait(1000)
+        
+    operator.forEach((operators) => {
+        cy.get(operators)
+            .invoke('text')
+            .then((text) => {
+                expect(text.trim()).to.eq('--')
+            })
+    })
+    cy.log(`**BOA-ACT-018, PASSED**`)
+
+    cy.get(orderOperator).click()
+    cy.wait(1000)
+    
+    cy.wrap([]).as('names')
+
+    operator.forEach(locator => {
+        cy.get(locator).invoke('text').then(text => {
+            cy.get('@names').then(values => {
+                values.push(text.trim())
+                cy.wrap(values).as('names')
+            })
+        })
+    })
+
+    cy.get('@names').then(values => {
+        const sortedValues = [...values].sort((a, b) => b.localeCompare(a)) // Descending order
+        expect(values).to.deep.equal(sortedValues) // Compare original vs sorted
+    })
+    cy.log(`**BOA-ACT-019, PASSED**`)
+})
+
+it('User should be able to see the content of the table in activity logs using (Full Name)', () => {
+
+    //navigate to Activity Logs
+    const orderFullName = 'th:nth-child(4) > button'
+    const fullName = [
+        locators.multimodule['4row1'],
+        locators.multimodule['4row2'],
+        locators.multimodule['4row3'],
+        locators.multimodule['4row4'],
+        locators.multimodule['4row5']
+    ]
+
+    cy.get(locators.multimodule['dataTable-rows'])
+        .contains('Full Name')
+        .should('be.visible')
+
+    cy.wait(1000)
+
+    fullName.forEach((names) => {
+        cy.get(names)
+            .should('not.be.empty')
+            .invoke('text')
+            .then((text) => {
+                expect(text.trim()).to.not.be.empty
+                
+            })
+    })
+    cy.log(`**BOA-ACT-020, PASSED**`)
+
+    cy.get(orderFullName).click()
+    cy.wait(1000)
+    
+    cy.wrap([]).as('names')
+
+    fullName.forEach(locator => {
+        cy.get(locator).invoke('text').then(text => {
+            cy.get('@names').then(values => {
+                values.push(text.trim())
+                cy.wrap(values).as('names')
+            })
+        })
+    })
+
+    cy.get('@names').then(values => {
+        const sortedValues = [...values].sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' })) // Descending order
+        expect(values).to.deep.equal(sortedValues) // Compare original vs sorted
+    })
+    cy.log(`**BOA-ACT-021, PASSED**`)
+
+    cy.log(`**BOA-ACT-022, PASSED**`)
+
+})
 
 
 

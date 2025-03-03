@@ -70,7 +70,11 @@ export default {
         '2row4':                       '#tableBody > tr:nth-child(4) > td:nth-child(2)',
         '2row5':                       '#tableBody > tr:nth-child(5) > td:nth-child(2)',
 
+        '3row1':                       '#tableBody > tr:nth-child(1) > td:nth-child(3)',
+        '3row2':                       '#tableBody > tr:nth-child(2) > td:nth-child(3)',
+        '3row3':                       '#tableBody > tr:nth-child(3) > td:nth-child(3)',
         '3row4':                       '#tableBody > tr:nth-child(4) > td:nth-child(3)',
+        '3row5':                       '#tableBody > tr:nth-child(5) > td:nth-child(3)',
         '3row7':                       '#tableBody > tr:nth-child(7) > td:nth-child(3)',
         '3row8':                       '#tableBody > tr:nth-child(8) > td:nth-child(3)',
 

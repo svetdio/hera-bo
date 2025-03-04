@@ -296,14 +296,12 @@ it(`User should be able to see the content of the table in activity logs using (
 
     cy.get('@names').then(values => {
         const sortedValues = [...values].sort((a, b) => b.localeCompare(a)) // Descending order
-        expect(values).to.deep.equal(sortedValues) // Compare original vs sorted
+        expect(values, 'descending order').to.deep.equal(sortedValues) // Compare original vs sorted
     })
     cy.log(`**BOA-ACT-019, PASSED**`)
 })
 
 it('User should be able to see the content of the table in activity logs using (Full Name)', () => {
-
-    //navigate to Activity Logs
     const orderFullName = 'th:nth-child(4) > button'
     const fullName = [
         locators.multimodule['4row1'],
@@ -313,6 +311,7 @@ it('User should be able to see the content of the table in activity logs using (
         locators.multimodule['4row5']
     ]
 
+    //navigate to Activity Logs
     cy.get(locators.multimodule['dataTable-rows'])
         .contains('Full Name')
         .should('be.visible')
@@ -333,28 +332,55 @@ it('User should be able to see the content of the table in activity logs using (
     cy.get(orderFullName).click()
     cy.wait(1000)
     
-    cy.wrap([]).as('names')
+    cy.wrap([]).as('names1')
 
     fullName.forEach(locator => {
         cy.get(locator).invoke('text').then(text => {
-            cy.get('@names').then(values => {
+            cy.get('@names1').then(values => {
                 values.push(text.trim())
-                cy.wrap(values).as('names')
+                cy.wrap(values).as('names1')
             })
         })
     })
 
-    cy.get('@names').then(values => {
-        const sortedValues = [...values].sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' })) // Descending order
-        expect(values).to.deep.equal(sortedValues) // Compare original vs sorted
+    cy.get('@names1').then(values => {
+        const sortedValues = [...values].sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }))
+        expect(values, 'ascending order').to.deep.equal(sortedValues) // Compare original vs sorted
     })
     cy.log(`**BOA-ACT-021, PASSED**`)
 
-    cy.log(`**BOA-ACT-022, PASSED**`)
+    cy.get(orderFullName).click()
+    cy.wait(1000)
+    
+    cy.wrap([]).as('names2')
 
+    fullName.forEach(locator => {
+        cy.get(locator).invoke('text').then(text => {
+            cy.get('@names2').then(values => {
+                values.push(text.trim())
+                cy.wrap(values).as('names2')
+            })
+        })
+    })
+
+    cy.get('@names2').then(values => {
+        const sortedValues = [...values].sort((a, b) => b.localeCompare(a, undefined, { sensitivity: 'base' }))
+        expect(values, 'descending order').to.deep.equal(sortedValues)
+    })
+    cy.log(`**BOA-ACT-022, PASSED**`)
 })
 
+it('User should be able to see the content of the table in activity logs using (USERNAME)', () => {
 
+
+
+
+
+
+
+
+    
+})
 
 
 

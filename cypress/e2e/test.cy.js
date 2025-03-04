@@ -35,23 +35,24 @@ describe('Test', () => {
         cy.wait(1000)
     
     
-        cy.get(orderFullName).click()
+        cy.get(orderFullName).click().click()
         cy.wait(1000)
         
-        cy.wrap([]).as('names')
+        cy.wrap([]).as('names2')
 
         fullName.forEach(locator => {
             cy.get(locator).invoke('text').then(text => {
-                cy.get('@names').then(values => {
+                cy.get('@names2').then(values => {
                     values.push(text.trim())
-                    cy.wrap(values).as('names')
+                    cy.wrap(values).as('names2')
                 })
             })
         })
 
-        cy.get('@names').then(values => {
-            const sortedValues = [...values].sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' })) // Descending order
-            expect(values).to.deep.equal(sortedValues) // Compare original vs sorted
+        cy.get('@names2').then(values => {
+            // const sortedValues = [...values].sort((a, b) => b.localeCompare(a))
+            const sortedValues = [...values].sort((a, b) => b.localeCompare(a, undefined, { sensitivity: 'base' }))
+            expect(values, 'descending order').to.deep.equal(sortedValues) // Compare original vs sorted
         })
 
 

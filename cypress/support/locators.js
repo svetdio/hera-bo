@@ -305,15 +305,15 @@ export default {
             'nextMonth':                  'button[aria-label="Next month"]',
 
             //editable
-            'dateStart':                  '[id="2025-02-01"]',
-            'dateEnd':                    '[id="2025-02-20"]',
+            'dateStart':                  '[id="2025-03-01"]',
+            'dateEnd':                    '[id="2025-03-20"]',
 
             //editable
-            'dateEnd1':                    '[id="2025-03-10"]',
+            'dateEnd1':                    '[id="2025-04-10"]',
 
             //editable
-            'octdateStart':               '[id="2024-11-01"]',
-            'octdateEnd':                 '[id="2024-11-28"]',
+            'octdateStart':               '[id="2024-12-01"]',
+            'octdateEnd':                 '[id="2024-12-28"]',
             
             'incHrFrom':                  'button.dp__btn.dp__inc_dec_button[data-test="hours-time-inc-btn-0"]',
             'incHrTo':                    'button.dp__btn.dp__inc_dec_button[data-test="hours-time-inc-btn-1"]',

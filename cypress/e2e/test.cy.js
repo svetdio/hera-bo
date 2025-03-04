@@ -16,43 +16,40 @@ describe('Test', () => {
         cy.navigateToActivityLogs()
     })
 
-    it('User should be able to see the content of the table in activity logs using (Date Created)', () => {
-        //navigate to Activity Logs
-
-        const orderFullName = 'th:nth-child(4) > button'
-        const fullName = [
-            locators.multimodule['4row1'],
-            locators.multimodule['4row2'],
-            locators.multimodule['4row3'],
-            locators.multimodule['4row4'],
-            locators.multimodule['4row5']
+    it('TEst', () => {
+        const orderUname = 'th:nth-child(5) > button'
+        const uname = [
+            locators.multimodule['5row1'],
+            locators.multimodule['5row2'],
+            locators.multimodule['5row3'],
+            locators.multimodule['5row4'],
+            locators.multimodule['5row5']
         ]
 
+        //navigate to Activity Logs
         cy.get(locators.multimodule['dataTable-rows'])
-            .contains('Operator / Vendor Name')
+            .contains('Username')
             .should('be.visible')
     
         cy.wait(1000)
     
-    
-        cy.get(orderFullName).click().click()
+        cy.get(orderUname).click()
         cy.wait(1000)
         
-        cy.wrap([]).as('names2')
+        cy.wrap([]).as('names1')
 
-        fullName.forEach(locator => {
+        uname.forEach(locator => {
             cy.get(locator).invoke('text').then(text => {
-                cy.get('@names2').then(values => {
+                cy.get('@names1').then(values => {
                     values.push(text.trim())
-                    cy.wrap(values).as('names2')
+                    cy.wrap(values).as('names1')
                 })
             })
         })
 
-        cy.get('@names2').then(values => {
-            // const sortedValues = [...values].sort((a, b) => b.localeCompare(a))
-            const sortedValues = [...values].sort((a, b) => b.localeCompare(a, undefined, { sensitivity: 'base' }))
-            expect(values, 'descending order').to.deep.equal(sortedValues) // Compare original vs sorted
+        cy.get('@names1').then(values => {
+            const sortedValues = [...values].sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }))
+            expect(values, 'ascending order').to.deep.equal(sortedValues)
         })
 
 

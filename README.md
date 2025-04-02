@@ -21,6 +21,7 @@ Coverage
 
    * [Login]
    * [Profile]
+   * [Report Module]
 
 Pre-Requisites
 --------------
